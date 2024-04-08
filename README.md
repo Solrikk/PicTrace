@@ -5,7 +5,7 @@
 ##### The excluded SSIM index ranges from -1 to +1. The value of +1 is achieved only with complete authenticity of the samples. As a rule, the metric is designed for an 8×8 pixel window.
 #### To compare images, SSIM (Structural Similarity Index) is used to assess the similarity of images, as well as the ORB (Oriented FAST and Rotated BRIEF) algorithm to detect key points and their descriptors.
 ![image]()
-https://i.stack.imgur.com/spSvt.png
+![image](https://i.stack.imgur.com/spSvt.png)
 #### HarmonyImage - быстрый и эффективный инструмент для поиска аналогичных изображений на основе структурного сходства и сопоставления ключевых точек на изображениях. Приложение позволяет пользователям загружать изображения или предоставлять URL-адреса изображений, которые затем сравниваются с базой данных изображений для поиска наиболее похожих.
 HarmonyImageは、画像の構造の類似性と画像間のキーポイントのマッチングに基づいて類似した画像を検索するための高速かつ効率的なツールです。
 
