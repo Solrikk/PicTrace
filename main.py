@@ -65,8 +65,10 @@ async def process_image(image_entry: dict, target_image: np.ndarray) -> tuple:
     current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
     ssim_index = ssim(target_gray, current_gray)
     orb = cv2.ORB_create()
-    target_keypoints, target_descriptors = orb.detectAndCompute(target_gray, None)
-    current_keypoints, current_descriptors = orb.detectAndCompute(current_gray, None)
+    target_keypoints, target_descriptors = orb.detectAndCompute(
+        target_gray, None)
+    current_keypoints, current_descriptors = orb.detectAndCompute(
+        current_gray, None)
     if target_descriptors is None or current_descriptors is None:
       return (0, image_entry["url"])
     bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
@@ -83,7 +85,9 @@ async def process_image(image_entry: dict, target_image: np.ndarray) -> tuple:
 async def find_similar_images(file_path: str) -> List[str]:
   db_data = load_db()
   target_image = cv2.imread(file_path)
-  tasks = [process_image(entry, target_image) for entry in db_data if "url" in entry]
+  tasks = [
+      process_image(entry, target_image) for entry in db_data if "url" in entry
+  ]
   results = await asyncio.gather(*tasks)
   valid_results = filter(lambda x: x[0] > 0, results)
   sorted_results = sorted(valid_results, key=lambda x: x[0], reverse=True)[:5]
@@ -98,18 +102,9 @@ async def find_similar_images(file_path: str) -> List[str]:
 
 @app.get("/", response_class=HTMLResponse)
 async def upload_form():
-  return """
-            <html>
-                <head>
-                </head>
-                <body>
-                    <form action="/upload/" enctype="multipart/form-data" method="post">
-                    <input name="file" type="file">
-                    <input type="submit" value="Найти">
-                    </form>
-                </body>
-            </html>
-            """
+  with open("upload_form.html", "r") as file:
+    form_content = file.read()
+  return HTMLResponse(content=form_content, status_code=200)
 
 
 @app.post("/upload/")
