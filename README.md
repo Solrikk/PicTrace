@@ -10,7 +10,6 @@
 #### To compare images, SSIM (Structural Similarity Index) is used to assess the similarity of images, as well as the ORB (Oriented FAST and Rotated BRIEF) algorithm to detect key points and their descriptors.
 ![image](https://i.stack.imgur.com/spSvt.png)
 #### The found key points are compared with each other to determine matches. These matches allow assessing the similarity of images from a perspective other than SSIM. The final similarity score is calculated as the average between the SSIM score and the relative number of matching key points (using the ORB algorithm), providing a comprehensive approach to analyzing the similarity of images.
-#### HarmonyImage - быстрый и эффективный инструмент для поиска аналогичных изображений на основе структурного сходства и сопоставления ключевых точек на изображениях. Приложение позволяет пользователям загружать изображения или предоставлять URL-адреса изображений, которые затем сравниваются с базой данных изображений для поиска наиболее похожих.
 HarmonyImageは、画像の構造の類似性と画像間のキーポイントのマッチングに基づいて類似した画像を検索するための高速かつ効率的なツールです。
 
 ## Features
