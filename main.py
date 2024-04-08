@@ -7,42 +7,42 @@ from typing import List
 from skimage.metrics import structural_similarity as ssim
 import cv2
 import numpy as np
+import json
 import asyncio
-from concurrent.futures import ThreadPoolExecutor, as_completed
-import sqlite3
 
 app = FastAPI()
 
-DB_FILE = 'images.db'
-
-def init_db():
-  conn = sqlite3.connect(DB_FILE)
-  cursor = conn.cursor()
-  cursor.execute('''CREATE TABLE IF NOT EXISTS images 
-                  (id INTEGER PRIMARY KEY AUTOINCREMENT, url TEXT, file_path TEXT, hash TEXT)''')
-  conn.commit()
-  conn.close()
 
 def load_db():
-  conn = sqlite3.connect('images.db')
-  cursor = conn.cursor()
-  cursor.execute("SELECT id, url FROM images")
-  db_data = cursor.fetchall()
-  conn.close()
-  return [{"id": row[0], "url": row[1]} for row in db_data]
+  try:
+    with open("images.json", "r") as file:
+      return json.load(file)
+  except FileNotFoundError:
+    return []
 
 
-def add_image_to_db(file_path, image_hash):
-  conn = sqlite3.connect(DB_FILE)
-  cursor = conn.cursor()
-  cursor.execute("INSERT INTO images (url, hash) VALUES (?, ?)", (file_path, image_hash))
-  conn.commit()
-  conn.close()
+def save_db(data):
+  with open("images.json", "w") as file:
+    json.dump(data, file, indent=4)
+
+
+def init_db():
+  db_data = load_db()
+  if not isinstance(db_data, list):
+    db_data = []
+    save_db(db_data)
 
 
 def get_image_hash(image):
   hash = hashlib.sha256(image).hexdigest()
   return hash
+
+
+def add_image_to_db(file_path, image_hash):
+  db_data = load_db()
+  if isinstance(db_data, list):
+    db_data.append({"file_path": file_path, "hash": image_hash})
+    save_db(db_data)
 
 
 async def download_image(url: str) -> np.ndarray:
@@ -65,10 +65,8 @@ async def process_image(image_entry: dict, target_image: np.ndarray) -> tuple:
     current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
     ssim_index = ssim(target_gray, current_gray)
     orb = cv2.ORB_create()
-    target_keypoints, target_descriptors = orb.detectAndCompute(
-        target_gray, None)
-    current_keypoints, current_descriptors = orb.detectAndCompute(
-        current_gray, None)
+    target_keypoints, target_descriptors = orb.detectAndCompute(target_gray, None)
+    current_keypoints, current_descriptors = orb.detectAndCompute(current_gray, None)
     if target_descriptors is None or current_descriptors is None:
       return (0, image_entry["url"])
     bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
@@ -85,35 +83,33 @@ async def process_image(image_entry: dict, target_image: np.ndarray) -> tuple:
 async def find_similar_images(file_path: str) -> List[str]:
   db_data = load_db()
   target_image = cv2.imread(file_path)
-  tasks = []
-
-  for entry in db_data:
-    if "url" in entry:
-      task = asyncio.create_task(process_image(entry, target_image))
-      tasks.append(task)
-
-  results = []
-
-  for completed_task in asyncio.as_completed(tasks):
-    result = await completed_task
-    results.append(result)
-
-  valid_results = [result for result in results if result[0] > 0]
+  tasks = [process_image(entry, target_image) for entry in db_data if "url" in entry]
+  results = await asyncio.gather(*tasks)
+  valid_results = filter(lambda x: x[0] > 0, results)
   sorted_results = sorted(valid_results, key=lambda x: x[0], reverse=True)[:5]
   seen_urls = set()
   top_similar_images = []
-
   for result in sorted_results:
     if result[1] not in seen_urls:
       top_similar_images.append(result[1])
       seen_urls.add(result[1])
-
   return top_similar_images
 
 
 @app.get("/", response_class=HTMLResponse)
 async def upload_form():
-  return FileResponse('templates/upload_form.html')
+  return """
+            <html>
+                <head>
+                </head>
+                <body>
+                    <form action="/upload/" enctype="multipart/form-data" method="post">
+                    <input name="file" type="file">
+                    <input type="submit" value="Найти">
+                    </form>
+                </body>
+            </html>
+            """
 
 
 @app.post("/upload/")
@@ -155,6 +151,3 @@ async def upload_from_url(image_url: str = Form(...)):
         }
       else:
         return {"message": "Failed to download image from URL"}
-
-
-init_db()
