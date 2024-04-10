@@ -2,7 +2,7 @@
   <img src="assets/logo.svg" width="15%"/>
 </div>
 
-## Harmony-Image ⚡️
+# Harmony-Image ⚡️
 
 <div align="center">
   <h3>  English | <a href="README_FR.md"> Français </a> | <a href="README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
@@ -12,7 +12,7 @@
 
 Whether uploading images directly or using URLs, Harmony-Image efficiently navigates through an extensive image database to find the best matches. Its adept use of asynchronous technology ensures rapid processing, turning your search into a seamless and fruitful experience. Discover the future of image search with Harmony-Image, where technology meets simplicity.
 
-# Features
+## Features
 - **Supports Multiple Languages** ☄️
 
   - `Python` with libraries:
