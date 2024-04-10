@@ -6,8 +6,8 @@
 
 SSIM compares patterns of pixel intensity changes which are important attributes for human vision. The SSIM score ranges from -1 to +1, where a value of 1 indicates identical images. The process can be broken down into three components:
 1) **Luminance Comparison:** This allows for the assessment of the overall luminance of the images. Luminance in SSIM is measured as the average of all pixel values.
-2) Contrast Comparison: Similarity in contrast is measured through the variance of pixel intensities (variations from the average value), understanding how similar the patterns of light and shadow distribution are between two images.
-3) Structure Comparison: Compares patterns of spatial pixel distribution, ignoring variations in luminance and contrast. It is done by calculating the covariance between the images relative to their local average values.
+2) **Contrast Comparison:** Similarity in contrast is measured through the variance of pixel intensities (variations from the average value), understanding how similar the patterns of light and shadow distribution are between two images.
+3) **Structure Comparison:** Compares patterns of spatial pixel distribution, ignoring variations in luminance and contrast. It is done by calculating the covariance between the images relative to their local average values.
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/96b4f1c3840c3707a93197798dcbfbfff24fa92b)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/fcda97086476fa420b3b06568a0d202980a600d0)
