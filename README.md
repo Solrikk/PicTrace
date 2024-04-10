@@ -36,7 +36,7 @@ Whether uploading images directly or using URLs, Harmony-Image efficiently navig
   - Supports `Windows`, `Linux` and `OS X`
   - Supports `IOS` and `Android` (WIP)
   - Supports `no_std` (WIP, partial)
-  - **No** heavy dependencies, such as `BLAS
+  - **No** heavy dependencies, such as `BLAS`
 
 #
 
