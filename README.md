@@ -8,7 +8,9 @@
   <h3>  English | <a href="README_FR.md"> Français </a> | <a href="README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
 </div>
 
- **_Harmony-Image:_** Elevate your image search experience with Harmony-Image, a cutting-edge application designed to revolutionize the way you find similar images. Leveraging advanced algorithms for structural similarity and keypoint matching, Harmony-Image delivers a fast, accurate, and seamless search process. Whether you're uploading your own photos or searching with image URLs, our intuitive platform sifts through an extensive image database to uncover the closest matches. Built on asynchronous technology, Harmony-Image ensures efficient handling of image downloads and processing, providing you with quick and precise results. Embrace the future of image discovery with Harmony-Image – where every search is a step towards perfect harmony.
+ **_Harmony-Image:_** Elevate Your Visual Searches. At the heart of Harmony-Image lies an advanced platform designed for the precise discovery of similar images. By harnessing the power of structural similarity and keypoint matching algorithms, this tool offers a swift and accurate approach to image comparison.
+
+Whether uploading images directly or using URLs, Harmony-Image efficiently navigates through an extensive image database to find the best matches. Its adept use of asynchronous technology ensures rapid processing, turning your search into a seamless and fruitful experience. Discover the future of image search with Harmony-Image, where technology meets simplicity.
 
 # Features
 - **Supports Multiple Languages** ☄️
