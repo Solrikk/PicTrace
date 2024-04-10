@@ -87,7 +87,7 @@ EchoImage application, both the SSIM and ORB methods are utilized to find images
  After calculating similarity scores using both SSIM and ORB for each image comparison, Harmony-Image averages these scores to get a final measure of similarity.
 Images from the database are then ranked based on their final similarity scores, and the top 5 most similar images are selected.
 
- Final Selection of Similar Images:
+## Final Selection of Similar Images:
 The application filters out duplicate URLs to ensure a diverse set of similar images.
  It returns URLs of the top similar images, which can then be presented to the user.
  In essence, your application uses a combination of structural analysis (SSIM) and feature matching (ORB) to find and rank images in your database that are most similar to an image uploaded by the user. This dual approach leverages the strengths of both methods, ensuring a robust and nuanced comparison that goes beyond simple pixel-by-pixel analysis.
