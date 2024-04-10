@@ -10,7 +10,7 @@
 
  **_Harmony-Image:_** Elevate Your Visual Searches. At the heart of Harmony-Image lies an advanced platform designed for the precise discovery of similar images. By harnessing the power of structural similarity and keypoint matching algorithms, this tool offers a swift and accurate approach to image comparison.
 
-Whether uploading images directly or using URLs, Harmony-Image efficiently navigates through an extensive image database to find the best matches. Its adept use of asynchronous technology ensures rapid processing, turning your search into a seamless and fruitful experience. Discover the future of image search with Harmony-Image, where technology meets simplicity.
+Whether uploading images directly or using URLs, Harmony-Image efficiently navigates through an extensive image database to find the best matches. Its adept use of asynchronous technology ensures rapid processing, turning your search into a seamless and fruitful experience.
 
 ## Features
 - **Supports Multiple Languages** ☄️
