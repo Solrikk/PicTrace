@@ -8,9 +8,9 @@
   <h3>  English | <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README_GE.md"> Deutsch </a> | <a href="README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
 </div>
 
- **_Harmony-Image:_** Steigern Sie Ihre visuelle Suche. Das Herzstück von Harmony-Image ist eine fortschrittliche Plattform, die für die präzise Erkennung ähnlicher Bilder entwickelt wurde. Durch die Nutzung der Leistungsfähigkeit struktureller Ähnlichkeits- und Schlüsselpunktabgleichsalgorithmen bietet dieses Tool einen schnellen und genauen Ansatz für den Bildvergleich.
+ **_Harmony-Image:_** Heben Sie Ihre visuellen Suchen auf ein neues Niveau. Im Kern von Harmony-Image liegt eine fortschrittliche Plattform, die für die präzise Entdeckung ähnlicher Bilder konzipiert ist. Durch die Nutzung der Kraft der strukturellen Ähnlichkeit und der Schlüsselpunktvergleichsalgorithmen bietet dieses Tool einen schnellen und genauen Ansatz für den Bildvergleich.
 
-Egal, ob Sie Bilder direkt hochladen oder URLs verwenden, Harmony-Image navigiert effizient durch eine umfangreiche Bilddatenbank, um die besten Übereinstimmungen zu finden. Der geschickte Einsatz von Synchrontechnologie sorgt für eine schnelle Verarbeitung und macht Ihre Suche zu einem nahtlosen und fruchtbaren Erlebnis.
+Ob Bilder direkt hochgeladen oder URLs verwendet werden, Harmony-Image navigiert effizient durch eine umfangreiche Bilddatenbank, um die besten Übereinstimmungen zu finden. Seine geschickte Verwendung asynchroner Technologie gewährleistet eine schnelle Verarbeitung und verwandelt Ihre Suche in ein nahtloses und fruchtbares Erlebnis.
 
 ## Features
 - **Supports Multiple-Technologies** ☄️
