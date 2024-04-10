@@ -2,15 +2,15 @@
   <img src="assets/logo.svg" width="15%"/>
 </div>
 
-# Harmony-Image ⚡️
+# EchoImage ⚡️
 
 <div align="center">
   <h3> <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README.md"> English | <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
 </div>
 
- **_Harmony-Image:_** Heben Sie Ihre visuellen Suchen auf ein neues Niveau. Im Kern von Harmony-Image liegt eine fortschrittliche Plattform, die für die präzise Entdeckung ähnlicher Bilder konzipiert ist. Durch die Nutzung der Kraft der strukturellen Ähnlichkeit und der Schlüsselpunktvergleichsalgorithmen bietet dieses Tool einen schnellen und genauen Ansatz für den Bildvergleich.
+ **_EchoImage:_** Heben Sie Ihre visuellen Suchen auf ein neues Niveau. Im Kern von EchoImage liegt eine fortschrittliche Plattform, die für die präzise Entdeckung ähnlicher Bilder konzipiert ist. Durch die Nutzung der Kraft der strukturellen Ähnlichkeit und der Schlüsselpunktvergleichsalgorithmen bietet dieses Tool einen schnellen und genauen Ansatz für den Bildvergleich.
 
-Ob Bilder direkt hochgeladen oder URLs verwendet werden, Harmony-Image navigiert effizient durch eine umfangreiche Bilddatenbank, um die besten Übereinstimmungen zu finden. Seine geschickte Verwendung asynchroner Technologie gewährleistet eine schnelle Verarbeitung und verwandelt Ihre Suche in ein nahtloses und fruchtbares Erlebnis.
+Ob Bilder direkt hochgeladen oder URLs verwendet werden, EchoImage navigiert effizient durch eine umfangreiche Bilddatenbank, um die besten Übereinstimmungen zu finden. Seine geschickte Verwendung asynchroner Technologie gewährleistet eine schnelle Verarbeitung und verwandelt Ihre Suche in ein nahtloses und fruchtbares Erlebnis.
 
 ## Merkmale
 - **Unterstützt Mehrere Technologien** ☄️
@@ -51,16 +51,16 @@ _Using the ORB algorithm, key points and descriptors are determined for both the
 ![image](https://i.stack.imgur.com/spSvt.png)
 The found key points are compared with each other to determine matches. These matches allow assessing the similarity of images from a perspective other than SSIM. The final similarity score is calculated as the average between the SSIM score and the relative number of matching key points (using the ORB algorithm), providing a comprehensive approach to analyzing the similarity of images.
 
-Harmony-Image application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
+EchoImage application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
 
-## How SSIM Works in Harmony-Image:
+## How SSIM Works in EchoImage:
 1) **_Resizing Images:_** When comparing the uploaded image to each image in the database, both images are resized to the same dimensions (256x256 pixels). This standardizes the comparison, making it fair and more efficient since we're working with images of the same size.
 
 2) **_Converting to Grayscale:_** Both images are converted to grayscale. This simplifies the comparison by focusing on the structure and intensity of light rather than being distracted by color differences.
 
 3) **_Structural Similarity Comparison:_** The SSIM method then compares these grayscale images to assess their structural similarity. This involves analyzing how similar the patterns of light and shadow are between the two images, giving a score that reflects their similarity. A high score means the images are structurally similar.
 
-## How ORB Works in Harmony-Image:
+## How ORB Works in EchoImage:
 1) **_Detecting Key Points:_** ORB first identifies key points in both the uploaded image and each database image. These key points are distinctive spots that can be easily recognized and compared between images, such as corners and interesting textures.
 
 2) **_Describing Key Points:_** For each key point detected, ORB generates a unique descriptor that summarizes the key point's characteristics. This descriptor is made rotation-invariant, meaning it describes the key point in a way that's consistent even if the image is rotated.
