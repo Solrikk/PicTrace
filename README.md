@@ -33,10 +33,11 @@ In your FastAPI application, both the SSIM and ORB methods are utilized to find 
 
 4) Scoring Matches: The more key points that match between two images, the higher the score of similarity based on ORB. This score reflects how many distinctive features are shared between the images.
 
-# Combining SSIM and ORB:
-After calculating similarity scores using both SSIM and ORB for each image comparison, your application averages these scores to get a final measure of similarity.
+## Combining SSIM and ORB:
+ After calculating similarity scores using both SSIM and ORB for each image comparison, Harmony-Image averages these scores to get a final measure of similarity.
 Images from the database are then ranked based on their final similarity scores, and the top 5 most similar images are selected.
-Final Selection of Similar Images:
+
+ Final Selection of Similar Images:
 The application filters out duplicate URLs to ensure a diverse set of similar images.
-It returns URLs of the top similar images, which can then be presented to the user.
-In essence, your application uses a combination of structural analysis (SSIM) and feature matching (ORB) to find and rank images in your database that are most similar to an image uploaded by the user. This dual approach leverages the strengths of both methods, ensuring a robust and nuanced comparison that goes beyond simple pixel-by-pixel analysis.
+ It returns URLs of the top similar images, which can then be presented to the user.
+ In essence, your application uses a combination of structural analysis (SSIM) and feature matching (ORB) to find and rank images in your database that are most similar to an image uploaded by the user. This dual approach leverages the strengths of both methods, ensuring a robust and nuanced comparison that goes beyond simple pixel-by-pixel analysis.
