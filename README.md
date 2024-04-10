@@ -30,6 +30,14 @@ Whether uploading images directly or using URLs, Harmony-Image efficiently navig
   - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
   - `Hashing for Image Identification` 
 
+- **Portable** 💼
+
+  - Supports `WebAssembly`
+  - Supports `Windows`, `Linux` and `OS X`
+  - Supports `IOS` and `Android` (WIP)
+  - Supports `no_std` (WIP, partial)
+  - **No** heavy dependencies, such as `BLAS
+
 #
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
