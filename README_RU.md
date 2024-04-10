@@ -51,23 +51,23 @@ _ Используя алгоритм ORB, ключевые точки и дес
 ![image](https://i.stack.imgur.com/spSvt.png)
 Найденные ключевые точки сравниваются друг с другом для определения совпадений. Эти совпадения позволяют оценить сходство изображений с точки зрения, отличной от SSIM. Итоговая оценка сходства рассчитывается как среднее значение между оценкой SSIM и относительным количеством совпадающих ключевых точек (с использованием алгоритма ORB), что обеспечивает комплексный подход к анализу сходства изображений.
 
-In your FastAPI application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
+В графическом приложении Harmony-Image для поиска изображений, похожих на загруженное изображение, используются методы SIM и ORB. Вот упрощенное объяснение того, как каждый метод работает в контексте вашего приложения и способствует поиску похожих изображений.:
 
-## How SSIM Works in Harmony-Image:
-1) **_Resizing Images:_** When comparing the uploaded image to each image in the database, both images are resized to the same dimensions (256x256 pixels). This standardizes the comparison, making it fair and more efficient since we're working with images of the same size.
+## Как SIM работает в Harmony-Image:
+1) **_Изменение размера изображений:_** При сравнении загруженного изображения с каждым изображением в базе данных размер обоих изображений изменяется до одинаковых размеров (256x256 пикселей). Это стандартизирует сравнение, делая его справедливым и более эффективным, поскольку мы работаем с изображениями одинакового размера.
 
-2) **_Converting to Grayscale:_** Both images are converted to grayscale. This simplifies the comparison by focusing on the structure and intensity of light rather than being distracted by color differences.
+2) **_ Преобразование в оттенки серого:_** Оба изображения преобразуются в оттенки серого. Это упрощает сравнение, поскольку позволяет сфокусироваться на структуре и интенсивности света, а не отвлекаться на цветовые различия.
 
-3) **_Structural Similarity Comparison:_** The SSIM method then compares these grayscale images to assess their structural similarity. This involves analyzing how similar the patterns of light and shadow are between the two images, giving a score that reflects their similarity. A high score means the images are structurally similar.
+3) **_ Сравнение структурного сходства:_** Затем метод SSIM сравнивает эти изображения в оттенках серого, чтобы оценить их структурное сходство. Это включает в себя анализ того, насколько похожи световые и теневые узоры между двумя изображениями, и дает оценку, отражающую их сходство. Высокий балл означает, что изображения структурно схожи.
 
-## How ORB Works in Harmony-Image:
-1) **_Detecting Key Points:_** ORB first identifies key points in both the uploaded image and each database image. These key points are distinctive spots that can be easily recognized and compared between images, such as corners and interesting textures.
+## Как ORB работает в Harmony-Image:
+1) **_ Определение ключевых точек:_** ORB сначала определяет ключевые точки как на загруженном изображении, так и на каждом изображении из базы данных. Эти ключевые точки являются отличительными точками, которые можно легко распознать и сравнить между изображениями, например, углы и интересные текстуры.
 
-2) **_Describing Key Points:_** For each key point detected, ORB generates a unique descriptor that summarizes the key point's characteristics. This descriptor is made rotation-invariant, meaning it describes the key point in a way that's consistent even if the image is rotated.
+2) **_Описание ключевых точек:_** Для каждой обнаруженной ключевой точки ORB генерирует уникальный дескриптор, который суммирует характеристики ключевой точки. Этот дескриптор не зависит от поворота, что означает, что он описывает ключевую точку таким образом, чтобы она оставалась неизменной, даже если изображение повернуто.
 
-3) **_Matching Key Points:_** The application then matches key points between the uploaded image and each database image using these descriptors. The matching process involves finding key points in the database image that have descriptors similar to those in the uploaded image.
+3) **_Согласование ключевых точек:_** Затем приложение сопоставляет ключевые точки между загруженным изображением и каждым изображением из базы данных, используя эти дескрипторы. Процесс сопоставления включает поиск ключевых точек в изображении из базы данных, которые имеют дескрипторы, аналогичные тем, которые есть в загруженном изображении.
 
-4) **_Scoring Matches:_** The more key points that match between two images, the higher the score of similarity based on ORB. This score reflects how many distinctive features are shared between the images.
+4) **_ Оценка совпадений:_** Чем больше ключевых моментов совпадает между двумя изображениями, тем выше оценка сходства, основанная на СФЕРЕ. Эта оценка отражает количество общих отличительных черт между изображениями.
 
 ## Combining SSIM and ORB:
  After calculating similarity scores using both SSIM and ORB for each image comparison, Harmony-Image averages these scores to get a final measure of similarity.
