@@ -13,7 +13,7 @@
 Whether uploading images directly or using URLs, EchoImage efficiently navigates through an extensive image database to find the best matches. Its adept use of asynchronous technology ensures rapid processing, turning your search into a seamless and fruitful experience.
 
 ## Features
-- **Supports Multiple-Technologies** ☄️
+- **_Supports Multiple-Technologies_** ☄️
 
   - `Python` with libraries:
   - `FastAPI` for the web framework.
@@ -23,14 +23,14 @@ Whether uploading images directly or using URLs, EchoImage efficiently navigates
   - `skimage` for additional image processing techniques.
   - **Can also be used as a service**
 
-- **Supports Multiple-Indexes** 🚀
+- **_Supports Multiple-Indexes_** 🚀
 
   - `Structural Similarity Index (SSIM)` ([details](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
   - `Feature Matching with ORB (Oriented FAST and Rotated BRIEF) Descriptor` ([details](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
   - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
   - `Hashing for Image Identification` 
 
-- **Portable** 💼
+- **_Portable_** 💼
 
   - Supports `WebAssembly`
   - Supports `Windows`, `Linux` and `OS X`
