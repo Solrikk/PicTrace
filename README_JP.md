@@ -5,7 +5,7 @@
 # Harmony-Image ⚡️
 
 <div align="center">
-  <h3>  English | <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
+  <h3> <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README.md"> English | <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="https://github.com/Solrikk/Harmony-Image/blob/main/README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
 </div>
 
  **_Harmony-Image:_** あなたのビジュアル検索を向上させましょう。Harmony-Imageの中心には、類似画像の正確な発見に特化した先進プラットフォームがあります。構造的類似性およびキーポイントマッチングアルゴリズムの力を活用することにより、このツールは迅速かつ正確な画像比較アプローチを提供します。
