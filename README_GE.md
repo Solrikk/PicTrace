@@ -12,15 +12,15 @@
 
 Ob Bilder direkt hochgeladen oder URLs verwendet werden, Harmony-Image navigiert effizient durch eine umfangreiche Bilddatenbank, um die besten Übereinstimmungen zu finden. Seine geschickte Verwendung asynchroner Technologie gewährleistet eine schnelle Verarbeitung und verwandelt Ihre Suche in ein nahtloses und fruchtbares Erlebnis.
 
-## Features
-- **Supports Multiple-Technologies** ☄️
+## Merkmale
+- **Unterstützt Mehrere Technologien** ☄️
 
-  - `Python` with libraries:
-  - `FastAPI` for the web framework.
-  - `aiohttp` for asynchronous HTTP requests.
-  - `cv2` (OpenCV) for image processing.
-  - `numpy` for numerical operations.
-  - `skimage` for additional image processing techniques.
+  - `Python` mit Bibliotheken:
+  - `FastAPI` für das Web-Framework.
+  - `aiohttp` für asynchrone HTTP-Anfragen.
+  - `cv2` (OpenCV) für Bildverarbeitung.
+  - `numpy` für zusätzliche Bildverarbeitungstechniken.
+  - `skimage` auch als Dienst genutzt werden
   - **Can also be used as a service**
 
 - **Supports Multiple-Indexes** 🚀
