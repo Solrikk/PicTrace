@@ -62,12 +62,13 @@ By combining these two approaches, ORB provides a fast and efficient way of matc
 
 _Using the ORB algorithm, key points and descriptors are determined for both the current and target images._
 ![image](https://i.stack.imgur.com/spSvt.png)
+
 The found key points are compared with each other to determine matches. These matches allow assessing the similarity of images from a perspective other than SSIM. The final similarity score is calculated as the average between the SSIM score and the relative number of matching key points (using the ORB algorithm), providing a comprehensive approach to analyzing the similarity of images.
 
 EchoImage application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
 
 ## How SSIM Works in EchoImage:
-1) **_Resizing Images:_** When comparing the uploaded image to each image in the database, both images are resized to the same dimensions (256x256 pixels). This standardizes the comparison, making it fair and more efficient since we're working with images of the same size.
+1) **_Resizing Images:_** When comparing the uploaded image to each image in the database, both images are resized to the same dimensions `(256x256 pixels).` This standardizes the comparison, making it fair and more efficient since we're working with images of the same size.
 
 2) **_Converting to Grayscale:_** Both images are converted to grayscale. This simplifies the comparison by focusing on the structure and intensity of light rather than being distracted by color differences.
 
