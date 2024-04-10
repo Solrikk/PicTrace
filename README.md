@@ -40,7 +40,8 @@ Whether uploading images directly or using URLs, EchoImage efficiently navigates
 # Examples
 `Python` example** [[more info](https://github.com/Solrikk/EchoImage/blob/main/main.py)]
 
-```async def process_image(image_entry: dict, target_image: np.ndarray) -> tuple:
+```Python
+async def process_image(image_entry: dict, target_image: np.ndarray) -> tuple:
   try:
     current_image = await download_image(image_entry["url"])
     target_image_resized = cv2.resize(target_image, (256, 256))
