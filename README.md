@@ -10,6 +10,18 @@
 
  **_Harmony-Image_** is a fast and efficient tool for finding similar images based on structural similarity and keypoint matching in images. The application allows users to upload images or provide URLs to images, which are then compared against a database of images to find the most similar ones. To calculate similar images, the application uses asynchronous functions to download images from external sources and then process them.
 
+# Features
+- **Supports Multiple Languages** ☄️
+
+  Supports Multiple Languages ☄️
+  - `Python` with libraries:
+  - `FastAPI` for the web framework.
+  - `aiohttp` for asynchronous HTTP requests.
+  - `cv2` (OpenCV) for image processing.
+  - `numpy` for numerical operations.
+  - `skimage` for additional image processing techniques.
+  - **Can also be used as a service**
+
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
 SSIM compares patterns of pixel intensity changes which are important attributes for human vision. The SSIM score ranges from -1 to +1, where a value of 1 indicates identical images. The process can be broken down into three components:
