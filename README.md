@@ -13,7 +13,7 @@
 Whether uploading images directly or using URLs, Harmony-Image efficiently navigates through an extensive image database to find the best matches. Its adept use of asynchronous technology ensures rapid processing, turning your search into a seamless and fruitful experience.
 
 ## Features
-- **Supports Multiple Languages** ☄️
+- **Supports Multiple-Technologies** ☄️
 
   - `Python` with libraries:
   - `FastAPI` for the web framework.
