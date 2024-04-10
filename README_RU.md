@@ -37,6 +37,54 @@
   - Supports `IOS` and `Android` (WIP)
   - Supports `no_std` (WIP, partial)
 
+# Examples
+`Python` example** [[more info](https://github.com/Solrikk/EchoImage/blob/main/main.py)]
+
+```Python
+async def process_image(image_entry: dict, target_image: np.ndarray) -> tuple:
+  try:
+    current_image = await download_image(image_entry["url"])
+    target_image_resized = cv2.resize(target_image, (256, 256))
+    current_image_resized = cv2.resize(current_image, (256, 256))
+    target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
+    current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
+    ssim_index = ssim(target_gray, current_gray)
+    orb = cv2.ORB_create()
+    target_keypoints, target_descriptors = orb.detectAndCompute(
+        target_gray, None)
+    current_keypoints, current_descriptors = orb.detectAndCompute(
+        current_gray, None)
+    if target_descriptors is None or current_descriptors is None:
+      return (0, image_entry["url"])
+    bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
+    matches = bf.match(target_descriptors, current_descriptors)
+    matches = sorted(matches, key=lambda x: x.distance)
+    orb_score = len(matches) / float(len(target_keypoints))
+    final_score = (orb_score + ssim_index) / 2
+    return (final_score, image_entry["url"])
+  except Exception as e:
+    print(f"Failed to process image {image_entry['url']} due to {e}")
+    return (0, image_entry["url"])
+
+
+async def find_similar_images(file_path: str) -> List[str]:
+  db_data = load_db()
+  target_image = cv2.imread(file_path)
+  tasks = [
+      process_image(entry, target_image) for entry in db_data if "url" in entry
+  ]
+  results = await asyncio.gather(*tasks)
+  valid_results = filter(lambda x: x[0] > 0, results)
+  sorted_results = sorted(valid_results, key=lambda x: x[0], reverse=True)[:5]
+  seen_urls = set()
+  top_similar_images = []
+  for result in sorted_results:
+    if result[1] not in seen_urls:
+      top_similar_images.append(result[1])
+      seen_urls.add(result[1])
+  return top_similar_images
+```
+
 #
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
@@ -45,7 +93,8 @@
 
 1) **Сравнение яркости:** Сходство в контрасте измеряется через дисперсию интенсивности пикселей (вариации от среднего значения), понимая, насколько похожи паттерны распределения света и тени между двумя изображениями.
 
-```target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
+```Python
+target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
 current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
 ssim_index = ssim(target_gray, current_gray)
 ```
