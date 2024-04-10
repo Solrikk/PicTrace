@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="logo.svg" width="70%"/>
+</div>
+
 ## Harmony-Image ⚡️
 
 <div align="center">
