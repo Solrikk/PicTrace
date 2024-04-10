@@ -23,7 +23,7 @@
   - `skimage` for additional image processing techniques.
   - **Can also be used as a service**
 
-- **Supports Multiple Indexes** 🚀
+- **Поддерживает несколько индексов** 🚀
 
   - `Structural Similarity Index (SSIM)` ([details](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
   - `Feature Matching with ORB (Oriented FAST and Rotated BRIEF) Descriptor` ([details](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
@@ -34,22 +34,22 @@
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
-SSIM compares patterns of pixel intensity changes which are important attributes for human vision. The SSIM score ranges from -1 to +1, where a value of 1 indicates identical images. The process can be broken down into three components:
-1) **Luminance Comparison:** This allows for the assessment of the overall luminance of the images. Luminance in SSIM is measured as the average of all pixel values.
-2) **Contrast Comparison:** Similarity in contrast is measured through the variance of pixel intensities (variations from the average value), understanding how similar the patterns of light and shadow distribution are between two images.
-3) **Structure Comparison:** Compares patterns of spatial pixel distribution, ignoring variations in luminance and contrast. It is done by calculating the covariance between the images relative to their local average values.
+SSIM сравнивает закономерности изменения интенсивности пикселей, которые являются важными параметрами для человеческого зрения. Оценка SSIM варьируется от -1 до +1, где значение 1 указывает на идентичность изображений. Процесс можно разделить на три компонента:
+1) **Сравнение яркости:** Это позволяет оценить общую яркость изображений. Яркость в SSIM измеряется как среднее значение всех значений в пикселях.
+2) **Сравнение контрастности:** Сходство в контрастности измеряется с помощью дисперсии интенсивности пикселей (отклонения от среднего значения), позволяющей понять, насколько схожи схемы распределения света и тени между двумя изображениями.
+3) **Структурное сравнение:** Сравнивает модели пространственного распределения пикселей, игнорируя различия в яркости и контрастности. Это делается путем вычисления ковариации между изображениями относительно их локальных средних значений.
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/96b4f1c3840c3707a93197798dcbfbfff24fa92b)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/fcda97086476fa420b3b06568a0d202980a600d0)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/1aebd62ba5b7e6ae47780ccfa659333f078d6eac)
 
-To compare images, SSIM (Structural Similarity Index) is used to assess the similarity of images, as well as the ORB (Oriented FAST and Rotated BRIEF) algorithm to detect key points and their descriptors.
+Для сравнения изображений используется SSIM (индекс структурного сходства) для оценки сходства изображений, а также алгоритм ORB (Oriented FAST and Rotated BRIEF) для определения ключевых точек и их дескрипторов.
 
-ORB (Oriented FAST and Rotated BRIEF) is a method used in computer vision, especially popular for tasks related to object recognition, image matching, and tracking. It's aimed at quickly finding key points in images and describing them in a way that allows for efficient comparison. Let's break down what ORB does into simpler terms:
+ORB (Oriented FAST and Rotated BRIEF) - это метод, используемый в компьютерном зрении, особенно популярный для задач, связанных с распознаванием объектов, сопоставлением изображений и отслеживанием. Он предназначен для быстрого поиска ключевых точек на изображениях и их описания таким образом, чтобы обеспечить эффективное сравнение. Давайте разберем то, что делает ORB, на более простые термины:
 
-_Using the ORB algorithm, key points and descriptors are determined for both the current and target images._
+_ Используя алгоритм ORB, ключевые точки и дескрипторы определяются как для текущего, так и для целевого изображений._
 ![image](https://i.stack.imgur.com/spSvt.png)
-The found key points are compared with each other to determine matches. These matches allow assessing the similarity of images from a perspective other than SSIM. The final similarity score is calculated as the average between the SSIM score and the relative number of matching key points (using the ORB algorithm), providing a comprehensive approach to analyzing the similarity of images.
+Найденные ключевые точки сравниваются друг с другом для определения совпадений. Эти совпадения позволяют оценить сходство изображений с точки зрения, отличной от SSIM. Итоговая оценка сходства рассчитывается как среднее значение между оценкой SSIM и относительным количеством совпадающих ключевых точек (с использованием алгоритма ORB), что обеспечивает комплексный подход к анализу сходства изображений.
 
 In your FastAPI application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
 
