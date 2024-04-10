@@ -23,7 +23,7 @@ Whether uploading images directly or using URLs, Harmony-Image efficiently navig
   - `skimage` for additional image processing techniques.
   - **Can also be used as a service**
 
-- **Supports Multiple Indexes** 🚀
+- **Supports Multiple-Indexes** 🚀
 
   - `Structural Similarity Index (SSIM)` ([details](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
   - `Feature Matching with ORB (Oriented FAST and Rotated BRIEF) Descriptor` ([details](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
