@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/logo.svg" width="70%"/>
+  <img src="assets/logo.svg" width="30%"/>
 </div>
 
 ## Harmony-Image ⚡️
