@@ -1,5 +1,9 @@
 ## Harmony-Image ⚡️
 
+<div align="center">
+  <h3>  English | <a href="README_FR.md"> Français </a> | <a href="README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
+</div>
+
  **_Harmony-Image_** is a fast and efficient tool for finding similar images based on structural similarity and keypoint matching in images. The application allows users to upload images or provide URLs to images, which are then compared against a database of images to find the most similar ones. To calculate similar images, the application uses asynchronous functions to download images from external sources and then process them.
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
