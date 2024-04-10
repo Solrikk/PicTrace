@@ -11,34 +11,3 @@
 Using the ORB algorithm, key points and descriptors are determined for both the current and target images.
 ![image](https://i.stack.imgur.com/spSvt.png)
 #### The found key points are compared with each other to determine matches. These matches allow assessing the similarity of images from a perspective other than SSIM. The final similarity score is calculated as the average between the SSIM score and the relative number of matching key points (using the ORB algorithm), providing a comprehensive approach to analyzing the similarity of images.
-
-## Features
-- Upload images or provide URLs to images to find similar images
-- Utilizes structural similarity and keypoint matching algorithms for accurate image comparison
-- Stores images in a SQLite database for quick retrieval and comparison
-- Returns a list of the most similar images found in the database
-
-## Technologies Used
-- Python
-- FastAPI
-- SQLite
-- aiohttp
-- OpenCV
-- NumPy
-- skimage
-
-## Installation
-1. Clone the repository
-2. Install the required dependencies by running `pip install -r requirements.txt`
-3. Run the application by executing `uvicorn main:app --reload`
-
-## Usage
-1. Access the web interface by navigating to the root URL
-2. Upload an image file or provide a URL to an image
-3. Receive a list of the most similar images based on the uploaded image
-
-## Contributing
-Contributions are welcome! Please fork the repository, make your changes, and submit a pull request.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
