@@ -51,7 +51,7 @@ _Using the ORB algorithm, key points and descriptors are determined for both the
 ![image](https://i.stack.imgur.com/spSvt.png)
 The found key points are compared with each other to determine matches. These matches allow assessing the similarity of images from a perspective other than SSIM. The final similarity score is calculated as the average between the SSIM score and the relative number of matching key points (using the ORB algorithm), providing a comprehensive approach to analyzing the similarity of images.
 
-In your FastAPI application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
+Harmony-Image application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
 
 ## How SSIM Works in Harmony-Image:
 1) **_Resizing Images:_** When comparing the uploaded image to each image in the database, both images are resized to the same dimensions (256x256 pixels). This standardizes the comparison, making it fair and more efficient since we're working with images of the same size.
