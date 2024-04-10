@@ -30,6 +30,13 @@ Ob Bilder direkt hochgeladen oder URLs verwendet werden, EchoImage navigiert eff
   - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
   - `Hashing for Image Identification` 
 
+- **Portable** 💼
+
+  - Supports `WebAssembly`
+  - Supports `Windows`, `Linux` and `OS X`
+  - Supports `IOS` and `Android` (WIP)
+  - Supports `no_std` (WIP, partial)
+
 #
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
