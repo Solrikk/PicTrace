@@ -20,8 +20,8 @@ Ob Bilder direkt hochgeladen oder URLs verwendet werden, Harmony-Image navigiert
   - `aiohttp` für asynchrone HTTP-Anfragen.
   - `cv2` (OpenCV) für Bildverarbeitung.
   - `numpy` für zusätzliche Bildverarbeitungstechniken.
-  - `skimage` auch als Dienst genutzt werden
-  - **Can also be used as a service**
+  - `skimage` auch als Dienst genutzt werden.
+  - **Can also be used as a service**.
 
 - **Supports Multiple-Indexes** 🚀
 
