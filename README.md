@@ -5,7 +5,7 @@
 # Echo-Image ⚡️
 
 <div align="center">
-  <h3> <a href="https://github.com/Solrikk/EchoImage/blob/main/README.md"> English | <a href="https://github.com/Solrikk/EchoImage/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/EchoImage/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="https://github.com/Solrikk/EchoImage/blob/main/README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
+  <h3> <a href="https://github.com/Solrikk/Echo-Image/blob/main/README.md"> English | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
 </div>
 
  **_EchoImage:_** Elevate Your Visual Searches. At the heart of EchoImage lies an advanced platform designed for the precise discovery of similar images. By harnessing the power of structural similarity and keypoint matching algorithms, this tool offers a swift and accurate approach to image comparison.
