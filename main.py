@@ -13,18 +13,9 @@ init_db()
 
 @app.get("/", response_class=HTMLResponse)
 async def upload_form():
-  return """
-            <html>
-                <head>
-                </head>
-                <body>
-                    <form action="/upload/" enctype="multipart/form-data" method="post">
-                    <input name="file" type="file">
-                    <input type="submit">
-                    </form>
-                </body>
-            </html>
-            """
+  with open('templates/upload_form.html', 'r') as file:
+    html_content = file.read()
+  return HTMLResponse(content=html_content)
 
 
 @app.post("/upload/")
