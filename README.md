@@ -41,34 +41,32 @@ Whether uploading images directly or using URLs, EchoImage efficiently navigates
 `Python` example** [[more info](https://github.com/Solrikk/EchoImage/blob/main/main.py)]
 
 ```Python
-async def download_image(session: aiohttp.ClientSession,
-                         url: str) -> np.ndarray:
-  async with session.get(url) as response:
-    if response.status == 200:
-      image_data = await response.read()
-      image_array = np.frombuffer(image_data, np.uint8)
-      image = cv2.imdecode(image_array, cv2.IMREAD_COLOR)
-      return image
-  raise Exception('Image download failed')
-
-
-async def process_image(session: aiohttp.ClientSession, image_entry: dict,
-                        target_image: np.ndarray) -> tuple:
+async def process_image(session, image_entry, target_image):
   try:
     current_image = await download_image(session, image_entry["url"])
-    target_image_resized = cv2.resize(target_image, (512, 512))
-    current_image_resized = cv2.resize(current_image, (512, 512))
+    optimal_size = max(max(target_image.shape[:2]),
+                       max(current_image.shape[:2]))
+    optimal_size = min(1024, optimal_size)
+    target_image_resized = cv2.resize(target_image,
+                                      (optimal_size, optimal_size))
+    current_image_resized = cv2.resize(current_image,
+                                       (optimal_size, optimal_size))
     target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
     current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
     ssim_index = ssim(target_gray, current_gray)
-    orb = cv2.ORB_create()
+    orb = cv2.ORB_create(nfeatures=500)
     target_keypoints, target_descriptors = orb.detectAndCompute(
         target_gray, None)
     current_keypoints, current_descriptors = orb.detectAndCompute(
         current_gray, None)
-
     if target_descriptors is None or current_descriptors is None:
       return (0, image_entry["url"])
+    index_params = dict(algorithm=6,
+                        table_number=6,
+                        key_size=12,
+                        multi_probe_level=1)
+    search_params = dict(checks=50)
+    flann = cv2.FlannBasedMatcher(index_params, search_params)
 ```
 
 #
