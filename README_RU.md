@@ -8,9 +8,7 @@
   <h3> <a href="https://github.com/Solrikk/Echo-Image/blob/main/README.md"> English | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
 </div>
 
- **_EchoImage:_** Elevate Your Visual Searches. At the heart of EchoImage lies an advanced platform designed for the precise discovery of similar images. By harnessing the power of structural similarity and keypoint matching algorithms, this tool offers a swift and accurate approach to image comparison.
-
-Whether uploading images directly or using URLs, EchoImage efficiently navigates through an extensive image database to find the best matches. Its adept use of asynchronous technology ensures rapid processing, turning your search into a seamless and fruitful experience.
+ **_EchoImage:_** — это передовая платформа, предназначенная для точного поиска похожих изображений. Используя алгоритмы структурного сходства и сопоставления ключевых точек, EchoImage предоставляет быстрый и точный метод сравнения изображений. Приложение поддерживает загрузку изображений напрямую или через URL, эффективно ориентируясь в обширной базе данных изображений для определения лучших совпадений. Благодаря использованию асинхронных технологий, EchoImage обеспечивает быструю обработку, предлагая бесшовный и эффективный опыт визуального поиска.
 
 ## Features
 - **_Supports Multiple-Technologies_** ☄️
