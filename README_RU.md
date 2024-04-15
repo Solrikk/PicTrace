@@ -1,19 +1,19 @@
 <div align="center">
-  <img src="assets/logo.svg" width="15%"/>
+  <img src="assets/searching.png" width="30%"/>
 </div>
 
-# EchoImage ⚡️
+# Echo-Image ⚡️
 
 <div align="center">
-  <h3> <a href="https://github.com/Solrikk/EchoImage/blob/main/README.md"> English | <a href="https://github.com/Solrikk/EchoImage/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/EchoImage/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="https://github.com/Solrikk/EchoImage/blob/main/README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
+  <h3> <a href="https://github.com/Solrikk/Echo-Image/blob/main/README.md"> English | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
 </div>
 
- **_EchoImage:_** Повысьте уровень ваших визуальных поисков. В сердце EchoImage лежит передовая платформа, разработанная для точного обнаружения похожих изображений. Используя мощь алгоритмов структурного сходства и сопоставления ключевых точек, этот инструмент предлагает быстрый и точный подход к сравнению изображений.
+ **_EchoImage:_** Elevate Your Visual Searches. At the heart of EchoImage lies an advanced platform designed for the precise discovery of similar images. By harnessing the power of structural similarity and keypoint matching algorithms, this tool offers a swift and accurate approach to image comparison.
 
-Будь то загрузка изображений напрямую или использование URL-адресов, EchoImage эффективно перемещается по обширной базе данных изображений, чтобы найти лучшие совпадения. Его умелое использование асинхронных технологий обеспечивает быструю обработку, превращая ваш поиск в бесшовный и плодотворный опыт.
+Whether uploading images directly or using URLs, EchoImage efficiently navigates through an extensive image database to find the best matches. Its adept use of asynchronous technology ensures rapid processing, turning your search into a seamless and fruitful experience.
 
-## Особенности
-- **Поддерживает несколько технологий** ☄️
+## Features
+- **_Supports Multiple-Technologies_** ☄️
 
   - `Python` with libraries:
   - `FastAPI` for the web framework.
@@ -23,14 +23,14 @@
   - `skimage` for additional image processing techniques.
   - **Can also be used as a service**
 
-- **Поддерживает несколько индексов** 🚀
+- **_Supports Multiple-Indexes_** 🚀
 
   - `Structural Similarity Index (SSIM)` ([details](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
   - `Feature Matching with ORB (Oriented FAST and Rotated BRIEF) Descriptor` ([details](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
   - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
   - `Hashing for Image Identification` 
 
-- **Portable** 💼
+- **_Portable_** 💼
 
   - Supports `WebAssembly`
   - Supports `Windows`, `Linux` and `OS X`
@@ -41,57 +41,40 @@
 `Python` example** [[more info](https://github.com/Solrikk/EchoImage/blob/main/main.py)]
 
 ```Python
-async def process_image(image_entry: dict, target_image: np.ndarray) -> tuple:
+async def process_image(session, image_entry, target_image):
   try:
-    current_image = await download_image(image_entry["url"])
-    target_image_resized = cv2.resize(target_image, (256, 256))
-    current_image_resized = cv2.resize(current_image, (256, 256))
+    current_image = await download_image(session, image_entry["url"])
+    optimal_size = max(max(target_image.shape[:2]),
+                       max(current_image.shape[:2]))
+    optimal_size = min(1024, optimal_size)
+    target_image_resized = cv2.resize(target_image,
+                                      (optimal_size, optimal_size))
+    current_image_resized = cv2.resize(current_image,
+                                       (optimal_size, optimal_size))
     target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
     current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
     ssim_index = ssim(target_gray, current_gray)
-    orb = cv2.ORB_create()
+    orb = cv2.ORB_create(nfeatures=500)
     target_keypoints, target_descriptors = orb.detectAndCompute(
         target_gray, None)
     current_keypoints, current_descriptors = orb.detectAndCompute(
         current_gray, None)
     if target_descriptors is None or current_descriptors is None:
       return (0, image_entry["url"])
-    bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
-    matches = bf.match(target_descriptors, current_descriptors)
-    matches = sorted(matches, key=lambda x: x.distance)
-    orb_score = len(matches) / float(len(target_keypoints))
-    final_score = (orb_score + ssim_index) / 2
-    return (final_score, image_entry["url"])
-  except Exception as e:
-    print(f"Failed to process image {image_entry['url']} due to {e}")
-    return (0, image_entry["url"])
-
-
-async def find_similar_images(file_path: str) -> List[str]:
-  db_data = load_db()
-  target_image = cv2.imread(file_path)
-  tasks = [
-      process_image(entry, target_image) for entry in db_data if "url" in entry
-  ]
-  results = await asyncio.gather(*tasks)
-  valid_results = filter(lambda x: x[0] > 0, results)
-  sorted_results = sorted(valid_results, key=lambda x: x[0], reverse=True)[:5]
-  seen_urls = set()
-  top_similar_images = []
-  for result in sorted_results:
-    if result[1] not in seen_urls:
-      top_similar_images.append(result[1])
-      seen_urls.add(result[1])
-  return top_similar_images
+    index_params = dict(algorithm=6,
+                        table_number=6,
+                        key_size=12,
+                        multi_probe_level=1)
+    search_params = dict(checks=50)
+    flann = cv2.FlannBasedMatcher(index_params, search_params)
 ```
 
 #
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
-**SSIM (структурное сходство изображений)** сравнивает паттерны изменения интенсивности пикселей, которые являются важными атрибутами для человеческого зрения. Оценка SSIM варьируется от `-1 до +1`, где значение `1` указывает на идентичные изображения. _Процесс можно разделить на три компонента:_
-
-1) **Сравнение яркости:** Сходство в контрасте измеряется через дисперсию интенсивности пикселей (вариации от среднего значения), понимая, насколько похожи паттерны распределения света и тени между двумя изображениями.
+SSIM compares patterns of pixel intensity changes which are important attributes for human vision. The SSIM score ranges from `-1 to +1`, where a value of `1` indicates identical images. The process can be broken down into three components:
+1) **_Luminance Comparison:_** This allows for the assessment of the overall luminance of the images. Luminance in SSIM is measured as the average of all pixel values.
 
 ```Python
 target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
@@ -99,49 +82,51 @@ current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
 ssim_index = ssim(target_gray, current_gray)
 ```
 
-2) **Сравнение контрастноста:** Сходство в контрасте измеряется через дисперсию интенсивности пикселей (вариации от среднего значения), понимая, насколько похожи паттерны распределения света и тени между двумя изображениями.
-3) **Сравнение структуры:** Сравнивает паттерны пространственного распределения пикселей, игнорируя вариации в яркости и контрасте. Это делается путем расчета ковариации между изображениями относительно их локальных средних значений.
+2) **_Contrast Comparison:_** Similarity in contrast is measured through the variance of pixel intensities (variations from the average value), understanding how similar the patterns of light and shadow distribution are between two images.
+3) **_Structure Comparison:_** Compares patterns of spatial pixel distribution, ignoring variations in luminance and contrast. It is done by calculating the covariance between the images relative to their local average values.
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/96b4f1c3840c3707a93197798dcbfbfff24fa92b)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/fcda97086476fa420b3b06568a0d202980a600d0)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/1aebd62ba5b7e6ae47780ccfa659333f078d6eac)
 
-Для сравнения изображений используется индекс структурного сходства **(SSIM)**, который оценивает схожесть изображений, а также алгоритм **ORB (Oriented FAST and Rotated BRIEF)** для обнаружения ключевых точек и их описаний.
+To compare images, the Structural Similarity Index **(SSIM)** is used to assess the similarity between images, as well as the **ORB (Oriented FAST and Rotated BRIEF)** algorithm for detecting key points and their descriptions.
 
-**_ORB (Oriented FAST and Rotated BRIEF)_** - это метод, используемый в компьютерном зрении, особенно популярный для задач, связанных с распознаванием объектов, сопоставлением изображений и отслеживанием. Этот метод направлен на быстрое нахождение ключевых точек на изображениях и их описание таким образом, чтобы это позволяло эффективно их сравнивать. 
-Давайте разберем, что делает ORB, на более простых примерах:
+**_ORB (Oriented FAST and Rotated BRIEF)_** is a method used in computer vision, particularly popular for tasks related to object recognition, image matching, and tracking. This method is focused on quickly finding key points on images and describing them in a way that allows for efficient comparison. Let's break down what ORB does with simpler examples:
 
-1) **_Ориентированный FAST (Features from Accelerated Segment Test):_** Это часть, отвечающая за обнаружение точек интереса (или ключевых точек) на изображении. Он быстро находит углы или края, которые выделяются по сравнению с их окружением. Таким образом, может быть выявлено, где на изображении находятся значимые или уникальные фрагменты.
+1) **Oriented FAST (Features from Accelerated Segment Test):** This part is responsible for detecting points of interest (or key points) on the image. It quickly identifies corners or edges that stand out in comparison to their surrounding areas. This way, significant or unique sections of the image can be identified.
 
-2) **_Повернутый BRIEF (Binary Robust Independent Elementary Features):_** После того как ключевые точки были найдены, необходимо создать описание каждой из них, чтобы их можно было сравнить с ключевыми точками другого изображения. BRIEF создает краткое двоичное описание точек, но ему не хватает устойчивости к повороту изображения. Вот тут на помощь приходит "повернутая" часть - ORB добавляет возможность устойчиво описывать точки даже при повороте изображений.
+2) **Rotated BRIEF (Binary Robust Independent Elementary Features):** After key points have been found, it's necessary to create a description of each to allow comparison with key points from another image. BRIEF generates a brief binary description of the points but lacks resistance to image rotation. This is where the "rotated" part comes in - ORB adds the ability to stably describe points even when images are rotated.
 
-Сочетая эти два подхода, ORB обеспечивает быстрое и эффективное сопоставление изображений, несмотря на изменения угла обзора, масштаба или освещенности.
+By combining these two approaches, ORB provides a fast and efficient way of matching images despite changes in viewing angle, scale, or lighting.
 
-_Используя алгоритм ORB, ключевые точки и дескрипторы определяются как для текущего, так и для целевого изображений._
+_Using the ORB algorithm, key points and descriptors are determined for both the current and target images._
 ![image](https://i.stack.imgur.com/spSvt.png)
-Найденные ключевые точки сравниваются друг с другом для определения совпадений. Эти совпадения позволяют оценить сходство изображений с точки зрения, отличной от SSIM. Итоговая оценка сходства рассчитывается как среднее значение между оценкой SSIM и относительным количеством совпадающих ключевых точек (с использованием алгоритма ORB), что обеспечивает комплексный подход к анализу сходства изображений.
 
-В графическом приложении EchoImage для поиска изображений, похожих на загруженное изображение, используются методы SIM и ORB. Вот упрощенное объяснение того, как каждый метод работает в контексте вашего приложения и способствует поиску похожих изображений.:
+The found key points are compared with each other to determine matches. These matches allow assessing the similarity of images from a perspective other than SSIM. The final similarity score is calculated as the average between the SSIM score and the relative number of matching key points (using the ORB algorithm), providing a comprehensive approach to analyzing the similarity of images.
 
-## Как SIM работает в EchoImage:
-1) **_Изменение размера изображений:_** При сравнении загруженного изображения с каждым изображением в базе данных размер обоих изображений изменяется до одинаковых размеров `(256x256 пикселей)`. Это стандартизирует сравнение, делая его справедливым и более эффективным, поскольку мы работаем с изображениями одинакового размера.
+EchoImage application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
 
-2) **_Преобразование в оттенки серого:_** Оба изображения преобразуются в оттенки серого. Это упрощает сравнение, поскольку позволяет сфокусироваться на структуре и интенсивности света, а не отвлекаться на цветовые различия.
+## How SSIM Works in EchoImage:
+1) **_Resizing Images:_** When comparing the uploaded image to each image in the database, both images are resized to the same dimensions `(256x256 pixels)`. This standardizes the comparison, making it fair and more efficient since we're working with images of the same size.
 
-3) **_Сравнение структурного сходства:_** Затем метод SSIM сравнивает эти изображения в оттенках серого, чтобы оценить их структурное сходство. Это включает в себя анализ того, насколько похожи световые и теневые узоры между двумя изображениями, и дает оценку, отражающую их сходство. Высокий балл означает, что изображения структурно схожи.
+2) **_Converting to Grayscale:_** Both images are converted to grayscale. This simplifies the comparison by focusing on the structure and intensity of light rather than being distracted by color differences.
 
-## Как ORB работает в EchoImage:
-1) **_Определение ключевых точек:_** ORB сначала определяет ключевые точки как на загруженном изображении, так и на каждом изображении из базы данных. Эти ключевые точки являются отличительными точками, которые можно легко распознать и сравнить между изображениями, например, углы и интересные текстуры.
+3) **_Structural Similarity Comparison:_** The SSIM method then compares these grayscale images to assess their structural similarity. This involves analyzing how similar the patterns of light and shadow are between the two images, giving a score that reflects their similarity. A high score means the images are structurally similar.
 
-2) **_Описание ключевых точек:_** Для каждой обнаруженной ключевой точки ORB генерирует уникальный дескриптор, который суммирует характеристики ключевой точки. Этот дескриптор не зависит от поворота, что означает, что он описывает ключевую точку таким образом, чтобы она оставалась неизменной, даже если изображение повернуто.
+## How ORB Works in EchoImage:
+1) **_Detecting Key Points:_** ORB first identifies key points in both the uploaded image and each database image. These key points are distinctive spots that can be easily recognized and compared between images, such as corners and interesting textures.
 
-3) **_Согласование ключевых точек:_** Затем приложение сопоставляет ключевые точки между загруженным изображением и каждым изображением из базы данных, используя эти дескрипторы. Процесс сопоставления включает поиск ключевых точек в изображении из базы данных, которые имеют дескрипторы, аналогичные тем, которые есть в загруженном изображении.
+2) **_Describing Key Points:_** For each key point detected, ORB generates a unique descriptor that summarizes the key point's characteristics. This descriptor is made rotation-invariant, meaning it describes the key point in a way that's consistent even if the image is rotated.
 
-4) **_Оценка совпадений:_** Чем больше ключевых моментов совпадает между двумя изображениями, тем выше оценка сходства, основанная на СФЕРЕ. Эта оценка отражает количество общих отличительных черт между изображениями.
+3) **_Matching Key Points:_** The application then matches key points between the uploaded image and each database image using these descriptors. The matching process involves finding key points in the database image that have descriptors similar to those in the uploaded image.
+
+4) **_Scoring Matches:_** The more key points that match between two images, the higher the score of similarity based on ORB. This score reflects how many distinctive features are shared between the images.
 
 ## Combining SSIM and ORB:
- После расчета оценок сходства с использованием методов SSIM и ORB для каждого сравнения изображений, EchoImage усредняет эти оценки, чтобы получить окончательную меру сходства. Изображения из базы данных затем ранжируются на основе их окончательных оценок сходства, и выбираются 5 наиболее похожих изображений.
+ After calculating similarity scores using both SSIM and ORB for each image comparison, Harmony-Image averages these scores to get a final measure of similarity.
+Images from the database are then ranked based on their final similarity scores, and the top 5 most similar images are selected.
 
- ## Final Selection of Similar Images:
-
-Окончательный выбор похожих изображений: Приложение фильтрует дублирующиеся URL, чтобы обеспечить разнообразный набор похожих изображений. Оно возвращает URL наиболее похожих изображений, которые затем могут быть представлены пользователю. По сути, ваше приложение использует комбинацию структурного анализа (SSIM) и сопоставления особенностей (ORB) для поиска и ранжирования изображений в вашей базе данных, которые наиболее похожи на изображение, загруженное пользователем. Этот двойной подход использует преимущества обоих методов, обеспечивая надежное и тонкое сравнение, которое выходит за рамки простого анализа пиксель за пикселем.
+## Final Selection of Similar Images:
+The application filters out duplicate URLs to ensure a diverse set of similar images.
+ It returns URLs of the top similar images, which can then be presented to the user.
+ In essence, your application uses a combination of structural analysis (SSIM) and feature matching (ORB) to find and rank images in your database that are most similar to an image uploaded by the user. This dual approach leverages the strengths of both methods, ensuring a robust and nuanced comparison that goes beyond simple pixel-by-pixel analysis.
