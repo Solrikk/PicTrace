@@ -80,8 +80,8 @@ current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
 ssim_index = ssim(target_gray, current_gray)
 ```
 
-2) **_Contrast Comparison:_** Similarity in contrast is measured through the variance of pixel intensities (variations from the average value), understanding how similar the patterns of light and shadow distribution are between two images.
-3) **_Structure Comparison:_** Compares patterns of spatial pixel distribution, ignoring variations in luminance and contrast. It is done by calculating the covariance between the images relative to their local average values.
+2) **_Contrast Comparison:_** Подобие контраста измеряется через дисперсию интенсивности пикселей (отклонения от среднего значения), понимая, насколько похожи образцы распределения света и тени между двумя изображениями.
+3) **_Structure Comparison:_** Сравнивает модели пространственного распределения пикселей, игнорируя различия в яркости и контрастности. Это делается путем вычисления ковариации между изображениями относительно их локальных средних значений.
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/96b4f1c3840c3707a93197798dcbfbfff24fa92b)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/fcda97086476fa420b3b06568a0d202980a600d0)
