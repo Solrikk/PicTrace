@@ -31,7 +31,6 @@ async def create_upload_file(file: UploadFile = File(...)):
   return {
       "message": "File uploaded successfully",
       "filename": file.filename,
-      "hash": image_hash,
       "similar_images": similar_images
   }
 
@@ -52,7 +51,6 @@ async def upload_from_url(image_url: str = Form(...)):
         return {
             "message": "File uploaded successfully from URL",
             "filename": os.path.basename(file_path),
-            "hash": image_hash,
             "similar_images": similar_images
         }
       else:
