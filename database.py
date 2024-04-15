@@ -16,9 +16,8 @@ def save_db(data):
 
 def add_image_to_db(file_path, image_hash):
   db_data = load_db()
-  if isinstance(db_data, list):
-    db_data.append({"file_path": file_path, "hash": image_hash})
-    save_db(db_data)
+  db_data.append({"hash": image_hash, "path": file_path})
+  save_db(db_data)
 
 
 def init_db():
