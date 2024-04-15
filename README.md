@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/logo.svg" width="15%"/>
+  <img src="assets/searching.png" width="30%"/>
 </div>
 
 # Echo-Image ⚡️
