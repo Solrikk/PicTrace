@@ -30,13 +30,6 @@
   - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
   - `Hashing for Image Identification` 
 
-- **_Portable_** 💼
-
-  - Supports `WebAssembly`
-  - Supports `Windows`, `Linux` and `OS X`
-  - Supports `IOS` and `Android` (WIP)
-  - Supports `no_std` (WIP, partial)
-
 # Examples
 `Python` example** [[more info](https://github.com/Solrikk/EchoImage/blob/main/main.py)]
 
