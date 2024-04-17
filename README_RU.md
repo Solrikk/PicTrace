@@ -95,16 +95,16 @@ ssim_index = ssim(target_gray, current_gray)
 
 1) **_Ориентированный FAST (Особенности из Ускоренного Теста Сегментов):_** Эта часть отвечает за обнаружение интересующих точек (или ключевых точек) на изображении. Она быстро определяет углы или края, которые выделяются на фоне окружающих их областей. Таким образом, можно идентифицировать значимые или уникальные секции изображения.
 
-2) **Rotated BRIEF (Binary Robust Independent Elementary Features):** After key points have been found, it's necessary to create a description of each to allow comparison with key points from another image. BRIEF generates a brief binary description of the points but lacks resistance to image rotation. This is where the "rotated" part comes in - ORB adds the ability to stably describe points even when images are rotated.
+2) **_Вращенный BRIEF (Бинарные Робастные Независимые Элементарные Особенности):_** После того, как ключевые точки были найдены, необходимо создать описание каждой из них для возможности сравнения с ключевыми точками из другого изображения. BRIEF генерирует краткое бинарное описание точек, но не устойчив к вращению изображения. Здесь на сцену выходит "вращенность" - ORB добавляет возможность стабильно описывать точки даже при вращении изображений.
 
-By combining these two approaches, ORB provides a fast and efficient way of matching images despite changes in viewing angle, scale, or lighting.
+Объединяя эти два подхода, ORB обеспечивает быстрый и эффективный способ сопоставления изображений, несмотря на изменения в угле обзора, масштабе или освещении.
 
-_Using the ORB algorithm, key points and descriptors are determined for both the current and target images._
+_С использованием алгоритма ORB определяются ключевые точки и дескрипторы как для текущего, так и для целевого изображений._
 ![image](https://i.stack.imgur.com/spSvt.png)
 
-The found key points are compared with each other to determine matches. These matches allow assessing the similarity of images from a perspective other than SSIM. The final similarity score is calculated as the average between the SSIM score and the relative number of matching key points (using the ORB algorithm), providing a comprehensive approach to analyzing the similarity of images.
+Найденные ключевые точки сравниваются друг с другом для определения совпадений. Эти совпадения позволяют оценить сходство изображений с точки зрения, отличной от SSIM. Итоговый балл сходства рассчитывается как среднее значение между баллом SSIM и относительным количеством совпадающих ключевых точек (с использованием алгоритма ORB), обеспечивая комплексный подход к анализу сходства изображений.
 
-EchoImage application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
+В приложении EchoImage используются как методы SSIM, так и ORB для поиска изображений, похожих на загруженное. Вот упрощенное объяснение того, как каждый метод работает в контексте вашего приложения и способствует поиску похожих изображений:
 
 ## How SSIM Works in EchoImage:
 1) **_Resizing Images:_** When comparing the uploaded image to each image in the database, both images are resized to the same dimensions `(256x256 pixels)`. This standardizes the comparison, making it fair and more efficient since we're working with images of the same size.
