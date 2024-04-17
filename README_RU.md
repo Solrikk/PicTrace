@@ -8,7 +8,9 @@
   <h3> <a href="https://github.com/Solrikk/Echo-Image/blob/main/README.md"> English | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_RU.md">Русский</a> | <a href="README_CN.md">中文</a> </h3>
 </div>
 
- **_EchoImage:_** — это передовая платформа, предназначенная для точного поиска похожих изображений. Используя алгоритмы структурного сходства и сопоставления ключевых точек, EchoImage предоставляет быстрый и точный метод сравнения изображений. Приложение поддерживает загрузку изображений напрямую или через URL, эффективно ориентируясь в обширной базе данных изображений для определения лучших совпадений. Благодаря использованию асинхронных технологий, EchoImage обеспечивает быструю обработку, предлагая бесшовный и эффективный опыт визуального поиска.
+ **_EchoImage:_** является передовой платформой, предназначенной для точного обнаружения схожих изображений. Используя алгоритмы структурного сходства и сопоставления ключевых точек, EchoImage обеспечивает быструю и точную методику сравнения изображений. Приложение поддерживает загрузку изображений напрямую или по URL, эффективно осуществляя поиск по обширной базе данных изображений для определения наилучших совпадений. Благодаря использованию асинхронных технологий, EchoImage обеспечивает быструю обработку, предлагая бесшовный и эффективный опыт визуального поиска.
+
+**_You can create a database from here_** - ([details](https://github.com/Solrikk/ImageSpaceDB))
 
 ## Features
 - **_Supports Multiple-Technologies_** ☄️
@@ -71,8 +73,8 @@ async def process_image(session, image_entry, target_image):
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
-SSIM (Structural Similarity Index) сравнивает образцы изменений интенсивности пикселей, которые являются важными атрибутами для человеческого зрения. Оценка SSIM варьируется от -1 до +1, где значение 1 указывает на идентичность изображений. Процесс можно разбить на три компонента:
-1) **_Luminance Comparison:_** позволяет оценить общую яркость изображений. Яркость в SSIM измеряется как среднее значение всех значений пикселей.
+SSIM сравнивает модели изменений интенсивности пикселей, которые являются важными атрибутами для человеческого зрения. Оценка SSIM варьируется от `-1 до +1`, где значение `1` указывает на идентичные изображения. Процесс можно разбить на три компонента:
+1) **_Сравнение Яркости:_** Позволяет оценить общую яркость изображений. Яркость в SSIM измеряется как среднее значение всех пикселей.
 
 ```Python
 target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
@@ -80,18 +82,18 @@ current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
 ssim_index = ssim(target_gray, current_gray)
 ```
 
-2) **_Contrast Comparison:_** Подобие контраста измеряется через дисперсию интенсивности пикселей (отклонения от среднего значения), понимая, насколько похожи образцы распределения света и тени между двумя изображениями.
-3) **_Structure Comparison:_** Сравнивает модели пространственного распределения пикселей, игнорируя различия в яркости и контрастности. Это делается путем вычисления ковариации между изображениями относительно их локальных средних значений.
+2) **_Сравнение Контрастности:_** - Сходство по контрастности измеряется через дисперсию интенсивности пикселей (отклонения от среднего значения), позволяя понять, насколько схожи узоры распределения света и тени между двумя изображениями.
+3) **_Сравнение Структуры:_** Сравнивает узоры пространственного распределения пикселей, игнорируя изменения в яркости и контрастности. Это делается путем вычисления ковариации между изображениями относительно их локальных средних значений.
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/96b4f1c3840c3707a93197798dcbfbfff24fa92b)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/fcda97086476fa420b3b06568a0d202980a600d0)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/1aebd62ba5b7e6ae47780ccfa659333f078d6eac)
 
-To compare images, the Structural Similarity Index **(SSIM)** is used to assess the similarity between images, as well as the **ORB (Oriented FAST and Rotated BRIEF)** algorithm for detecting key points and their descriptions.
+Для сравнения изображений используется Индекс Структурного Сходства (SSIM) для оценки сходства между изображениями, а также алгоритм ORB (Oriented FAST and Rotated BRIEF) для обнаружения ключевых точек и их описаний.
 
-**_ORB (Oriented FAST and Rotated BRIEF)_** is a method used in computer vision, particularly popular for tasks related to object recognition, image matching, and tracking. This method is focused on quickly finding key points on images and describing them in a way that allows for efficient comparison. Let's break down what ORB does with simpler examples:
+**_ORB (Oriented FAST and Rotated BRIEF)_** — это метод, используемый в компьютерном зрении, особенно популярный для задач, связанных с распознаванием объектов, сопоставлением изображений и отслеживанием. Этот метод сосредоточен на быстром поиске ключевых точек на изображениях и их описании таким образом, чтобы можно было эффективно их сравнить. Давайте разберем, что делает ORB, на более простых примерах:
 
-1) **Oriented FAST (Features from Accelerated Segment Test):** This part is responsible for detecting points of interest (or key points) on the image. It quickly identifies corners or edges that stand out in comparison to their surrounding areas. This way, significant or unique sections of the image can be identified.
+1) **_Ориентированный FAST (Особенности из Ускоренного Теста Сегментов):_** Эта часть отвечает за обнаружение интересующих точек (или ключевых точек) на изображении. Она быстро определяет углы или края, которые выделяются на фоне окружающих их областей. Таким образом, можно идентифицировать значимые или уникальные секции изображения.
 
 2) **Rotated BRIEF (Binary Robust Independent Elementary Features):** After key points have been found, it's necessary to create a description of each to allow comparison with key points from another image. BRIEF generates a brief binary description of the points but lacks resistance to image rotation. This is where the "rotated" part comes in - ORB adds the ability to stably describe points even when images are rotated.
 
