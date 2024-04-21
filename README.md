@@ -69,9 +69,10 @@ async def process_image(session, image_entry, target_image):
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
 SSIM compares patterns of pixel intensity changes which are important attributes for human vision. The SSIM score ranges from `-1 to +1`, where a value of `1` indicates identical images. The process can be broken down into three components:
-1) **_Luminance Comparison:_** This allows for the assessment of the overall luminance of the images. Luminance in SSIM is measured as the average of all pixel values.
 
 <img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ssim/ssim.png" width="95%" /> 
+
+1) **_Luminance Comparison:_** This allows for the assessment of the overall luminance of the images. Luminance in SSIM is measured as the average of all pixel values.
 
 ```Python
 target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
