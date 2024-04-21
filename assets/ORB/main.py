@@ -36,13 +36,29 @@ def orb_feature_matching(img1, img2):
   bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
   matches = bf.match(des1, des2)
   matches = sorted(matches, key=lambda x: x.distance)
-  img_matches = cv2.drawMatches(img1,
-                                kp1,
-                                img2,
-                                kp2,
-                                matches[:10],
-                                None,
-                                flags=2)
+
+  img_matches = cv2.drawMatches(
+      img1,
+      kp1,
+      img2,
+      kp2,
+      matches[:30],
+      None,
+      flags=cv2.DrawMatchesFlags_NOT_DRAW_SINGLE_POINTS
+      | cv2.DrawMatchesFlags_DRAW_RICH_KEYPOINTS)
+
+  for i, match in enumerate(matches[:30]):
+    color = tuple(np.random.randint(0, 255, 3).tolist())
+    img1_idx = match.queryIdx
+    img2_idx = match.trainIdx
+    (x1, y1) = kp1[img1_idx].pt
+    (x2, y2) = kp2[img2_idx].pt
+
+    cv2.circle(img_matches, (int(x1), int(y1)), 4, color, 2)
+    cv2.circle(img_matches, (int(x2) + img1.shape[1], int(y2)), 4, color, 2)
+    cv2.line(img_matches, (int(x1), int(y1)),
+             (int(x2) + img1.shape[1], int(y2)), color, 2)
+
   return img_matches
 
 
