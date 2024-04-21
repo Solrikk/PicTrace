@@ -92,6 +92,8 @@ To compare images, the Structural Similarity Index **(SSIM)** is used to assess 
 ## _ORB (Oriented FAST and Rotated BRIEF)_ 
 is a method used in computer vision, particularly popular for tasks related to object recognition, image matching, and tracking. This method is focused on quickly finding key points on images and describing them in a way that allows for efficient comparison. Let's break down what ORB does with simpler examples:
 
+<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ORB/ORB2.png" width="95%" /> 
+
 1) **Oriented FAST (Features from Accelerated Segment Test):** This part is responsible for detecting points of interest (or key points) on the image. It quickly identifies corners or edges that stand out in comparison to their surrounding areas. This way, significant or unique sections of the image can be identified.
 
 2) **Rotated BRIEF (Binary Robust Independent Elementary Features):** After key points have been found, it's necessary to create a description of each to allow comparison with key points from another image. BRIEF generates a brief binary description of the points but lacks resistance to image rotation. This is where the "rotated" part comes in - ORB adds the ability to stably describe points even when images are rotated.
