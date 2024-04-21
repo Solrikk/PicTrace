@@ -101,7 +101,6 @@ is a method used in computer vision, particularly popular for tasks related to o
 By combining these two approaches, ORB provides a fast and efficient way of matching images despite changes in viewing angle, scale, or lighting.
 
 _Using the ORB algorithm, key points and descriptors are determined for both the current and target images._
-![image](https://i.stack.imgur.com/spSvt.png)
 
 The found key points are compared with each other to determine matches. These matches allow assessing the similarity of images from a perspective other than SSIM. The final similarity score is calculated as the average between the SSIM score and the relative number of matching key points (using the ORB algorithm), providing a comprehensive approach to analyzing the similarity of images.
 
