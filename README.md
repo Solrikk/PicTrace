@@ -37,29 +37,37 @@
 ```Python
 async def process_image(session, image_entry, target_image):
   try:
+    # Asynchronously download the image from the given URL.
     current_image = await download_image(session, image_entry["url"])
-    optimal_size = max(max(target_image.shape[:2]),
+    # Determine the larger dimensions between the target and current images, but cap it at 1024 pixels.
+    optimal_size = max(max(target_image.shape[:2]), 
                        max(current_image.shape[:2]))
     optimal_size = min(1024, optimal_size)
-    target_image_resized = cv2.resize(target_image,
+    # Resize both images to the calculated optimal size for uniform comparison.
+    target_image_resized = cv2.resize(target_image, 
                                       (optimal_size, optimal_size))
-    current_image_resized = cv2.resize(current_image,
+    current_image_resized = cv2.resize(current_image, 
                                        (optimal_size, optimal_size))
+    # Convert both images to grayscale to simplify further calculations.
     target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
     current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
+    # Calculate the SSIM (Structural Similarity Index) between the two grayscale images.
     ssim_index = ssim(target_gray, current_gray)
+    # Initialize ORB detector to find keypoints and descriptors.
     orb = cv2.ORB_create(nfeatures=500)
-    target_keypoints, target_descriptors = orb.detectAndCompute(
-        target_gray, None)
-    current_keypoints, current_descriptors = orb.detectAndCompute(
-        current_gray, None)
+    # Detect keypoints and compute descriptors for both images.
+    target_keypoints, target_descriptors = orb.detectAndCompute(target_gray, None)
+    current_keypoints, current_descriptors = orb.detectAndCompute(current_gray, None)
+    # If there are no descriptors found, return a similarity score of 0.
     if target_descriptors is None or current_descriptors is None:
       return (0, image_entry["url"])
+    # Parameters for the FLANN matcher to find the best matches between descriptors.
     index_params = dict(algorithm=6,
                         table_number=6,
                         key_size=12,
                         multi_probe_level=1)
-    search_params = dict(checks=50)
+    search_params = dict(checks=50)  # The number of checks to perform for matching
+    # Initialize the FLANN matcher with the specified parameters.
     flann = cv2.FlannBasedMatcher(index_params, search_params)
 ```
 
