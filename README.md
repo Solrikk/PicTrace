@@ -17,13 +17,12 @@
 ## Features
 - **_Supports Multiple-Technologies_** ☄️
 
-  - `Python` with libraries:
+    _**Python**_  with libraries:
   - `FastAPI` for the web framework.
   - `aiohttp` for asynchronous HTTP requests.
   - `cv2` (OpenCV) for image processing.
   - `numpy` for numerical operations.
   - `skimage` for additional image processing techniques.
-  - **Can also be used as a service**
 
 - **_Supports Multiple-Indexes_** 🚀
 
