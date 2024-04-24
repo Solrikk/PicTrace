@@ -71,7 +71,7 @@ SSIM compares patterns of pixel intensity changes which are important attributes
 
 <img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ssim/ssim2.png" width="95%" /> 
 
-1) **_Luminance Comparison:_** This allows for the assessment of the overall luminance of the images. Luminance in SSIM is measured as the average of all pixel values.
+1) **_Luminance Comparison:_** allows for the assessment of the overall luminance of the images. Luminance in SSIM is measured as the average of all pixel values.
 
 ```Python
 target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
