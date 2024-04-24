@@ -80,16 +80,21 @@ SSIM compares patterns of pixel intensity changes which are important attributes
 <img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ssim/ssim2.png" width="95%" /> 
 
 1) **_Luminance Comparison_** allows for the assessment of the overall luminance of the images. Luminance in SSIM is measured as the average of all pixel values.
-
 ```Python
 target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
 current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
 ssim_index = ssim(target_gray, current_gray)
 ```
-
 2) **_Contrast Comparison_** is measured through the variance of pixel intensities (variations from the average value), understanding how similar the patterns of light and shadow distribution are between two images.
+```Python
+cv2.normalize(target_hist, target_hist)
+cv2.normalize(current_hist, current_hist)
+hist_score = cv2.compareHist(target_hist, current_hist, cv2.HISTCMP_CORREL)
+```
 3) **_Structure Comparison_** compares patterns of spatial pixel distribution, ignoring variations in luminance and contrast. It is done by calculating the covariance between the images relative to their local average values.
-
+```Python
+ssim_index = ssim(target_gray, current_gray)
+```
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/96b4f1c3840c3707a93197798dcbfbfff24fa92b)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/fcda97086476fa420b3b06568a0d202980a600d0)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/1aebd62ba5b7e6ae47780ccfa659333f078d6eac)
