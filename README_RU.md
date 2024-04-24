@@ -37,29 +37,37 @@
 ```Python
 async def process_image(session, image_entry, target_image):
   try:
+    # Асинхронная загрузка изображения по указанному URL.
     current_image = await download_image(session, image_entry["url"])
-    optimal_size = max(max(target_image.shape[:2]),
+    # Определение наибольших размеров между целевым и текущим изображениями, но не более 1024 пикселей.
+    optimal_size = max(max(target_image.shape[:2]), 
                        max(current_image.shape[:2]))
     optimal_size = min(1024, optimal_size)
-    target_image_resized = cv2.resize(target_image,
+    # Изменение размера обоих изображений до рассчитанного оптимального размера для единообразного сравнения.
+    target_image_resized = cv2.resize(target_image, 
                                       (optimal_size, optimal_size))
-    current_image_resized = cv2.resize(current_image,
+    current_image_resized = cv2.resize(current_image, 
                                        (optimal_size, optimal_size))
+    # Конвертация обоих изображений в градации серого для упрощения последующих расчетов.
     target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
     current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
+    # Расчет индекса структурного сходства (SSIM) между двумя изображениями в градациях серого.
     ssim_index = ssim(target_gray, current_gray)
+    # Инициализация детектора ORB для поиска ключевых точек и дескрипторов.
     orb = cv2.ORB_create(nfeatures=500)
-    target_keypoints, target_descriptors = orb.detectAndCompute(
-        target_gray, None)
-    current_keypoints, current_descriptors = orb.detectAndCompute(
-        current_gray, None)
+    # Обнаружение ключевых точек и вычисление дескрипторов для обоих изображений.
+    target_keypoints, target_descriptors = orb.detectAndCompute(target_gray, None)
+    current_keypoints, current_descriptors = orb.detectAndCompute(current_gray, None)
+    # Если дескрипторы не найдены, возвращается результат сравнения сходства равный 0.
     if target_descriptors is None or current_descriptors is None:
       return (0, image_entry["url"])
+    # Параметры для сопоставления FLANN для поиска лучших совпадений между дескрипторами.
     index_params = dict(algorithm=6,
                         table_number=6,
                         key_size=12,
                         multi_probe_level=1)
-    search_params = dict(checks=50)
+    search_params = dict(checks=50)  # Количество проверок для сопоставления
+    # Инициализация сопоставителя FLANN с указанными параметрами.
     flann = cv2.FlannBasedMatcher(index_params, search_params)
 ```
 
