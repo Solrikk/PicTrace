@@ -32,7 +32,7 @@
   - `Hashing for Image Identification`
     
 # Examples
-`Python` example** [[more info](https://github.com/Solrikk/EchoImage/blob/main/main.py)]
+**Python` example** [[more info](https://github.com/Solrikk/EchoImage/blob/main/main.py)]
 
 ```Python
 async def process_image(session, image_entry, target_image):
