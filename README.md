@@ -122,7 +122,7 @@ EchoImage application, both the SSIM and ORB methods are utilized to find images
 4) **_Scoring Matches:_** The more key points that match between two images, the higher the score of similarity based on ORB. This score reflects how many distinctive features are shared between the images.
 
 ## Combining SSIM and ORB:
- After calculating similarity scores using both SSIM and ORB for each image comparison, Harmony-Image averages these scores to get a final measure of similarity.
+After calculating similarity scores using both SSIM and ORB for each image comparison, Harmony-Image averages these scores to get a final measure of similarity.
 Images from the database are then ranked based on their final similarity scores, and the top 5 most similar images are selected.
 
 ## Final Selection of Similar Images:
