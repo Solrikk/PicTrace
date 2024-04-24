@@ -80,16 +80,21 @@ SSIM сравнивает паттерны изменений интенсивн
 <img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ssim/ssim2.png" width="95%" /> 
 
 1) **_Сравнение яркости_** позволяет оценить общую яркость изображений. Яркость в SSIM измеряется как среднее всех значений пикселей.
-
 ```Python
 target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
 current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
 ssim_index = ssim(target_gray, current_gray)
 ```
-
-2) **_Сравнение контраста_** измеряется через дисперсию интенсивности пикселей (отклонения от среднего значения), понимая, насколько похожи паттерны распределения света и тени между двумя изображениями.
-3) **_Сравнение структуры_** cравнивает паттерны пространственного распределения пикселей, игнорируя изменения в яркости и контрасте. Это делается путем расчета ковариации между изображениями относительно их локальных средних значений.
-
+2) **_Сравнение контраста_** измеряется через дисперсию интенсивности пикселей (отклонения от среднего значения), позволяя понять, насколько похожи распределения света и тени между двумя изображениями. Гистограмма нормализуется перед сравнением, чтобы обеспечить адекватное сравнение контрастности.
+```Python
+cv2.normalize(target_hist, target_hist)
+cv2.normalize(current_hist, current_hist)
+hist_score = cv2.compareHist(target_hist, current_hist, cv2.HISTCMP_CORREL)
+```
+3) **_Сравнение структуры_** сравнивает узоры пространственного распределения пикселей, игнорируя изменения в яркости и контрасте. Это достигается путем расчета ковариации между изображениями относительно их локальных средних значений.
+```Python
+ssim_index = ssim(target_gray, current_gray)
+```
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/96b4f1c3840c3707a93197798dcbfbfff24fa92b)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/fcda97086476fa420b3b06568a0d202980a600d0)
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/1aebd62ba5b7e6ae47780ccfa659333f078d6eac)
