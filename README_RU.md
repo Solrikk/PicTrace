@@ -105,27 +105,27 @@ The found key points are compared with each other to determine matches. These ma
 
 EchoImage application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
 
-## How SSIM Works in EchoImage:
-1) **_Resizing Images:_** When comparing the uploaded image to each image in the database, both images are resized to the same dimensions `(256x256 pixels)`. This standardizes the comparison, making it fair and more efficient since we're working with images of the same size.
+## Как работает SSIM в EchoImage:
+1) **_Масштабирование изображений:_** При сравнении загруженного изображения с каждым изображением в базе данных оба изображения масштабируются до одинаковых размеров (256x256 пикселей). Это стандартизирует сравнение, делая его справедливым и более эффективным, поскольку мы работаем с изображениями одинакового размера.
 
-2) **_Converting to Grayscale:_** Both images are converted to grayscale. This simplifies the comparison by focusing on the structure and intensity of light rather than being distracted by color differences.
+2) **_Конвертация в оттенки серого:_** Оба изображения конвертируются в оттенки серого. Это упрощает сравнение, фокусируясь на структуре и интенсивности света, а не отвлекаясь на различия в цвете.
 
-3) **_Structural Similarity Comparison:_** The SSIM method then compares these grayscale images to assess their structural similarity. This involves analyzing how similar the patterns of light and shadow are between the two images, giving a score that reflects their similarity. A high score means the images are structurally similar.
+3) **_Сравнение структурной схожести:_** Затем метод SSIM сравнивает эти изображения в оттенках серого для оценки их структурной схожести. Это включает анализ того, насколько похожи между двумя изображениями узоры света и тени, выдавая оценку, отражающую их схожесть. Высокая оценка означает структурную схожесть изображений.
 
-## How ORB Works in EchoImage:
-1) **_Detecting Key Points:_** ORB first identifies key points in both the uploaded image and each database image. These key points are distinctive spots that can be easily recognized and compared between images, such as corners and interesting textures.
+## Как работает ORB в EchoImage:
+1) **_Обнаружение ключевых точек:_** Сначала ORB определяет ключевые точки как в загруженном изображении, так и в каждом изображении базы данных. Эти ключевые точки - это различимые места, которые могут быть легко узнаны и сравнены между изображениями, такие как углы и интересные текстуры.
 
-2) **_Describing Key Points:_** For each key point detected, ORB generates a unique descriptor that summarizes the key point's characteristics. This descriptor is made rotation-invariant, meaning it describes the key point in a way that's consistent even if the image is rotated.
+2) **_Описание ключевых точек:_** Для каждой обнаруженной ключевой точки ORB генерирует уникальный дескриптор, который резюмирует характеристики ключевой точки. Этот дескриптор делается инвариантным к повороту, что означает, что он описывает ключевую точку таким образом, который остается последовательным даже если изображение повернуто.
 
-3) **_Matching Key Points:_** The application then matches key points between the uploaded image and each database image using these descriptors. The matching process involves finding key points in the database image that have descriptors similar to those in the uploaded image.
+3) **_Сопоставление ключевых точек:_** Затем приложение сопоставляет ключевые точки между загруженным изображением и каждым изображением в базе данных, используя эти дескрипторы. Процесс сопоставления включает поиск ключевых точек в изображении базы данных, которые имеют дескрипторы, похожие на те, что в загруженном изображении.
 
-4) **_Scoring Matches:_** The more key points that match between two images, the higher the score of similarity based on ORB. This score reflects how many distinctive features are shared between the images.
+4) **_Оценка совпадений:_** Чем больше ключевых точек совпадает между двумя изображениями, тем выше оценка схожести на основе ORB. Эта оценка отражает, сколько уникальных особенностей разделяют изображения.
 
-## Combining SSIM and ORB:
- After calculating similarity scores using both SSIM and ORB for each image comparison, Harmony-Image averages these scores to get a final measure of similarity.
-Images from the database are then ranked based on their final similarity scores, and the top 5 most similar images are selected.
+## Комбинирование SSIM и ORB:
+После расчета показателей схожести с использованием как SSIM, так и ORB для каждого сравнения изображений, Harmony-Image усредняет эти оценки для получения окончательного показателя схожести.
+Изображения из базы данных затем ранжируются на основе их окончательных показателей схожести, и выбираются 5 наиболее похожих изображений.
 
-## Final Selection of Similar Images:
-The application filters out duplicate URLs to ensure a diverse set of similar images.
- It returns URLs of the top similar images, which can then be presented to the user.
- In essence, your application uses a combination of structural analysis (SSIM) and feature matching (ORB) to find and rank images in your database that are most similar to an image uploaded by the user. This dual approach leverages the strengths of both methods, ensuring a robust and nuanced comparison that goes beyond simple pixel-by-pixel analysis.
+## Финальный выбор похожих изображений:
+Приложение фильтрует дубликаты URL, чтобы обеспечить разнообразный набор похожих изображений.
+Оно возвращает URL самых похожих изображений, которые затем могут быть представлены пользователю.
+По сути, ваше приложение использует комбинацию структурного анализа (SSIM) и сопоставления особенностей (ORB) для поиска и ранжирования изображений в вашей базе данных, которые наиболее похожи на изображение, загруженное пользователем. Этот двойной подход использует преимущества обоих методов, обеспечивая надежное и тонкое сравнение, которое выходит за рамки простого анализа пиксель за пикселем.
