@@ -1,12 +1,11 @@
 import aiohttp
 import cv2
 import numpy as np
+from database import load_db
 from skimage.metrics import structural_similarity as ssim
 import asyncio
-from aiohttp import ClientError
+from bs4 import BeautifulSoup
 
-UNSPLASH_ACCESS_KEY = "YOUR_UNSPLASH_ACCESS_KEY"
-UNSPLASH_SEARCH_URL = "https://api.unsplash.com/search/photos"
 
 async def download_image(session, url):
   async with session.get(url) as response:
@@ -17,21 +16,20 @@ async def download_image(session, url):
       return image
   raise Exception('Image download failed')
 
-async def get_image_urls_from_unsplash(session, query):
-  params = {
-      "client_id": UNSPLASH_ACCESS_KEY,
-      "query": query,
-      "per_page": 5  # Adjust the number of images to retrieve
-  }
-  async with session.get(UNSPLASH_SEARCH_URL, params=params) as response:
+
+async def get_image_urls_from_page(session, page_url):
+  async with session.get(page_url) as response:
     if response.status == 200:
-      data = await response.json()
-      return [result['urls']['regular'] for result in data['results']]
+      html_content = await response.text()
+      soup = BeautifulSoup(html_content, 'html.parser')
+      image_elements = soup.select('.ty-product-img .cm-image')
+      return [image['src'] for image in image_elements]
   return []
+
 
 async def process_image(session, image_entry, target_image):
   try:
-    image_urls = await get_image_urls_from_unsplash(session, image_entry["query"])
+    image_urls = await get_image_urls_from_page(session, image_entry["url"])
     for image_url in image_urls:
       current_image = await download_image(session, image_url)
       optimal_size = max(max(target_image.shape[:2]),
@@ -50,7 +48,7 @@ async def process_image(session, image_entry, target_image):
       current_keypoints, current_descriptors = orb.detectAndCompute(
           current_gray, None)
       if target_descriptors is None or current_descriptors is None:
-        return (0, image_url)
+        return (0, image_entry["url"])
       index_params = dict(algorithm=6,
                           table_number=6,
                           key_size=12,
@@ -69,17 +67,19 @@ async def process_image(session, image_entry, target_image):
       hist_score = cv2.compareHist(target_hist, current_hist,
                                    cv2.HISTCMP_CORREL)
       final_score = (feature_score + ssim_index + hist_score) / 3
-      return (final_score, image_url)
+      return (final_score, image_entry["url"])
   except Exception as e:
-    print(f"Failed to process image due to {e}")
-    return (0, "")
+    print(f"Failed to process image {image_entry['url']} due to {e}")
+    return (0, image_entry["url"])
+
 
 async def find_similar_images(file_path):
+  db_data = load_db()
   target_image = cv2.imread(file_path)
-  search_queries = ["nature", "cities", "animals", "tech", "space"]  # Example queries
   async with aiohttp.ClientSession() as session:
     tasks = [
-        process_image(session, {"query": query}, target_image) for query in search_queries
+        process_image(session, entry, target_image) for entry in db_data
+        if "url" in entry
     ]
     results = await asyncio.gather(*tasks)
   valid_results = filter(lambda x: x[0] > 0, results)
