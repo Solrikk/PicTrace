@@ -68,7 +68,7 @@
               function simulateUploadProgress() {
                   var elem = document.getElementById("myBar");   
                   var width = 0;
-                  var id = setInterval(frame, 350);
+                  var id = setInterval(frame, 20);
                   function frame() {
                       if (width >= 100) {
                           clearInterval(id);
@@ -83,11 +83,11 @@
       <body>
           <form action="/upload/" enctype="multipart/form-data" method="post" onsubmit="simulateUploadProgress()">
               <input name="file" type="file">
-              <input type="submit" value="Найти">
+              <input type="submit" value="Search">
               <div class="progress">
                   <div id="myBar" class="progress-bar"></div>
               </div>
-              <p>EchoImage_v.0.3.1</p>
+              <p>EchoImage_v.0.9.2</p>
           </form>
       </body>
   </html>
