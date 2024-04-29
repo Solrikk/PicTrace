@@ -56,15 +56,15 @@ python app.py
 `After starting the server, the application will be available at http://localhost:5000 .`
 
 ## Results
-|Image 1 vs Image 2|Similar|
-|:-:|:-:|
-|<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|
-|<img src="" alt="" width="400"/>|___|
-|<img src="" alt="" width="400"/>|___|
-|<img src="" alt="" width="400"/>|___|
-|<img src="" alt="" width="400"/>|___|
-|<img src="" alt="" width="400"/>|___|
-|<img src="" alt="" width="400"/>|___|
+|Image 1 vs Image 2|Similar|Image|
+|:-:|:-:|:-:|
+|<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
 
 ## Examples 📋
 (**_code with comments_**)
