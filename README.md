@@ -33,7 +33,7 @@
 ## ⚠️ Getting Started ⚠️
 
 ### _To work with EchoImage, make sure that you have the following components installed:_
-- Python 3.8 или выше
+- Python 3.8 or higher.
 - pip (Python Package Installer):
 
 1. **_Clone the repository:_**
