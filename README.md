@@ -131,7 +131,7 @@ async def process_image(session, image_entry, target_image):
     return (0, image_entry["url"])
 ```
 
-#
+-----------------
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
