@@ -58,7 +58,7 @@ python app.py
 ## Results
 |Image 1 vs Image 2|Similar|
 |:-:|:-:|
-|<img src="" alt="" width="400"/>|___|
+|<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|
 |<img src="" alt="" width="400"/>|___|
 |<img src="" alt="" width="400"/>|___|
 |<img src="" alt="" width="400"/>|___|
