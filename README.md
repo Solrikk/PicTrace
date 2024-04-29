@@ -30,7 +30,8 @@
   - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
   - `Hashing for Image Identification`
     
-# Examples (_code with comments_)
+# Examples 
+(**_code with comments_**)
 
 ```Python
 # Define an asynchronous function to process and compare an image against a target image.
