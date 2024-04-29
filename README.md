@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ORB/ORB3.png" width="75%"/>
+  <img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ORB/ORB3.png" width="105%"/>
 </div>
 
 <div align="center">
