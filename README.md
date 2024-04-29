@@ -60,13 +60,13 @@ python app.py
 ## Results
 |Image 1 vs Image 2|Similar|
 |:-:|:-:|
-|<img src="___" alt="___" width="400"/>|___|
-|<img src="___" width="400"/>|Yes|
-|<img src="___" width="400"/>|Yes|
-|<img src="___" alt="___" width="400"/>|___|
-|<img src="___" alt="___" width="400"/>|___|
-|<img src="___" alt="___" width="400"/>|___|
-|<img src="___" alt="___" width="400"/>|___|
+|<img src="" alt="" width="400"/>|___|
+|<img src="" alt="" width="400"/>|___|
+|<img src="" alt="" width="400"/>|___|
+|<img src="" alt="" width="400"/>|___|
+|<img src="" alt="" width="400"/>|___|
+|<img src="" alt="" width="400"/>|___|
+|<img src="" alt="" width="400"/>|___|
 
 
 ```Python 
