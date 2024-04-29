@@ -32,47 +32,102 @@
   - `Изменение размера и преобразование в оттенки серого` ([подробности](https://en.wikipedia.org/wiki/Grayscale))
   - `Хеширование для идентификации изображений`
     
-# Примеры
-`Пример на Python` [[больше информации](https://github.com/Solrikk/EchoImage/blob/main/main.py)]
+## ⚠️ Подготовка к работе: ⚠️
+
+### _Для работы с Echo Image убедитесь, что у вас установлены следующие компоненты:_
+- Python 3.8 или выше.
+- pip (Python Package Installer):
+1. **_Клонировать репозиторий:_** ✔️
+- `git clone https://github.com/<Solrikk>/EchoImage.git`
+- `cd EchoImage`
+2. **_Настройка виртуальной среды:_** ✔️
+```ShellScript
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Linux и MacOS
+source venv/bin/activate
+```
+3. **_Устанавливать зависимости:_** ✔️
+```ShellScript
+pip install -r requirements.txt
+```
+### _Запуск приложения:_
+1. **_Start the server:_**
+```ShellScript
+python app.py
+```
+`After starting the server, the application will be available at http://localhost:5000 .`
+
+## Пример: 📋
+(**_Код с коментариями_**)
 
 ```Python
+# Определение асинхронной функции для обработки и сравнения изображения с целевым изображением.
 async def process_image(session, image_entry, target_image):
   try:
-    # Асинхронная загрузка изображения по указанному URL.
-    current_image = await download_image(session, image_entry["url"])
-    # Определение наибольших размеров между целевым и текущим изображениями, но не более 1024 пикселей.
-    optimal_size = max(max(target_image.shape[:2]), 
-                       max(current_image.shape[:2]))
-    optimal_size = min(1024, optimal_size)
-    # Изменение размера обоих изображений до рассчитанного оптимального размера для единообразного сравнения.
-    target_image_resized = cv2.resize(target_image, 
-                                      (optimal_size, optimal_size))
-    current_image_resized = cv2.resize(current_image, 
-                                       (optimal_size, optimal_size))
-    # Конвертация обоих изображений в градации серого для упрощения последующих расчетов.
-    target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
-    current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
-    # Расчет индекса структурного сходства (SSIM) между двумя изображениями в градациях серого.
-    ssim_index = ssim(target_gray, current_gray)
-    # Инициализация детектора ORB для поиска ключевых точек и дескрипторов.
-    orb = cv2.ORB_create(nfeatures=500)
-    # Обнаружение ключевых точек и вычисление дескрипторов для обоих изображений.
-    target_keypoints, target_descriptors = orb.detectAndCompute(target_gray, None)
-    current_keypoints, current_descriptors = orb.detectAndCompute(current_gray, None)
-    # Если дескрипторы не найдены, возвращается результат сравнения сходства равный 0.
-    if target_descriptors is None or current_descriptors is None:
-      return (0, image_entry["url"])
-    # Параметры для сопоставления FLANN для поиска лучших совпадений между дескрипторами.
-    index_params = dict(algorithm=6,
-                        table_number=6,
-                        key_size=12,
-                        multi_probe_level=1)
-    search_params = dict(checks=50)  # Количество проверок для сопоставления
-    # Инициализация сопоставителя FLANN с указанными параметрами.
-    flann = cv2.FlannBasedMatcher(index_params, search_params)
+    # Получение списка URL-адресов изображений с веб-страницы.
+    image_urls = await get_image_urls_from_page(session, image_entry["url"])
+    for image_url in image_urls:
+      # Загрузка текущего изображение по URL-адресу.
+      current_image = await download_image(session, image_url)
+      # Определение оптимального размера для сравнения, не превышающий 1024 пикселей.
+      optimal_size = max(max(target_image.shape[:2]),
+                         max(current_image.shape[:2]))
+      optimal_size = min(1024, optimal_size)
+      # Изменение размера как целевого, так и текущего изображения до оптимального размера для сравнения.
+      target_image_resized = cv2.resize(target_image,
+                                        (optimal_size, optimal_size))
+      current_image_resized = cv2.resize(current_image,
+                                         (optimal_size, optimal_size))
+      # Преобразование изображения в оттенки серого для процесса сравнения.
+      target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
+      current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
+      # Рассчёт индекса структурного сходства (SSIM) между двумя изображениями.
+      ssim_index = ssim(target_gray, current_gray)
+      # Инициализирования детектора ORB для извлечения объектов.
+      orb = cv2.ORB_create(nfeatures=500)
+      # Detect keypoints and compute descriptors for both images.
+      target_keypoints, target_descriptors = orb.detectAndCompute(
+          target_gray, None)
+      current_keypoints, current_descriptors = orb.detectAndCompute(
+          current_gray, None)
+      # Return early if no descriptors are found in either image.
+      if target_descriptors is None or current_descriptors is None:
+        return (0, image_entry["url"])
+      # Setup parameters for FLANN based matcher, used for finding good matches.
+      index_params = dict(algorithm=6,
+                          table_number=6,
+                          key_size=12,
+                          multi_probe_level=1)
+      search_params = dict(checks=50)
+      flann = cv2.FlannBasedMatcher(index_params, search_params)
+      # Match descriptors between the two images and filter good matches.
+      matches = flann.knnMatch(target_descriptors, current_descriptors, k=2)
+      good_matches = [m for m, n in matches if m.distance < 0.75 * n.distance]
+      # Calculate the feature score based on good matches.
+      feature_score = len(good_matches) / float(len(target_keypoints))
+      # Compute histograms for both images in RGB channels.
+      target_hist = cv2.calcHist([target_image_resized], [0, 1, 2], None,
+                                 [32, 32, 32], [0, 256, 0, 256, 0, 256])
+      current_hist = cv2.calcHist([current_image_resized], [0, 1, 2], None,
+                                  [32, 32, 32], [0, 256, 0, 256, 0, 256])
+      # Normalize histograms.
+      cv2.normalize(target_hist, target_hist)
+      cv2.normalize(current_hist, current_hist)
+      # Compare histograms using correlation method.
+      hist_score = cv2.compareHist(target_hist, current_hist,
+                                   cv2.HISTCMP_CORREL)
+      # Calculate the final score by averaging SSIM, feature, and histogram scores.
+      final_score = (feature_score + ssim_index + hist_score) / 3
+      return (final_score, image_entry["url"])
+  except Exception as e:
+    # Handle any errors during the process and return a zero score.
+    print(f"Failed to process image {image_entry['url']} due to {e}")
+    return (0, image_entry["url"])
 ```
 
-#
+-----------------
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
