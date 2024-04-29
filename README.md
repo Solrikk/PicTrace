@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ORB/ORB3.png" width="105%"/>
+  <img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ORB/images/ORB4.png" width="105%"/>
 </div>
 
 <div align="center">
@@ -157,7 +157,7 @@ To compare images, the Structural Similarity Index **(SSIM)** is used to assess 
 ## _ORB (Oriented FAST and Rotated BRIEF)_ 
 ORB method used in computer vision, particularly popular for tasks related to object recognition, image matching, and tracking. This method is focused on quickly finding key points on images and describing them in a way that allows for efficient comparison. Let's break down what ORB does with simpler examples:
 
-<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ORB/ORB3.png" width="95%" /> 
+<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ORB/images/ORB3.png" width="95%" /> 
 
 1) **Oriented FAST (Features from Accelerated Segment Test):** This part is responsible for detecting points of interest (or key points) on the image. It quickly identifies corners or edges that stand out in comparison to their surrounding areas. This way, significant or unique sections of the image can be identified.
 
