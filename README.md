@@ -34,50 +34,57 @@
 `Python example` [[more info](https://github.com/Solrikk/EchoImage/blob/main/main.py)]
 
 ```Python
+# Define an asynchronous function to process and compare an image against a target image.
 async def process_image(session, image_entry, target_image):
-  try:
-    image_urls = await get_image_urls_from_page(session, image_entry["url"])
-    for image_url in image_urls:
-      current_image = await download_image(session, image_url)
-      optimal_size = max(max(target_image.shape[:2]),
-                         max(current_image.shape[:2]))
-      optimal_size = min(1024, optimal_size)
-      target_image_resized = cv2.resize(target_image,
-                                        (optimal_size, optimal_size))
-      current_image_resized = cv2.resize(current_image,
-                                         (optimal_size, optimal_size))
-      target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
-      current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
-      ssim_index = ssim(target_gray, current_gray)
-      orb = cv2.ORB_create(nfeatures=500)
-      target_keypoints, target_descriptors = orb.detectAndCompute(
-          target_gray, None)
-      current_keypoints, current_descriptors = orb.detectAndCompute(
-          current_gray, None)
-      if target_descriptors is None or current_descriptors is None:
+    try:
+        # Obtain a list of image URLs from a webpage.
+        image_urls = await get_image_urls_from_page(session, image_entry["url"])
+        for image_url in image_urls:
+            # Download current image from the URL.
+            current_image = await download_image(session, image_url)
+            # Determine the optimal size for comparison, not exceeding 1024 pixels.
+            optimal_size = max(max(target_image.shape[:2]), max(current_image.shape[:2]))
+            optimal_size = min(1024, optimal_size)
+            # Resize both target and current images to the optimal size for comparison.
+            target_image_resized = cv2.resize(target_image, (optimal_size, optimal_size))
+            current_image_resized = cv2.resize(current_image, (optimal_size, optimal_size))
+            # Convert images to grayscale for the comparison process.
+            target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
+            current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
+            # Calculate the Structural Similarity Index (SSIM) between the two images.
+            ssim_index = ssim(target_gray, current_gray)
+            # Initialize ORB detector for feature extraction.
+            orb = cv2.ORB_create(nfeatures=500)
+            # Detect keypoints and compute descriptors for both images.
+            target_keypoints, target_descriptors = orb.detectAndCompute(target_gray, None)
+            current_keypoints, current_descriptors = orb.detectAndCompute(current_gray, None)
+            # Return early if no descriptors are found in either image.
+            if target_descriptors is None or current_descriptors is None:
+                return (0, image_entry["url"])
+            # Setup parameters for FLANN based matcher, used for finding good matches.
+            index_params = dict(algorithm=6, table_number=6, key_size=12, multi_probe_level=1)
+            search_params = dict(checks=50)
+            flann = cv2.FlannBasedMatcher(index_params, search_params)
+            # Match descriptors between the two images and filter good matches.
+            matches = flann.knnMatch(target_descriptors, current_descriptors, k=2)
+            good_matches = [m for m, n in matches if m.distance < 0.75 * n.distance]
+            # Calculate the feature score based on good matches.
+            feature_score = len(good_matches) / float(len(target_keypoints))
+            # Compute histograms for both images in RGB channels.
+            target_hist = cv2.calcHist([target_image_resized], [0, 1, 2], None, [32, 32, 32], [0, 256, 0, 256, 0, 256])
+            current_hist = cv2.calcHist([current_image_resized], [0, 1, 2], None, [32, 32, 32], [0, 256, 0, 256, 0, 256])
+            # Normalize histograms.
+            cv2.normalize(target_hist, target_hist)
+            cv2.normalize(current_hist, current_hist)
+            # Compare histograms using correlation method.
+            hist_score = cv2.compareHist(target_hist, current_hist, cv2.HISTCMP_CORREL)
+            # Calculate the final score by averaging SSIM, feature, and histogram scores.
+            final_score = (feature_score + ssim_index + hist_score) / 3
+            return (final_score, image_entry["url"])
+    except Exception as e:
+        # Handle any errors during the process and return a zero score.
+        print(f"Failed to process image {image_entry['url']} due to {e}")
         return (0, image_entry["url"])
-      index_params = dict(algorithm=6,
-                          table_number=6,
-                          key_size=12,
-                          multi_probe_level=1)
-      search_params = dict(checks=50)
-      flann = cv2.FlannBasedMatcher(index_params, search_params)
-      matches = flann.knnMatch(target_descriptors, current_descriptors, k=2)
-      good_matches = [m for m, n in matches if m.distance < 0.75 * n.distance]
-      feature_score = len(good_matches) / float(len(target_keypoints))
-      target_hist = cv2.calcHist([target_image_resized], [0, 1, 2], None,
-                                 [32, 32, 32], [0, 256, 0, 256, 0, 256])
-      current_hist = cv2.calcHist([current_image_resized], [0, 1, 2], None,
-                                  [32, 32, 32], [0, 256, 0, 256, 0, 256])
-      cv2.normalize(target_hist, target_hist)
-      cv2.normalize(current_hist, current_hist)
-      hist_score = cv2.compareHist(target_hist, current_hist,
-                                   cv2.HISTCMP_CORREL)
-      final_score = (feature_score + ssim_index + hist_score) / 3
-      return (final_score, image_entry["url"])
-  except Exception as e:
-    print(f"Failed to process image {image_entry['url']} due to {e}")
-    return (0, image_entry["url"])
 ```
 
 #
