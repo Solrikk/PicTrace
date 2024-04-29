@@ -57,6 +57,18 @@ python app.py
 ## Examples 📋
 (**_code with comments_**)
 
+## Results
+|Image 1 vs Image 2|Similar|
+|:-:|:-:|
+|<img src="___" alt="___" width="400"/>|___|
+|<img src="___" width="400"/>|Yes|
+|<img src="___" width="400"/>|Yes|
+|<img src="___" alt="___" width="400"/>|___|
+|<img src="___" alt="___" width="400"/>|___|
+|<img src="___" alt="___" width="400"/>|___|
+|<img src="___" alt="___" width="400"/>|___|
+
+
 ```Python 
 # Define an asynchronous function to process and compare an image against a target image.
 async def process_image(session, image_entry, target_image):
