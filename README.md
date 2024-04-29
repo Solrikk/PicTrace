@@ -36,11 +36,11 @@
 - Python 3.8 or higher.
 - pip (Python Package Installer):
 
-1. **_Clone the repository:_**
+1. **_Clone the repository:_** ✔️
 - `git clone https://github.com/<Solrikk>/EchoImage.git`
 - `cd EchoImage`
   
-2. **_Set up a virtual environment:_**
+2. **_Set up a virtual environment:_** ✔️
 
 ```ShellScript
 python -m venv venv
@@ -51,7 +51,7 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-3. **_Install dependencies:_**
+3. **_Install dependencies:_** ✔️
 ```ShellScript
 pip install -r requirements.txt
 ```
