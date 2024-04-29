@@ -16,11 +16,12 @@
 - **_Supports Multiple-Technologies_** ☄️
 
     _**Python**_  with libraries:
-  - `FastAPI` for the web framework.
-  - `aiohttp` for asynchronous HTTP requests.
-  - `cv2` (OpenCV) for image processing.
-  - `numpy` for numerical operations.
-  - `skimage` for additional image processing techniques.
+  - `FastAPI` - Used for web application creation and handling HTTP requests, supports asynchronous operations.
+  - `aiohttp` - Utilized for asynchronous HTTP requests, such as downloading images by URL.
+  - `OpenCV (cv2)`: - A `computer vision` library used for image processing, including loading, resizing, and comparing images.
+  - `numpy` - A library for working with multi-dimensional arrays, used alongside OpenCV for image processing.
+  - `skimage` - Specifically, the `structural_similarity` function is used to compare the similarity of images.
+  - `hashlib` - Used to generate image hashes, allowing each image to be uniquely identified.
 
 - **_Supports Multiple-Indexes_** 🚀
 
