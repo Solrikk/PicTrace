@@ -12,7 +12,7 @@
 
  **_EchoImage:_** is an advanced platform designed for the precise discovery of similar images. Utilizing structural similarity and keypoint matching algorithms, EchoImage provides a swift and accurate method for image comparison. The application supports uploading images directly or via URLs, efficiently navigating through a vast image database to identify the best matches. Thanks to its use of asynchronous technology, EchoImage ensures rapid processing, offering a seamless and effective visual search experience.
 
-## Features ⚙️⚙️⚙️
+## ⚙️ Features ⚙️
 - **_Supports Multiple-Technologies_** ☄️
 
     _**Python**_  with libraries:
