@@ -35,38 +35,48 @@
 ```Python
 async def process_image(session, image_entry, target_image):
   try:
-    # Asynchronously download the image from the given URL.
-    current_image = await download_image(session, image_entry["url"])
-    # Determine the larger dimensions between the target and current images, but cap it at 1024 pixels.
-    optimal_size = max(max(target_image.shape[:2]), 
-                       max(current_image.shape[:2]))
-    optimal_size = min(1024, optimal_size)
-    # Resize both images to the calculated optimal size for uniform comparison.
-    target_image_resized = cv2.resize(target_image, 
-                                      (optimal_size, optimal_size))
-    current_image_resized = cv2.resize(current_image, 
-                                       (optimal_size, optimal_size))
-    # Convert both images to grayscale to simplify further calculations.
-    target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
-    current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
-    # Calculate the SSIM (Structural Similarity Index) between the two grayscale images.
-    ssim_index = ssim(target_gray, current_gray)
-    # Initialize ORB detector to find keypoints and descriptors.
-    orb = cv2.ORB_create(nfeatures=500)
-    # Detect keypoints and compute descriptors for both images.
-    target_keypoints, target_descriptors = orb.detectAndCompute(target_gray, None)
-    current_keypoints, current_descriptors = orb.detectAndCompute(current_gray, None)
-    # If there are no descriptors found, return a similarity score of 0.
-    if target_descriptors is None or current_descriptors is None:
-      return (0, image_entry["url"])
-    # Parameters for the FLANN matcher to find the best matches between descriptors.
-    index_params = dict(algorithm=6,
-                        table_number=6,
-                        key_size=12,
-                        multi_probe_level=1)
-    search_params = dict(checks=50)  # The number of checks to perform for matching
-    # Initialize the FLANN matcher with the specified parameters.
-    flann = cv2.FlannBasedMatcher(index_params, search_params)
+    image_urls = await get_image_urls_from_page(session, image_entry["url"])
+    for image_url in image_urls:
+      current_image = await download_image(session, image_url)
+      optimal_size = max(max(target_image.shape[:2]),
+                         max(current_image.shape[:2]))
+      optimal_size = min(1024, optimal_size)
+      target_image_resized = cv2.resize(target_image,
+                                        (optimal_size, optimal_size))
+      current_image_resized = cv2.resize(current_image,
+                                         (optimal_size, optimal_size))
+      target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
+      current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
+      ssim_index = ssim(target_gray, current_gray)
+      orb = cv2.ORB_create(nfeatures=500)
+      target_keypoints, target_descriptors = orb.detectAndCompute(
+          target_gray, None)
+      current_keypoints, current_descriptors = orb.detectAndCompute(
+          current_gray, None)
+      if target_descriptors is None or current_descriptors is None:
+        return (0, image_entry["url"])
+      index_params = dict(algorithm=6,
+                          table_number=6,
+                          key_size=12,
+                          multi_probe_level=1)
+      search_params = dict(checks=50)
+      flann = cv2.FlannBasedMatcher(index_params, search_params)
+      matches = flann.knnMatch(target_descriptors, current_descriptors, k=2)
+      good_matches = [m for m, n in matches if m.distance < 0.75 * n.distance]
+      feature_score = len(good_matches) / float(len(target_keypoints))
+      target_hist = cv2.calcHist([target_image_resized], [0, 1, 2], None,
+                                 [32, 32, 32], [0, 256, 0, 256, 0, 256])
+      current_hist = cv2.calcHist([current_image_resized], [0, 1, 2], None,
+                                  [32, 32, 32], [0, 256, 0, 256, 0, 256])
+      cv2.normalize(target_hist, target_hist)
+      cv2.normalize(current_hist, current_hist)
+      hist_score = cv2.compareHist(target_hist, current_hist,
+                                   cv2.HISTCMP_CORREL)
+      final_score = (feature_score + ssim_index + hist_score) / 3
+      return (final_score, image_entry["url"])
+  except Exception as e:
+    print(f"Failed to process image {image_entry['url']} due to {e}")
+    return (0, image_entry["url"])
 ```
 
 #
