@@ -30,7 +30,40 @@
   - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
   - `Hashing for Image Identification`
     
-# Examples 
+## Getting Started
+
+### _To work with EchoImage, make sure that you have the following components installed:_
+- Python 3.8 или выше
+- pip (Python Package Installer):
+
+1. **_Clone the repository:_**
+- `git clone https://github.com/<Solrikk>/EchoImage.git`
+- `cd EchoImage`
+  
+2. **_Set up a virtual environment:_**
+
+```ShellScript
+python -m venv venv
+
+# Windows
+venv\Scripts\activate
+# Linux и MacOS
+source venv/bin/activate
+```
+
+3. **_Install dependencies:_**
+```ShellScript
+pip install -r requirements.txt
+```
+
+### _Launching the application:_
+1. **_Start the server:_**
+```ShellScript
+python app.py
+```
+`After starting the server, the application will be available at http://localhost:5000 .`
+
+## Examples 
 (**_code with comments_**)
 
 ```Python
