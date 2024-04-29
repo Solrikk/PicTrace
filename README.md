@@ -58,7 +58,7 @@ python app.py
 ## Results
 |Image 1 vs Image 2|Similar|Image|
 |:-:|:-:|:-:|
-|<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|__|
+|<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/result/images/melbourne.jpg" alt="" width="200"/>|
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
