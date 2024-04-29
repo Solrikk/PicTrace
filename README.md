@@ -54,8 +54,6 @@ pip install -r requirements.txt
 python app.py
 ```
 `After starting the server, the application will be available at http://localhost:5000 .`
-## Examples 📋
-(**_code with comments_**)
 
 ## Results
 |Image 1 vs Image 2|Similar|
@@ -68,6 +66,8 @@ python app.py
 |<img src="" alt="" width="400"/>|___|
 |<img src="" alt="" width="400"/>|___|
 
+## Examples 📋
+(**_code with comments_**)
 
 ```Python 
 # Define an asynchronous function to process and compare an image against a target image.
