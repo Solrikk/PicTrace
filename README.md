@@ -6,9 +6,9 @@
 
 -----------------
 
-# PicTrace 🔎
+# PicTrace
 
- **_PicTrace:_** is an advanced platform designed for the precise discovery of similar images. Utilizing structural similarity and keypoint matching algorithms, PicTrace provides a swift and accurate method for image comparison. The application supports uploading images directly or via URLs, efficiently navigating through a vast image database to identify the best matches. Thanks to its use of asynchronous technology, PicTrace ensures rapid processing, offering a seamless and effective visual search experience.
+ 🔎 **_PicTrace:_** is an advanced platform designed for the precise discovery of similar images. Utilizing structural similarity and keypoint matching algorithms, PicTrace provides a swift and accurate method for image comparison. The application supports uploading images directly or via URLs, efficiently navigating through a vast image database to identify the best matches. Thanks to its use of asynchronous technology, PicTrace ensures rapid processing, offering a seamless and effective visual search experience.
 
 ## Features ⚙️
 - **_Supports Multiple-Technologies_** ☄️
@@ -55,7 +55,7 @@ python app.py
 ```
 `After starting the server, the application will be available at http://localhost:5000 .`
 
-## Results
+## Results:
 |Image 1 vs Image 2|Similar|Image|
 |:-:|:-:|:-:|
 |<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/melbourne.jpg" alt="" width="200"/>|
@@ -66,7 +66,7 @@ python app.py
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
 
-## Examples 📋
+## Examples: 📋
 (**_code with comments_**)
 
 ```Python 
@@ -164,7 +164,7 @@ ssim_index = ssim(target_gray, current_gray)
 
 To compare images, the Structural Similarity Index **(SSIM)** is used to assess the similarity between images, as well as the **ORB (Oriented FAST and Rotated BRIEF)** algorithm for detecting key points and their descriptions.
 
-## _ORB (Oriented FAST and Rotated BRIEF)_ 
+## _ORB (Oriented FAST and Rotated BRIEF):_ 
 ORB method used in computer vision, particularly popular for tasks related to object recognition, image matching, and tracking. This method is focused on quickly finding key points on images and describing them in a way that allows for efficient comparison. Let's break down what ORB does with simpler examples:
 
 <img src="https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/ORB3.png" width="95%" /> 
