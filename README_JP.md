@@ -41,7 +41,7 @@ venv\Scripts\activate
 # Linux и MacOS
 source venv/bin/activate
 ```
-3. **_Install dependencies:_** ✔️
+3. **_依存関係をインストール:_** ✔️
 ```ShellScript
 pip install -r requirements.txt
 ```
@@ -53,7 +53,7 @@ python app.py
 `After starting the server, the application will be available at http://localhost:5000 .`
 
 ## Results:
-|Image 1 vs Image 2|Similar|Image|
+|画像1 vs 画像2|類似|Image|
 |:-:|:-:|:-:|
 |<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/melbourne.jpg" alt="" width="200"/>|
 |<img src="" alt="" width="400"/>|___|__|
@@ -63,8 +63,8 @@ python app.py
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
 
-## Examples: 📋
-(**_code with comments_**)
+## 例: 📋
+(**_コメント付きコード_**)
 
 ```Python 
 # Define an asynchronous function to process and compare an image against a target image.
