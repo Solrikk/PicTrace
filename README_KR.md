@@ -8,18 +8,18 @@
 
 # PicTrace
 
- 🔎 **_PicTrace:_** is an advanced platform designed for the precise discovery of similar images. Utilizing structural similarity and keypoint matching algorithms, PicTrace provides a swift and accurate method for image comparison. The application supports uploading images directly or via URLs, efficiently navigating through a vast image database to identify the best matches. Thanks to its use of asynchronous technology, PicTrace ensures rapid processing, offering a seamless and effective visual search experience.
+🔎 **_PicTrace:_** 는 유사한 이미지를 정확하게 발견하기 위해 설계된 고급 플랫폼입니다. 구조적 유사성 및 키포인트 매칭 알고리즘을 활용하여, PicTrace는 이미지 비교를 위한 신속하고 정확한 방법을 제공합니다. 애플리케이션은 이미지를 직접 업로드하거나 URL을 통해 업로드할 수 있으며, 방대한 이미지 데이터베이스를 효율적으로 탐색하여 최적의 매치를 식별합니다. 비동기 기술을 사용한 덕분에 PicTrace는 빠른 처리를 보장하며, 원활하고 효과적인 시각적 검색 경험을 제공합니다.
 
-## Features ⚙️
-- **_Supports Multiple-Technologies_** ☄️
+## 특징 ⚙️
+- **_다중 기술 지원_** ☄️
 
-    _**Python**_  with libraries:
-  - `FastAPI` - Used for web application creation and handling HTTP requests, supports asynchronous operations.
-  - `aiohttp` - Utilized for asynchronous HTTP requests, such as downloading images by URL.
-  - `OpenCV (cv2)`: - A `computer vision` library used for image processing, including loading, resizing, and comparing images.
-  - `numpy` - A library for working with multi-dimensional arrays, used alongside OpenCV for image processing.
-  - `skimage` - Specifically, the `structural_similarity` function is used to compare the similarity of images.
-  - `hashlib` - Used to generate image hashes, allowing each image to be uniquely identified.
+  _**파이썬**_ 과 라이브러리들:
+  - `FastAPI` - 웹 애플리케이션 생성 및 HTTP 요청 처리에 사용됩니다. 비동기 연산을 지원합니다.
+  - `aiohttp` - 비동기 HTTP 요청, 예를 들어 URL로 이미지를 다운로드 하는 등의 작업에 사용됩니다.
+  - `OpenCV (cv2)`: - 이미지 로딩, 크기 조정, 비교 등 이미지 처리에 사용되는 `컴퓨터 비전` 라이브러리입니다.
+  - `numpy` - 다차원 배열을 다루는 라이브러리로, OpenCV와 함께 이미지 처리 작업에 사용됩니다.
+  - `skimage` - 특히, 이미지의 유사성을 비교하는데 사용되는 `structural_similarity` 함수가 있습니다.
+  - `hashlib` - 각 이미지를 고유하게 식별할 수 있게 하는 이미지 해시를 생성하는 데 사용됩니다.
 
 - **_Supports Multiple-Indexes_** 🚀
 
