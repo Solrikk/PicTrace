@@ -8,15 +8,15 @@
 
 # PicTrace
 
- 🔎 **_PicTrace:_** is an advanced platform designed for the precise discovery of similar images. Utilizing structural similarity and keypoint matching algorithms, PicTrace provides a swift and accurate method for image comparison. The application supports uploading images directly or via URLs, efficiently navigating through a vast image database to identify the best matches. Thanks to its use of asynchronous technology, PicTrace ensures rapid processing, offering a seamless and effective visual search experience.
+ 🔎 _**PicTrace**_ is an efficient image matching platform leveraging `structural similarity` and `keypoint algorithms` for fast, accurate image searches. It allows direct uploads or URL submissions, quickly scanning a large database to find `similar images`. With `asynchronous processing`, PicTrace delivers a smooth and quick `visual search` experience.
 
 ## Features ⚙️
 - **_Supports Multiple-Technologies_** ☄️
 
     _**Python**_  with libraries:
-  - `FastAPI` - Used for web application creation and handling HTTP requests, supports asynchronous operations.
-  - `aiohttp` - Utilized for asynchronous HTTP requests, such as downloading images by URL.
-  - `OpenCV (cv2)`: - A `computer vision` library used for image processing, including loading, resizing, and comparing images.
+  - `FastAPI` - Used for web application creation and handling HTTP requests, supports asynchronous operations. ([details](https://fastapi.tiangolo.com/))
+  - `aiohttp` - Utilized for asynchronous HTTP requests, such as downloading images by URL. ([details](https://docs.aiohttp.org/en/stable/index.html))
+  - `OpenCV (cv2)`: - A `computer vision` library used for image processing, including loading, resizing, and comparing images. ([details](https://gamedevacademy.org/cv2-python-tutorial-complete-guide/#:~:text=%E2%80%98cv2%E2%80%99%20is%20OpenCV%E2%80%99s%20python%20library,perceive%20visuals%20like%20a%20human))
   - `numpy` - A library for working with multi-dimensional arrays, used alongside OpenCV for image processing.
   - `skimage` - Specifically, the `structural_similarity` function is used to compare the similarity of images.
   - `hashlib` - Used to generate image hashes, allowing each image to be uniquely identified.
