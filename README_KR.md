@@ -21,12 +21,12 @@
   - `skimage` - 특히, 이미지의 유사성을 비교하는데 사용되는 `structural_similarity` 함수가 있습니다.
   - `hashlib` - 각 이미지를 고유하게 식별할 수 있게 하는 이미지 해시를 생성하는 데 사용됩니다.
 
-- **_Supports Multiple-Indexes_** 🚀
+- **_다양한 인덱스 지원_** 🚀
 
-  - `Structural Similarity Index (SSIM)` ([details](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
-  - `Feature Matching with ORB (Oriented FAST and Rotated BRIEF) Descriptor` ([details](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
-  - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
-  - `Hashing for Image Identification`
+- `구조적 유사성 지수 (SSIM)` ([상세 정보](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
+- `ORB (Oriented FAST and Rotated BRIEF) 기술자를 사용한 특징 매칭` ([상세 정보](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
+- `크기 조정 및 그레이스케일 변환` ([상세 정보](https://en.wikipedia.org/wiki/Grayscale))
+- `이미지 식별을 위한 해싱`
     
 ## ⚠️ Getting Started: ⚠️
 
