@@ -26,15 +26,14 @@
   - `リサイズおよびグレースケール変換` ([詳細](https://en.wikipedia.org/wiki/Grayscale))
   - `画像識別のためのハッシング`
    
-## ⚠️ Getting Started: ⚠️
-
-### _To work with PicTrace, make sure that you have the following components installed:_
-- Python 3.8 or higher.
-- pip (Python Package Installer):
-1. **_Clone the repository:_** ✔️
+## ⚠️ はじめに: ⚠️
+### _PicTraceを使用するために、以下のコンポーネントがインストールされていることを確認してください:_
+- Python 3.8以上。
+- pip (Pythonパッケージインストーラー):
+1. **_リポジトリをクローン:_** ✔️
 - `git clone https://github.com/<Solrikk>/PicTrace.git`
 - `cd PicTrace`
-2. **_Set up a virtual environment:_** ✔️
+2. **_仮想環境を設定:_** ✔️
 ```ShellScript
 python -m venv venv
 # Windows
