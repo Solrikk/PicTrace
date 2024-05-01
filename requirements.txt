@@ -1,1 +1,5 @@
-
+fastapi
+aiohttp
+opencv-python
+numpy
+scikit-image
