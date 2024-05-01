@@ -89,8 +89,8 @@ async def match_features(imageA: UploadFile = File(...),
   contentsB = await imageB.read()
   nparrA = np.frombuffer(contentsA, np.uint8)
   nparrB = np.frombuffer(contentsB, np.uint8)
-  img1 = cv2.imdecode(nparrA, cv2.IMREAD_GRAYSCALE)
-  img2 = cv2.imdecode(nparrB, cv2.IMREAD_GRAYSCALE)
+  img1 = cv2.imdecode(nparrA, cv2.IMREAD_COLOR)  
+  img2 = cv2.imdecode(nparrB, cv2.IMREAD_COLOR) 
   img_matches = orb_feature_matching(img1, img2)
   _, encoded_img = cv2.imencode('.PNG', img_matches)
   return StreamingResponse(io.BytesIO(encoded_img.tobytes()),
