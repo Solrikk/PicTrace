@@ -20,54 +20,119 @@
   - `skimage` - 特に、画像の類似度を比較するために`structural_similarity`関数が使用されます。
   - `hashlib` - 画像ハッシュを生成し、各画像を一意に識別するために使用されます。
 
-- **_Supports Multiple-Indexes_** 🚀
+- **_複数のインデックスをサポート_** 🚀
+  - `構造的類似性指数 (SSIM)` ([詳細](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
+  - `ORB (Oriented FAST and Rotated BRIEF)記述子を使用した特徴マッチング` ([詳細](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
+  - `リサイズおよびグレースケール変換` ([詳細](https://en.wikipedia.org/wiki/Grayscale))
+  - `画像識別のためのハッシング`
+   
+## ⚠️ Getting Started: ⚠️
 
-  - `Structural Similarity Index (SSIM)` ([details](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
-  - `Feature Matching with ORB (Oriented FAST and Rotated BRIEF) Descriptor` ([details](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
-  - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
-  - `Hashing for Image Identification`
-    
-# Examples
-`Python example` [[more info](https://github.com/Solrikk/EchoImage/blob/main/main.py)]
+### _To work with PicTrace, make sure that you have the following components installed:_
+- Python 3.8 or higher.
+- pip (Python Package Installer):
+1. **_Clone the repository:_** ✔️
+- `git clone https://github.com/<Solrikk>/PicTrace.git`
+- `cd PicTrace`
+2. **_Set up a virtual environment:_** ✔️
+```ShellScript
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Linux и MacOS
+source venv/bin/activate
+```
+3. **_Install dependencies:_** ✔️
+```ShellScript
+pip install -r requirements.txt
+```
+### _Launching the application:_
+1. **_Start the server:_**
+```ShellScript
+python app.py
+```
+`After starting the server, the application will be available at http://localhost:5000 .`
 
-```Python
+## Results:
+|Image 1 vs Image 2|Similar|Image|
+|:-:|:-:|:-:|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/melbourne.jpg" alt="" width="200"/>|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+
+## Examples: 📋
+(**_code with comments_**)
+
+```Python 
+# Define an asynchronous function to process and compare an image against a target image.
 async def process_image(session, image_entry, target_image):
   try:
-    # Asynchronously download the image from the given URL.
-    current_image = await download_image(session, image_entry["url"])
-    # Determine the larger dimensions between the target and current images, but cap it at 1024 pixels.
-    optimal_size = max(max(target_image.shape[:2]), 
-                       max(current_image.shape[:2]))
-    optimal_size = min(1024, optimal_size)
-    # Resize both images to the calculated optimal size for uniform comparison.
-    target_image_resized = cv2.resize(target_image, 
-                                      (optimal_size, optimal_size))
-    current_image_resized = cv2.resize(current_image, 
-                                       (optimal_size, optimal_size))
-    # Convert both images to grayscale to simplify further calculations.
-    target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
-    current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
-    # Calculate the SSIM (Structural Similarity Index) between the two grayscale images.
-    ssim_index = ssim(target_gray, current_gray)
-    # Initialize ORB detector to find keypoints and descriptors.
-    orb = cv2.ORB_create(nfeatures=500)
-    # Detect keypoints and compute descriptors for both images.
-    target_keypoints, target_descriptors = orb.detectAndCompute(target_gray, None)
-    current_keypoints, current_descriptors = orb.detectAndCompute(current_gray, None)
-    # If there are no descriptors found, return a similarity score of 0.
-    if target_descriptors is None or current_descriptors is None:
-      return (0, image_entry["url"])
-    # Parameters for the FLANN matcher to find the best matches between descriptors.
-    index_params = dict(algorithm=6,
-                        table_number=6,
-                        key_size=12,
-                        multi_probe_level=1)
-    search_params = dict(checks=50)  # The number of checks to perform for matching
-    # Initialize the FLANN matcher with the specified parameters.
-    flann = cv2.FlannBasedMatcher(index_params, search_params)
+    # Obtain a list of image URLs from a webpage.
+    image_urls = await get_image_urls_from_page(session, image_entry["url"])
+    for image_url in image_urls:
+      # Download current image from the URL.
+      current_image = await download_image(session, image_url)
+      # Determine the optimal size for comparison, not exceeding 1024 pixels.
+      optimal_size = max(max(target_image.shape[:2]),
+                         max(current_image.shape[:2]))
+      optimal_size = min(1024, optimal_size)
+      # Resize both target and current images to the optimal size for comparison.
+      target_image_resized = cv2.resize(target_image,
+                                        (optimal_size, optimal_size))
+      current_image_resized = cv2.resize(current_image,
+                                         (optimal_size, optimal_size))
+      # Convert images to grayscale for the comparison process.
+      target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
+      current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
+      # Calculate the Structural Similarity Index (SSIM) between the two images.
+      ssim_index = ssim(target_gray, current_gray)
+      # Initialize ORB detector for feature extraction.
+      orb = cv2.ORB_create(nfeatures=500)
+      # Detect keypoints and compute descriptors for both images.
+      target_keypoints, target_descriptors = orb.detectAndCompute(
+          target_gray, None)
+      current_keypoints, current_descriptors = orb.detectAndCompute(
+          current_gray, None)
+      # Return early if no descriptors are found in either image.
+      if target_descriptors is None or current_descriptors is None:
+        return (0, image_entry["url"])
+      # Setup parameters for FLANN based matcher, used for finding good matches.
+      index_params = dict(algorithm=6,
+                          table_number=6,
+                          key_size=12,
+                          multi_probe_level=1)
+      search_params = dict(checks=50)
+      flann = cv2.FlannBasedMatcher(index_params, search_params)
+      # Match descriptors between the two images and filter good matches.
+      matches = flann.knnMatch(target_descriptors, current_descriptors, k=2)
+      good_matches = [m for m, n in matches if m.distance < 0.75 * n.distance]
+      # Calculate the feature score based on good matches.
+      feature_score = len(good_matches) / float(len(target_keypoints))
+      # Compute histograms for both images in RGB channels.
+      target_hist = cv2.calcHist([target_image_resized], [0, 1, 2], None,
+                                 [32, 32, 32], [0, 256, 0, 256, 0, 256])
+      current_hist = cv2.calcHist([current_image_resized], [0, 1, 2], None,
+                                  [32, 32, 32], [0, 256, 0, 256, 0, 256])
+      # Normalize histograms.
+      cv2.normalize(target_hist, target_hist)
+      cv2.normalize(current_hist, current_hist)
+      # Compare histograms using correlation method.
+      hist_score = cv2.compareHist(target_hist, current_hist,
+                                   cv2.HISTCMP_CORREL)
+      # Calculate the final score by averaging SSIM, feature, and histogram scores.
+      final_score = (feature_score + ssim_index + hist_score) / 3
+      return (final_score, image_entry["url"])
+  except Exception as e:
+    # Handle any errors during the process and return a zero score.
+    print(f"Failed to process image {image_entry['url']} due to {e}")
+    return (0, image_entry["url"])
 ```
 
-#
+-----------------
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
