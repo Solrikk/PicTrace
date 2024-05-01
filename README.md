@@ -28,15 +28,24 @@
   - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
   - `Hashing for Image Identification`
     
-## ⚠️ Getting Started: ⚠️
+## ⚠️ Getting Started with PicTrace: ⚠️
+_PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
 ### _To work with PicTrace, make sure that you have the following components installed:_
-- Python 3.8 or higher.
-- pip (Python Package Installer):
+- `Python 3.8 or higher`: The core programming language used for the development of PicTrace.
+- `pip`: The package installer for Python, used for managing software packages.
 1. **_Clone the repository:_** ✔️
+
+_First, you need to get a copy of the PicTrace source code on your local machine. Use the following command to clone the repository from `GitHub`:_
+
 - `git clone https://github.com/<Solrikk>/PicTrace.git`
 - `cd PicTrace`
 2. **_Set up a virtual environment:_** ✔️
+
+_A virtual environment is crucial for isolating the project dependencies from your global Python setup. This prevents version conflicts among different projects._
+
+To create and activate a virtual environment, follow these commands:
+
 ```ShellScript
 python -m venv venv
 # Windows
@@ -45,6 +54,7 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 3. **_Install dependencies:_** ✔️
+ - _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
 ```ShellScript
 pip install -r requirements.txt
 ```
