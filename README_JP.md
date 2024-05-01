@@ -1,9 +1,7 @@
-<div align="center">
-  <img src="assets/searching.png" width="30%"/>
-</div>
+![ロゴ](https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/ORB4.png)
 
 <div align="center">
-  <h3> <a href="https://github.com/Solrikk/Echo-Image/blob/main/README.md"> English | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_RU.md">Русский</a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="README_CN.md">中文</a> </h3>
+  <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md">英語</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">ロシア語</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md">ドイツ語</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md">日本語</a> | <a href="README_KR.md">韓国語</a> | <a href="README_CN.md">中国語</a> </h3>
 </div>
 
 -----------------
