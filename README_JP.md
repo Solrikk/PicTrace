@@ -10,15 +10,15 @@
 
 🔎 **_PicTrace:_** は、類似画像を正確に発見するための高度なプラットフォームです。構造的類似性とキーポイントマッチングアルゴリズムを使用して、PicTraceは画像比較のための迅速かつ正確な手法を提供します。アプリケーションは、直接アップロードまたはURL経由で画像をサポートし、最良のマッチを識別するために大規模な画像データベースを効率的にナビゲートします。非同期技術の使用により、PicTraceは迅速な処理を保証し、シームレスで効果的な視覚検索体験を提供します。
 
-## Features
-- **_Supports Multiple-Technologies_** ☄️
-
-    _**Python**_  with libraries:
-  - `FastAPI` for the web framework.
-  - `aiohttp` for asynchronous HTTP requests.
-  - `cv2` (OpenCV) for image processing.
-  - `numpy` for numerical operations.
-  - `skimage` for additional image processing techniques.
+## 機能 ⚙️
+- **_複数技術のサポート_** ☄️
+    _**Python**_ で使用されるライブラリ:
+  - `FastAPI` - Webアプリケーションを作成し、HTTPリクエストを処理するために使用されます。非同期操作をサポートします。
+  - `aiohttp` - 非同期HTTPリクエスト、たとえばURLによる画像のダウンロードに利用されます。
+  - `OpenCV (cv2)`: - 画像処理に利用される`コンピュータビジョン`ライブラリで、画像の読み込み、サイズ変更、比較などが含まれます。
+  - `numpy` - OpenCVと組み合わせて画像処理に使用される、多次元配列を扱うライブラリです。
+  - `skimage` - 特に、画像の類似度を比較するために`structural_similarity`関数が使用されます。
+  - `hashlib` - 画像ハッシュを生成し、各画像を一意に識別するために使用されます。
 
 - **_Supports Multiple-Indexes_** 🚀
 
