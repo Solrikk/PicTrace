@@ -78,68 +78,69 @@ python app.py
 (**_code with comments_**)
 
 ```Python 
-# Define an asynchronous function to process and compare an image against a target image.
+# 定义一个异步函数来处理并比较一张图片与目标图片。
 async def process_image(session, image_entry, target_image):
   try:
-    # Obtain a list of image URLs from a webpage.
+    # 从网页获取图片URL列表。
     image_urls = await get_image_urls_from_page(session, image_entry["url"])
     for image_url in image_urls:
-      # Download current image from the URL.
+      # 从URL下载当前图片。
       current_image = await download_image(session, image_url)
-      # Determine the optimal size for comparison, not exceeding 1024 pixels.
+      # 确定比较的最佳大小，不超过1024像素。
       optimal_size = max(max(target_image.shape[:2]),
                          max(current_image.shape[:2]))
       optimal_size = min(1024, optimal_size)
-      # Resize both target and current images to the optimal size for comparison.
+      # 将目标和当前图片调整为最佳大小以进行比较。
       target_image_resized = cv2.resize(target_image,
                                         (optimal_size, optimal_size))
       current_image_resized = cv2.resize(current_image,
                                          (optimal_size, optimal_size))
-      # Convert images to grayscale for the comparison process.
+      # 将图片转换为灰度以进行比较。
       target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
       current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
-      # Calculate the Structural Similarity Index (SSIM) between the two images.
+      # 计算两张图片的结构相似性指数(SSIM)。
       ssim_index = ssim(target_gray, current_gray)
-      # Initialize ORB detector for feature extraction.
+      # 初始化ORB检测器进行特征提取。
       orb = cv2.ORB_create(nfeatures=500)
-      # Detect keypoints and compute descriptors for both images.
+      # 检测两张图片的关键点并计算描述符。
       target_keypoints, target_descriptors = orb.detectAndCompute(
           target_gray, None)
       current_keypoints, current_descriptors = orb.detectAndCompute(
           current_gray, None)
-      # Return early if no descriptors are found in either image.
+      # 如果任一图片未找到描述符，则提前返回。
       if target_descriptors is None or current_descriptors is None:
         return (0, image_entry["url"])
-      # Setup parameters for FLANN based matcher, used for finding good matches.
+      # 设置FLANN基匹配器的参数，用于寻找好的匹配项。
       index_params = dict(algorithm=6,
                           table_number=6,
                           key_size=12,
                           multi_probe_level=1)
       search_params = dict(checks=50)
       flann = cv2.FlannBasedMatcher(index_params, search_params)
-      # Match descriptors between the two images and filter good matches.
+      # 匹配两张图片的描述符并筛选好的匹配项。
       matches = flann.knnMatch(target_descriptors, current_descriptors, k=2)
       good_matches = [m for m, n in matches if m.distance < 0.75 * n.distance]
-      # Calculate the feature score based on good matches.
+      # 根据好的匹配项计算特征分数。
       feature_score = len(good_matches) / float(len(target_keypoints))
-      # Compute histograms for both images in RGB channels.
+      # 为两张图片计算RGB通道的直方图。
       target_hist = cv2.calcHist([target_image_resized], [0, 1, 2], None,
                                  [32, 32, 32], [0, 256, 0, 256, 0, 256])
       current_hist = cv2.calcHist([current_image_resized], [0, 1, 2], None,
                                   [32, 32, 32], [0, 256, 0, 256, 0, 256])
-      # Normalize histograms.
+      # 归一化直方图。
       cv2.normalize(target_hist, target_hist)
       cv2.normalize(current_hist, current_hist)
-      # Compare histograms using correlation method.
+      # 使用相关性方法比较直方图。
       hist_score = cv2.compareHist(target_hist, current_hist,
                                    cv2.HISTCMP_CORREL)
-      # Calculate the final score by averaging SSIM, feature, and histogram scores.
+      # 通过平均SSIM、特征和直方图分数计算最终分数。
       final_score = (feature_score + ssim_index + hist_score) / 3
       return (final_score, image_entry["url"])
   except Exception as e:
-    # Handle any errors during the process and return a zero score.
-    print(f"Failed to process image {image_entry['url']} due to {e}")
+    # 处理过程中的任何错误，并返回零分。
+    print(f"处理图片 {image_entry['url']} 失败，原因：{e}")
     return (0, image_entry["url"])
+
 ```
 
 -----------------
