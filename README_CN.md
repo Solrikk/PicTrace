@@ -1,77 +1,149 @@
-<div align="center">
-  <img src="assets/searching.png" width="30%"/>
-</div>
+![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/Orb5.png) 
 
-<div align="center">
-  <h3> <a href="https://github.com/Solrikk/Echo-Image/blob/main/README.md"> English | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_RU.md">Русский</a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="README_CN.md">中文</a> </h3>
-</div>
+<div align="center"> <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md">英语</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">俄语</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md">德语</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md">日语</a> | <a href="README_KR.md">韩语</a> | <a href="README_CN.md">中文</a> </h3> </div>
 
 -----------------
 
-# Echo-Image ⚡️
+# PicTrace
 
- **_EchoImage:_** 是一个先进的平台，专为精确发现相似图像而设计。利用结构相似性和关键点匹配算法，EchoImage为图像比较提供了快速而准确的方法。该应用支持直接或通过URL上传图片，有效地浏览庞大的图像数据库以识别最佳匹配。得益于异步技术的使用，EchoImage保证了快速处理，提供了一个流畅且有效的视觉搜索体验。
+🔎 _**PicTrace**_ 是一个高效的图像匹配平台，利用`结构相似性`和`关键点算法`进行快速、准确的图像搜索。它允许直接上传或URL提交，快速扫描大型数据库以找到`相似图像`。通过`异步处理`，PicTrace提供了流畅快速的`视觉搜索`体验。
 
-**_您可以从这里创建数据库_** - ([详情](https://github.com/Solrikk/ImageSpaceDB))
+## 功能 ⚙️
+- **_支持多种技术_** ☄️
 
-## Features
-- **_Supports Multiple-Technologies_** ☄️
+    _**Python**_ 及其库：
+  - `FastAPI` - 用于创建web应用程序和处理HTTP请求，支持异步操作。([详情](https://fastapi.tiangolo.com/))
+  - `aiohttp` - 用于异步HTTP请求，例如通过URL下载图像。([详情](https://docs.aiohttp.org/en/stable/index.html))
+  - `OpenCV (cv2)`：- 一个`计算机视觉`库，用于图像处理，包括加载、调整大小和比较图像。([详情](https://gamedevacademy.org/cv2-python-tutorial-complete-guide/#:~:text=%E2%80%98cv2%E2%80%99%20is%20OpenCV%E2%80%99s%20python%20library,perceive%20visuals%20like%20a%20human))
+  - `numpy` - 用于处理多维数组的库，与OpenCV一起用于图像处理。
+  - `skimage` - 特别是使用`结构相似性`函数比较图像的相似性。
+  - `hashlib` - 用于生成图像哈希，使每个图像能够被唯一标识。
 
-    _**Python**_  with libraries:
-  - `FastAPI` for the web framework.
-  - `aiohttp` for asynchronous HTTP requests.
-  - `cv2` (OpenCV) for image processing.
-  - `numpy` for numerical operations.
-  - `skimage` for additional image processing techniques.
+- **_支持多种索引_** 🚀
 
-- **_Supports Multiple-Indexes_** 🚀
-
-  - `Structural Similarity Index (SSIM)` ([details](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
-  - `Feature Matching with ORB (Oriented FAST and Rotated BRIEF) Descriptor` ([details](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
-  - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
-  - `Hashing for Image Identification`
+  - `结构相似性指数 (SSIM)` ([详情](https://zh.wikipedia.org/wiki/%E7%B5%90%E6%A7%8B%E7%9B%B8%E4%BC%BC%E6%80%A7%E6%8C%87%E6%95%B8))
+  - `使用ORB (Oriented FAST and Rotated BRIEF) 描述符的特征匹配` ([详情](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
+  - `调整大小和灰度转换` ([详情](https://zh.wikipedia.org/wiki/%E7%81%B0%E5%BA%A6))
+  - `哈希用于图像识别`
     
-# Examples
-`Python example` [[more info](https://github.com/Solrikk/EchoImage/blob/main/main.py)]
+## ⚠️ Getting Started with PicTrace: ⚠️
+_PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
-```Python
+### _To work with PicTrace, make sure that you have the following components installed:_
+- `Python 3.8 or higher`: The core programming language used for the development of PicTrace.
+- `pip`: The package installer for Python, used for managing software packages.
+1. **_Clone the repository:_** ✔️
+
+_First, you need to get a copy of the PicTrace source code on your local machine. Use the following command to clone the repository from `GitHub`:_
+
+- `git clone https://github.com/<Solrikk>/PicTrace.git`
+- `cd PicTrace`
+2. **_Set up a virtual environment:_** ✔️
+
+_A virtual environment is crucial for isolating the project dependencies from your global Python setup. This prevents version conflicts among different projects._
+
+To create and activate a virtual environment, follow these commands:
+
+```ShellScript
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Linux и MacOS
+source venv/bin/activate
+```
+3. **_Install dependencies:_** ✔️
+ - _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
+```ShellScript
+pip install -r requirements.txt
+```
+### _Launching the application:_
+1. **_Start the server:_**
+```ShellScript
+python app.py
+```
+`After starting the server, the application will be available at http://localhost:5000 .`
+
+## Results:
+|Image 1 vs Image 2|Similar|Image|
+|:-:|:-:|:-:|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/melbourne.jpg" alt="" width="200"/>|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+|<img src="" alt="" width="400"/>|___|__|
+
+## Examples: 📋
+(**_code with comments_**)
+
+```Python 
+# Define an asynchronous function to process and compare an image against a target image.
 async def process_image(session, image_entry, target_image):
   try:
-    # Asynchronously download the image from the given URL.
-    current_image = await download_image(session, image_entry["url"])
-    # Determine the larger dimensions between the target and current images, but cap it at 1024 pixels.
-    optimal_size = max(max(target_image.shape[:2]), 
-                       max(current_image.shape[:2]))
-    optimal_size = min(1024, optimal_size)
-    # Resize both images to the calculated optimal size for uniform comparison.
-    target_image_resized = cv2.resize(target_image, 
-                                      (optimal_size, optimal_size))
-    current_image_resized = cv2.resize(current_image, 
-                                       (optimal_size, optimal_size))
-    # Convert both images to grayscale to simplify further calculations.
-    target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
-    current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
-    # Calculate the SSIM (Structural Similarity Index) between the two grayscale images.
-    ssim_index = ssim(target_gray, current_gray)
-    # Initialize ORB detector to find keypoints and descriptors.
-    orb = cv2.ORB_create(nfeatures=500)
-    # Detect keypoints and compute descriptors for both images.
-    target_keypoints, target_descriptors = orb.detectAndCompute(target_gray, None)
-    current_keypoints, current_descriptors = orb.detectAndCompute(current_gray, None)
-    # If there are no descriptors found, return a similarity score of 0.
-    if target_descriptors is None or current_descriptors is None:
-      return (0, image_entry["url"])
-    # Parameters for the FLANN matcher to find the best matches between descriptors.
-    index_params = dict(algorithm=6,
-                        table_number=6,
-                        key_size=12,
-                        multi_probe_level=1)
-    search_params = dict(checks=50)  # The number of checks to perform for matching
-    # Initialize the FLANN matcher with the specified parameters.
-    flann = cv2.FlannBasedMatcher(index_params, search_params)
+    # Obtain a list of image URLs from a webpage.
+    image_urls = await get_image_urls_from_page(session, image_entry["url"])
+    for image_url in image_urls:
+      # Download current image from the URL.
+      current_image = await download_image(session, image_url)
+      # Determine the optimal size for comparison, not exceeding 1024 pixels.
+      optimal_size = max(max(target_image.shape[:2]),
+                         max(current_image.shape[:2]))
+      optimal_size = min(1024, optimal_size)
+      # Resize both target and current images to the optimal size for comparison.
+      target_image_resized = cv2.resize(target_image,
+                                        (optimal_size, optimal_size))
+      current_image_resized = cv2.resize(current_image,
+                                         (optimal_size, optimal_size))
+      # Convert images to grayscale for the comparison process.
+      target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
+      current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
+      # Calculate the Structural Similarity Index (SSIM) between the two images.
+      ssim_index = ssim(target_gray, current_gray)
+      # Initialize ORB detector for feature extraction.
+      orb = cv2.ORB_create(nfeatures=500)
+      # Detect keypoints and compute descriptors for both images.
+      target_keypoints, target_descriptors = orb.detectAndCompute(
+          target_gray, None)
+      current_keypoints, current_descriptors = orb.detectAndCompute(
+          current_gray, None)
+      # Return early if no descriptors are found in either image.
+      if target_descriptors is None or current_descriptors is None:
+        return (0, image_entry["url"])
+      # Setup parameters for FLANN based matcher, used for finding good matches.
+      index_params = dict(algorithm=6,
+                          table_number=6,
+                          key_size=12,
+                          multi_probe_level=1)
+      search_params = dict(checks=50)
+      flann = cv2.FlannBasedMatcher(index_params, search_params)
+      # Match descriptors between the two images and filter good matches.
+      matches = flann.knnMatch(target_descriptors, current_descriptors, k=2)
+      good_matches = [m for m, n in matches if m.distance < 0.75 * n.distance]
+      # Calculate the feature score based on good matches.
+      feature_score = len(good_matches) / float(len(target_keypoints))
+      # Compute histograms for both images in RGB channels.
+      target_hist = cv2.calcHist([target_image_resized], [0, 1, 2], None,
+                                 [32, 32, 32], [0, 256, 0, 256, 0, 256])
+      current_hist = cv2.calcHist([current_image_resized], [0, 1, 2], None,
+                                  [32, 32, 32], [0, 256, 0, 256, 0, 256])
+      # Normalize histograms.
+      cv2.normalize(target_hist, target_hist)
+      cv2.normalize(current_hist, current_hist)
+      # Compare histograms using correlation method.
+      hist_score = cv2.compareHist(target_hist, current_hist,
+                                   cv2.HISTCMP_CORREL)
+      # Calculate the final score by averaging SSIM, feature, and histogram scores.
+      final_score = (feature_score + ssim_index + hist_score) / 3
+      return (final_score, image_entry["url"])
+  except Exception as e:
+    # Handle any errors during the process and return a zero score.
+    print(f"Failed to process image {image_entry['url']} due to {e}")
+    return (0, image_entry["url"])
 ```
 
-#
+-----------------
+
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
