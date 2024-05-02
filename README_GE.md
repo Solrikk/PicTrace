@@ -1,25 +1,23 @@
-![Logo](https://github.com/Solrikk/EchoImage/blob/main/assets/ORB/images/ORB4.png) 
+![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/Orb5.png) 
 
-<div align="center">
-  <h3> <a href="https://github.com/Solrikk/Echo-Image/blob/main/README.md"> English | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_RU.md">Русский</a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/Echo-Image/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="README_CN.md">中文</a> </h3>
-</div>
+<div align="center"> <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md">Englisch</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">Russisch</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md">Deutsch</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md">Japanisch</a> | <a href="README_KR.md">Koreanisch</a> | <a href="README_CN.md">Chinesisch</a> </h3> </div>
 
 -----------------
 
-# Echo-Image 
+# PicTrace
 
- 🔎 **_EchoImage:_** ist eine fortschrittliche Plattform, die für die genaue Entdeckung ähnlicher Bilder entwickelt wurde. Durch die Nutzung von struktureller Ähnlichkeit und Keypoint-Matching-Algorithmen bietet EchoImage eine schnelle und präzise Methode zur Bildvergleich. Die Anwendung unterstützt das direkte Hochladen von Bildern oder über URLs und ermöglicht so eine effiziente Navigation durch eine umfangreiche Bild-Datenbank, um die besten Übereinstimmungen zu identifizieren. Dank des Einsatzes asynchroner Technologie gewährleistet EchoImage eine schnelle Verarbeitung und bietet ein nahtloses und effektives visuelles Sucherlebnis.
+🔎 _**PicTrace**_ ist eine effiziente Plattform zur Bildsuche, die `strukturelle Ähnlichkeit` und `Schlüsselpunkt-Algorithmen` nutzt, um schnell und präzise ähnliche Bilder zu finden. Es ermöglicht direkte Uploads oder die Einreichung über URLs, scannt schnell eine große Datenbank nach ähnlichen Bildern und bietet mit `asynchroner Verarbeitung` ein flüssiges und schnelles `visuelles Sucherlebnis`.
 
-## Features: ⚙️
-- **_Unterstützt mehrere Technologien._** ☄️
+## Funktionen ⚙️
+- **_Unterstützt Mehrere Technologien_** ☄️
 
-    _**Python**_  with libraries:
-  - `FastAPI` - Wird zur Erstellung von Webanwendungen und zur Bearbeitung von HTTP-Anfragen verwendet, unterstützt asynchrone Vorgänge.
-  - `aiohttp` - Wird für asynchrone HTTP-Anfragen verwendet, wie z. B. zum Herunterladen von Bildern per URL.
-  - `OpenCV (cv2)`: - Eine `Computer Vision` Bibliothek, die für die Bildverarbeitung verwendet wird, einschließlich Laden, Größenänderung und Vergleich von Bildern.
-  - `numpy` - Eine Bibliothek zur Arbeit mit mehrdimensionalen Arrays, die zusammen mit OpenCV für die Bildverarbeitung verwendet wird.
-  - `skimage` - Speziell wird die Funktion `structural_similarity` verwendet, um die Ähnlichkeit von Bildern zu vergleichen.
-  - `hashlib` - Wird verwendet, um Bildhashes zu generieren, die es ermöglichen, jedes Bild eindeutig zu identifizieren.
+    _**Python**_ mit Bibliotheken:
+  - `FastAPI` - Wird für die Erstellung von Webanwendungen und die Bearbeitung von HTTP-Anfragen verwendet, unterstützt asynchrone Operationen. ([Details](https://fastapi.tiangolo.com/))
+  - `aiohttp` - Wird für asynchrone HTTP-Anfragen genutzt, z.B. für das Herunterladen von Bildern über URLs. ([Details](https://docs.aiohttp.org/en/stable/index.html))
+  - `OpenCV (cv2)` - Eine `Computer-Vision`-Bibliothek, die für die Bildverarbeitung, einschließlich Laden, Größenänderung und Vergleich von Bildern, verwendet wird. ([Details](https://gamedevacademy.org/cv2-python-tutorial-complete-guide/#:~:text=%E2%80%98cv2%E2%80%99%20is%20OpenCV%E2%80%99s%20python%20library,perceive%20visuals%20like%20a%20human))
+  - `numpy` - Eine Bibliothek für die Arbeit mit mehrdimensionalen Arrays, die zusammen mit OpenCV für die Bildverarbeitung verwendet wird.
+  - `skimage` - Speziell die Funktion `structural_similarity` wird verwendet, um die Ähnlichkeit von Bildern zu vergleichen.
+  - `hashlib` - Wird verwendet, um Bildhashes zu generieren, wodurch jedes Bild eindeutig identifiziert werden kann.
 
 - **_Supports Multiple-Indexes_** 🚀
 
@@ -28,15 +26,24 @@
   - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
   - `Hashing for Image Identification`
     
-## ⚠️ Getting Started: ⚠️
+## ⚠️ Getting Started with PicTrace: ⚠️
+_PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
-### _To work with EchoImage, make sure that you have the following components installed:_
-- Python 3.8 or higher.
-- pip (Python Package Installer):
+### _To work with PicTrace, make sure that you have the following components installed:_
+- `Python 3.8 or higher`: The core programming language used for the development of PicTrace.
+- `pip`: The package installer for Python, used for managing software packages.
 1. **_Clone the repository:_** ✔️
-- `git clone https://github.com/<Solrikk>/EchoImage.git`
-- `cd EchoImage`
+
+_First, you need to get a copy of the PicTrace source code on your local machine. Use the following command to clone the repository from `GitHub`:_
+
+- `git clone https://github.com/<Solrikk>/PicTrace.git`
+- `cd PicTrace`
 2. **_Set up a virtual environment:_** ✔️
+
+_A virtual environment is crucial for isolating the project dependencies from your global Python setup. This prevents version conflicts among different projects._
+
+To create and activate a virtual environment, follow these commands:
+
 ```ShellScript
 python -m venv venv
 # Windows
@@ -45,6 +52,7 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 3. **_Install dependencies:_** ✔️
+ - _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
 ```ShellScript
 pip install -r requirements.txt
 ```
@@ -54,11 +62,11 @@ pip install -r requirements.txt
 python app.py
 ```
 `After starting the server, the application will be available at http://localhost:5000 .`
- 
-## Results: ⭐
+
+## Results:
 |Image 1 vs Image 2|Similar|Image|
 |:-:|:-:|:-:|
-|<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/result/images/melbourne.jpg" alt="" width="200"/>|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/melbourne.jpg" alt="" width="200"/>|
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
@@ -135,6 +143,7 @@ async def process_image(session, image_entry, target_image):
 ```
 
 -----------------
+
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
