@@ -1,44 +1,49 @@
-<div align="center">
-  <img src="https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/ORB4.png" width="105%"/>
-</div>
+![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/Orb5.png) 
 
-<div align="center">
-  <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md"> English | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">Русский</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md"> Deutsch </a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md"> 日本語 </a> | <a href="README_KR.md">한국어</a> | <a href="README_CN.md">中文</a> </h3>
-</div>
+<div align="center"> <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md"> Английский | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">Русский</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md"> Немецкий </a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md"> Японский </a> | <a href="README_KR.md">Корейский</a> | <a href="README_CN.md">Китайский</a> </h3> </div>
 
 -----------------
 
 # PicTrace
 
-🔎 **_PicTrace:_** это передовая платформа, предназначенная для точного поиска похожих изображений. Используя алгоритмы сравнения структурного сходства и сопоставления ключевых точек, PicTrace обеспечивает быстрый и точный метод сравнения изображений. Приложение поддерживает загрузку изображений напрямую или через URL, эффективно просматривая огромную базу данных изображений для определения наилучших совпадений. Благодаря использованию асинхронных технологий, PicTrace обеспечивает быструю обработку, предлагая бесшовный и эффективный опыт визуального поиска.
+🔎 _**PicTrace**_  — это эффективная платформа для сопоставления изображений, использующая `структурное сходство` и `алгоритмы ключевых точек` для быстрого и точного поиска изображений. Она позволяет загружать изображения напрямую или по URL, быстро сканируя большую базу данных для нахождения похожих изображений. С `асинхронной обработкой`, PicTrace обеспечивает плавный и быстрый `визуальный поиск`.
 
-## Возможности:
-- **_Поддерживает множество технологий_** ☄️
+## Features ⚙️
+- **_Поддержка множества технологий_** ☄️
 
-    _**Python**_ с библиотеками::
-  - `FastAPI`: - Используется для создания веб-приложения и обработки HTTP запросов, поддерживает асинхронные операции.
-  - `aiohttp`: - Применяется для асинхронных HTTP запросов, например, для загрузки изображений по URL.
-  - `OpenCV (cv2)`: - Библиотека компьютерного зрения, используется для работы с изображениями, включая их загрузку, изменение размера и сравнение.
-  - `numpy`: - Библиотека для работы с многомерными массивами, используется в связке с OpenCV для обработки изображений.
-  - `skimage`: - В частности, функция `structural_similarity` используется для сравнения схожести изображений.
-  - `hashlib`: Используется для генерации хеша изображений, что позволяет уникально идентифицировать каждое изображение.
+    _**Python**_ с библиотеками:
+  - `FastAPI` - Используется для создания веб-приложений и обработки HTTP-запросов, поддерживает асинхронные операции. (подробности) ([details](https://fastapi.tiangolo.com/))
+  - `aiohttp` - Используется для асинхронных HTTP-запросов, например, для скачивания изображений по URL. ([details](https://docs.aiohttp.org/en/stable/index.html))
+  - `OpenCV (cv2)`: - Библиотека компьютерного зрения, используемая для обработки изображений, включая загрузку, изменение размера и сравнение изображений.  ([details](https://gamedevacademy.org/cv2-python-tutorial-complete-guide/#:~:text=%E2%80%98cv2%E2%80%99%20is%20OpenCV%E2%80%99s%20python%20library,perceive%20visuals%20like%20a%20human))
+  - `numpy` - Библиотека для работы с многомерными массивами, используется вместе с OpenCV для обработки изображений.
+  - `skimage` - В частности, функция structural_similarity используется для сравнения сходства изображений.
+  - `hashlib` - Используется для генерации хэшей изображений, позволяя уникально идентифицировать каждое изображение.
 
-- **_Поддерживает множество индексов_** 🚀
+- **_Поддерживает множество индексов _** 🚀
 
-  - `Индекс структурного сходства (SSIM)` ([подробности](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
-  - `Сопоставление признаков с использованием дескриптора ORB (Oriented FAST and Rotated BRIEF)` ([подробности](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
-  - `Изменение размера и преобразование в оттенки серого` ([подробности](https://en.wikipedia.org/wiki/Grayscale))
+  - `Индекс структурного сходства (SSIM)` ([details](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
+  - `Сопоставление признаков с дескриптором ORB (Oriented FAST and Rotated BRIEF)` ([details](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
+  - `Изменение размера и преобразование в оттенки серого` ([details](https://en.wikipedia.org/wiki/Grayscale))
   - `Хеширование для идентификации изображений`
     
-## ⚠️ Подготовка к работе: ⚠️
+## ⚠️ Getting Started with PicTrace: ⚠️
+_PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
-### _Для работы с Echo Image убедитесь, что у вас установлены следующие компоненты:_
-- Python 3.8 или выше.
-- pip (Python Package Installer):
-1. **_Клонировать репозиторий:_** ✔️
+### _To work with PicTrace, make sure that you have the following components installed:_
+- `Python 3.8 or higher`: The core programming language used for the development of PicTrace.
+- `pip`: The package installer for Python, used for managing software packages.
+1. **_Clone the repository:_** ✔️
+
+_First, you need to get a copy of the PicTrace source code on your local machine. Use the following command to clone the repository from `GitHub`:_
+
 - `git clone https://github.com/<Solrikk>/PicTrace.git`
 - `cd PicTrace`
-2. **_Настройка виртуальной среды:_** ✔️
+2. **_Set up a virtual environment:_** ✔️
+
+_A virtual environment is crucial for isolating the project dependencies from your global Python setup. This prevents version conflicts among different projects._
+
+To create and activate a virtual environment, follow these commands:
+
 ```ShellScript
 python -m venv venv
 # Windows
@@ -46,19 +51,20 @@ venv\Scripts\activate
 # Linux и MacOS
 source venv/bin/activate
 ```
-3. **_Устанавливать зависимости:_** ✔️
+3. **_Install dependencies:_** ✔️
+ - _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
 ```ShellScript
 pip install -r requirements.txt
 ```
-### _Запуск приложения:_
+### _Launching the application:_
 1. **_Start the server:_**
 ```ShellScript
 python app.py
 ```
 `After starting the server, the application will be available at http://localhost:5000 .`
 
-## Результат: ⭐
-|Изображение 1 vs Изображение 2|Similar|Image|
+## Results:
+|Image 1 vs Image 2|Similar|Image|
 |:-:|:-:|:-:|
 |<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/melbourne.jpg" alt="" width="200"/>|
 |<img src="" alt="" width="400"/>|___|__|
@@ -68,75 +74,76 @@ python app.py
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
 
-## Пример: 📋
-(**_Код с коментариями_**)
+## Examples: 📋
+(**_code with comments_**)
 
-```Python
-# Определение асинхронной функции для обработки и сравнения изображения с целевым изображением.
+```Python 
+# Define an asynchronous function to process and compare an image against a target image.
 async def process_image(session, image_entry, target_image):
   try:
-    # Получение списка URL-адресов изображений с веб-страницы.
+    # Obtain a list of image URLs from a webpage.
     image_urls = await get_image_urls_from_page(session, image_entry["url"])
     for image_url in image_urls:
-      # Загрузка текущего изображение по URL-адресу.
+      # Download current image from the URL.
       current_image = await download_image(session, image_url)
-      # Определение оптимального размера для сравнения, не превышающий 1024 пикселей.
+      # Determine the optimal size for comparison, not exceeding 1024 pixels.
       optimal_size = max(max(target_image.shape[:2]),
                          max(current_image.shape[:2]))
       optimal_size = min(1024, optimal_size)
-      # Изменение размера как целевого, так и текущего изображения до оптимального размера для сравнения.
+      # Resize both target and current images to the optimal size for comparison.
       target_image_resized = cv2.resize(target_image,
                                         (optimal_size, optimal_size))
       current_image_resized = cv2.resize(current_image,
                                          (optimal_size, optimal_size))
-      # Преобразование изображения в оттенки серого для процесса сравнения.
+      # Convert images to grayscale for the comparison process.
       target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
       current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
-      # Рассчёт индекса структурного сходства (SSIM) между двумя изображениями.
+      # Calculate the Structural Similarity Index (SSIM) between the two images.
       ssim_index = ssim(target_gray, current_gray)
-      # Инициализирования детектора ORB для извлечения объектов.
+      # Initialize ORB detector for feature extraction.
       orb = cv2.ORB_create(nfeatures=500)
-      # Определение ключевых точек и вычисление дескрипторы для обоих изображений.
+      # Detect keypoints and compute descriptors for both images.
       target_keypoints, target_descriptors = orb.detectAndCompute(
           target_gray, None)
       current_keypoints, current_descriptors = orb.detectAndCompute(
           current_gray, None)
-      # Возврат назад, если ни на одном из изображений не найдено описателей.
+      # Return early if no descriptors are found in either image.
       if target_descriptors is None or current_descriptors is None:
         return (0, image_entry["url"])
-      # Настройка параметров для программы подбора на основе FLANN, используемой для поиска подходящих совпадений.
+      # Setup parameters for FLANN based matcher, used for finding good matches.
       index_params = dict(algorithm=6,
                           table_number=6,
                           key_size=12,
                           multi_probe_level=1)
       search_params = dict(checks=50)
       flann = cv2.FlannBasedMatcher(index_params, search_params)
-      # Сопоставление дескрипторов между двумя изображениями и фильтрация подходящего совпадения.
+      # Match descriptors between the two images and filter good matches.
       matches = flann.knnMatch(target_descriptors, current_descriptors, k=2)
       good_matches = [m for m, n in matches if m.distance < 0.75 * n.distance]
-      # Расчет наибольшего балла на основе хороших совпадений.
+      # Calculate the feature score based on good matches.
       feature_score = len(good_matches) / float(len(target_keypoints))
-      # Вычисление гистограмм для обоих изображений в каналах RGB.
+      # Compute histograms for both images in RGB channels.
       target_hist = cv2.calcHist([target_image_resized], [0, 1, 2], None,
                                  [32, 32, 32], [0, 256, 0, 256, 0, 256])
       current_hist = cv2.calcHist([current_image_resized], [0, 1, 2], None,
                                   [32, 32, 32], [0, 256, 0, 256, 0, 256])
-      # Нормализующие гистограммы.
+      # Normalize histograms.
       cv2.normalize(target_hist, target_hist)
       cv2.normalize(current_hist, current_hist)
-      # Сравнение гистограмм с использованием метода корреляции.
+      # Compare histograms using correlation method.
       hist_score = cv2.compareHist(target_hist, current_hist,
                                    cv2.HISTCMP_CORREL)
-      # Вычисление итогового балла путем усреднения оценок по симам, функциям и гистограммам.
+      # Calculate the final score by averaging SSIM, feature, and histogram scores.
       final_score = (feature_score + ssim_index + hist_score) / 3
       return (final_score, image_entry["url"])
   except Exception as e:
-    # Исправление все ошибки во время процесса и возврат нулевого балла.
+    # Handle any errors during the process and return a zero score.
     print(f"Failed to process image {image_entry['url']} due to {e}")
     return (0, image_entry["url"])
 ```
 
 -----------------
+
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
