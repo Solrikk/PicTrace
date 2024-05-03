@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "python-template"
-version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+name = "PicTrace"
+version = "0.8.2"
+description = "🔎 PicTrace is an efficient image matching platform leveraging structural similarity and keypoint algorithms for fast, accurate image searches. It allows direct uploads or URL submissions, quickly scanning a large database to find similar images. With asynchronous processing, PicTrace delivers a smooth and quick visual search experience."
+authors = ["Sviatoslav König <reveni324@gmail.com"]
 
 [tool.poetry.dependencies]
 python = ">=3.10.0,<3.11"
