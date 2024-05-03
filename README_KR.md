@@ -1,4 +1,4 @@
-![로고](https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/ORB4.png)
+![로고](https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/Orb5.png)
 
 <div align="center">
   <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md"> 영어 | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">러시아어</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md"> 독일어 </a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md"> 일본어 </a> | <a href="README_KR.md">한국어</a> | <a href="README_CN.md">중국어</a> </h3>
@@ -28,15 +28,24 @@
 - `크기 조정 및 그레이스케일 변환` ([상세 정보](https://en.wikipedia.org/wiki/Grayscale))
 - `이미지 식별을 위한 해싱`
     
-## ⚠️ Getting Started: ⚠️
+⚠️ PicTrace 시작하기: ⚠️
+_PicTrace는 개발 프로세스를 간소화하기 위해 설계된 강력한 이미지 추적 및 비교 도구입니다. 환경을 설정하고 애플리케이션을 성공적으로 실행하기 위해 다음 단계를 따르십시오._
 
-### _To work with PicTrace, make sure that you have the following components installed:_
-- Python 3.8 or higher.
-- pip (Python Package Installer):
+### _PicTrace를 사용하기 위해 다음 구성 요소가 설치되어 있는지 확인하십시오:_
+- `Python 3.8 이상`: PicTrace 개발에 사용되는 핵심 프로그래밍 언어입니다.
+- `pip`: Python용 패키지 설치 프로그램으로, 소프트웨어 패키지를 관리하는 데 사용됩니다.
 1. **_Clone the repository:_** ✔️
+
+_First, you need to get a copy of the PicTrace source code on your local machine. Use the following command to clone the repository from `GitHub`:_
+
 - `git clone https://github.com/<Solrikk>/PicTrace.git`
 - `cd PicTrace`
 2. **_Set up a virtual environment:_** ✔️
+
+_A virtual environment is crucial for isolating the project dependencies from your global Python setup. This prevents version conflicts among different projects._
+
+To create and activate a virtual environment, follow these commands:
+
 ```ShellScript
 python -m venv venv
 # Windows
@@ -45,6 +54,7 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 3. **_Install dependencies:_** ✔️
+ - _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
 ```ShellScript
 pip install -r requirements.txt
 ```
@@ -70,66 +80,66 @@ python app.py
 (**_code with comments_**)
 
 ```Python 
-# Define an asynchronous function to process and compare an image against a target image.
+# 대상 이미지와 비교하여 이미지를 처리하는 비동기 함수를 정의합니다.
 async def process_image(session, image_entry, target_image):
   try:
-    # Obtain a list of image URLs from a webpage.
+    # 웹페이지에서 이미지 URL 목록을 얻습니다.
     image_urls = await get_image_urls_from_page(session, image_entry["url"])
     for image_url in image_urls:
-      # Download current image from the URL.
+      # URL에서 현재 이미지를 다운로드합니다.
       current_image = await download_image(session, image_url)
-      # Determine the optimal size for comparison, not exceeding 1024 pixels.
+      # 비교를 위한 최적의 크기를 결정합니다. 1024 픽셀을 초과하지 않습니다.
       optimal_size = max(max(target_image.shape[:2]),
                          max(current_image.shape[:2]))
       optimal_size = min(1024, optimal_size)
-      # Resize both target and current images to the optimal size for comparison.
+      # 비교를 위해 대상 및 현재 이미지를 최적 크기로 조정합니다.
       target_image_resized = cv2.resize(target_image,
                                         (optimal_size, optimal_size))
       current_image_resized = cv2.resize(current_image,
                                          (optimal_size, optimal_size))
-      # Convert images to grayscale for the comparison process.
+      # 비교 과정을 위해 이미지를 그레이스케일로 변환합니다.
       target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
       current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
-      # Calculate the Structural Similarity Index (SSIM) between the two images.
+      # 두 이미지 간의 구조적 유사성 지수(SSIM)를 계산합니다.
       ssim_index = ssim(target_gray, current_gray)
-      # Initialize ORB detector for feature extraction.
+      # 특징 추출을 위한 ORB 검출기를 초기화합니다.
       orb = cv2.ORB_create(nfeatures=500)
-      # Detect keypoints and compute descriptors for both images.
+      # 두 이미지에 대해 키 포인트를 감지하고 설명자를 계산합니다.
       target_keypoints, target_descriptors = orb.detectAndCompute(
           target_gray, None)
       current_keypoints, current_descriptors = orb.detectAndCompute(
           current_gray, None)
-      # Return early if no descriptors are found in either image.
+      # 이미지 중 하나에서도 설명자를 찾지 못하는 경우 조기에 반환합니다.
       if target_descriptors is None or current_descriptors is None:
         return (0, image_entry["url"])
-      # Setup parameters for FLANN based matcher, used for finding good matches.
+      # 좋은 매치를 찾기 위해 FLANN 기반 매쳐를 위한 설정 매개변수입니다.
       index_params = dict(algorithm=6,
                           table_number=6,
                           key_size=12,
                           multi_probe_level=1)
       search_params = dict(checks=50)
       flann = cv2.FlannBasedMatcher(index_params, search_params)
-      # Match descriptors between the two images and filter good matches.
+      # 두 이미지 간의 설명자를 매치하고 좋은 매치를 필터링합니다.
       matches = flann.knnMatch(target_descriptors, current_descriptors, k=2)
       good_matches = [m for m, n in matches if m.distance < 0.75 * n.distance]
-      # Calculate the feature score based on good matches.
+      # 좋은 매치를 기반으로 특징 점수를 계산합니다.
       feature_score = len(good_matches) / float(len(target_keypoints))
-      # Compute histograms for both images in RGB channels.
+      # RGB 채널에서 두 이미지에 대한 히스토그램을 계산합니다.
       target_hist = cv2.calcHist([target_image_resized], [0, 1, 2], None,
                                  [32, 32, 32], [0, 256, 0, 256, 0, 256])
       current_hist = cv2.calcHist([current_image_resized], [0, 1, 2], None,
                                   [32, 32, 32], [0, 256, 0, 256, 0, 256])
-      # Normalize histograms.
+      # 히스토그램을 정규화합니다.
       cv2.normalize(target_hist, target_hist)
       cv2.normalize(current_hist, current_hist)
-      # Compare histograms using correlation method.
+      # 상관 관계 방법을 사용하여 히스토그램을 비교합니다.
       hist_score = cv2.compareHist(target_hist, current_hist,
                                    cv2.HISTCMP_CORREL)
-      # Calculate the final score by averaging SSIM, feature, and histogram scores.
+      # SSIM, 특징, 히스토그램 점수의 평균을 계산하여 최종 점수를 계산합니다.
       final_score = (feature_score + ssim_index + hist_score) / 3
       return (final_score, image_entry["url"])
   except Exception as e:
-    # Handle any errors during the process and return a zero score.
+    # 처리 중에 발생한 모든 오류를 처리하고 제로 점수를 반환합니다.
     print(f"Failed to process image {image_entry['url']} due to {e}")
     return (0, image_entry["url"])
 ```
@@ -138,11 +148,11 @@ async def process_image(session, image_entry, target_image):
 
 ![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
 
-SSIM compares patterns of pixel intensity changes which are important attributes for human vision. The SSIM score ranges from `-1 to +1`, where a `value of 1` indicates identical images. The process can be broken down into three components:
+SSIM은 인간의 시각에 중요한 속성인 픽셀 강도 변화 패턴을 비교합니다. SSIM 점수는 `-1에서 +1`까지이며, `1의 값`은 이미지가 동일함을 나타냅니다. 이 과정은 세 가지 구성 요소로 나눌 수 있습니다:
 
 <img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ssim/ssim2.png" width="95%" /> 
 
-1) **_Luminance Comparison_** allows for the assessment of the overall luminance of the images. Luminance in SSIM is measured as the average of all pixel values.
+1) 1) **_Luminance Comparison_** 은 이미지의 전체 밝기를 평가할 수 있게 합니다. SSIM에서의 밝기는 모든 픽셀 값의 평균으로 측정됩니다.
 ```Python
 target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
 current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
