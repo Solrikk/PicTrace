@@ -30,14 +30,17 @@
 _PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
 ### _To work with PicTrace, make sure that you have the following components installed:_
-- `Python 3.8 or higher`: The core programming language used for the development of PicTrace.
-- `pip`: The package installer for Python, used for managing software packages.
+- **Python 3.8 or higher:** PicTrace is built with Python, and running it requires you to have Python 3.8 or a newer version installed on your system. You can download the latest version of Python from [the official website](https://www.python.org/downloads/).
+- **pip:** pip is the package installer for Python. It comes pre-installed with Python 3.4 and higher. We'll use pip to install the dependencies needed for PicTrace.
+- **Git:** You'll need Git to clone the PicTrace repository. If you don't have Git installed, follow the instructions on [Git's official site](https://git-scm.com/downloads) to set it up on your system.
 1. **_Clone the repository:_** ✔️
 
 _First, you need to get a copy of the PicTrace source code on your local machine. Use the following command to clone the repository from `GitHub`:_
 
-- `git clone https://github.com/<Solrikk>/PicTrace.git`
-- `cd PicTrace`
+```shell
+git clone https://github.com/yourusername/PicTrace.git
+cd PicTrace
+```
 2. **_Set up a virtual environment:_** ✔️
 
 _A virtual environment is crucial for isolating the project dependencies from your global Python setup. This prevents version conflicts among different projects._
