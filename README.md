@@ -26,6 +26,8 @@
   - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
   - `Hashing for Image Identification`
     
+-----------------
+
 ## ⚠️ Getting Started with PicTrace: ⚠️
 _PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
@@ -66,11 +68,14 @@ python app.py
 ```
 `After starting the server, the application will be available at http://localhost:5000 .`
 
+-----------------
+
 ## Results:
+_For complex images with many details and possible presence of noise or distortions, even similarity at the level of **20%** and above can indicate the presence of significant common features. In such cases, a low percentage of similarity may be expected due to the complexity of the task and the limitations of the algorithm._
 |Image 1 vs Image 2|Similar|Image|
 |:-:|:-:|:-:|
-|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/melbourne.jpg" alt="" width="200"/>|
-|<img src="" alt="" width="400"/>|___|__|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_3-1.png" alt="" width="500"/>|**22,60%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/palegleam-ioA5-qDGv4Q-unsplash.jpg" alt="" width="300"/>|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_2.png" alt="" width="500"/>|**21,20%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/ryan-yao-EpTIAbTlrg0-unsplash.jpg" alt="" width="300"/>|
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
