@@ -1,6 +1,6 @@
 ![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/Orb5.png) 
 
-<div align="center"> <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md"> Английский | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">Русский</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md"> Немецкий </a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md"> Японский </a> | <a href="README_KR.md">Корейский</a> | <a href="README_CN.md">Китайский</a> </h3> </div>
+<div align="center"> <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md"> Английский | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">⭐Русский⭐</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md"> Немецкий </a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md"> Японский </a> | <a href="README_KR.md">Корейский</a> | <a href="README_CN.md">Китайский</a> </h3> </div>
 
 -----------------
 
