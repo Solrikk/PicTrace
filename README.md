@@ -74,9 +74,9 @@ python app.py
 _For complex images with many details and possible presence of noise or distortions, even similarity at the level of **20%** and above can indicate the presence of significant common features. In such cases, a low percentage of similarity may be expected due to the complexity of the task and the limitations of the algorithm._
 |Image 1 vs Image 2|Similar|Image|
 |:-:|:-:|:-:|
-|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_3-1.png" alt="" width="500"/>|**22,60%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/palegleam-ioA5-qDGv4Q-unsplash.jpg" alt="" width="300"/>|
-|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_2.png" alt="" width="500"/>|**21,20%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/ryan-yao-EpTIAbTlrg0-unsplash.jpg" alt="" width="300"/>|
-|<img src="" alt="" width="400"/>|___|__|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_3-1.png" alt="" width="500"/>|**27,12%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/palegleam-ioA5-qDGv4Q-unsplash.jpg" alt="" width="300"/>|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_2.png" alt="" width="500"/>|**25,44%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/ryan-yao-EpTIAbTlrg0-unsplash.jpg" alt="" width="300"/>|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_3.png" alt="" width="500"/>|**44,16%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/taro-ohtani-rTQn9R-oLGk-unsplash.jpg" alt="" width="300"/>|
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
