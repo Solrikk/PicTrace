@@ -1,7 +1,7 @@
 ![로고](https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/Orb5.png)
 
 <div align="center">
-  <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md"> 영어 | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">러시아어</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md"> 독일어 </a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md"> 일본어 </a> | <a href="README_KR.md">한국어</a> | <a href="README_CN.md">중국어</a> </h3>
+  <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md"> 영어 | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">러시아어</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md"> 독일어 </a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md"> 일본어 </a> | <a href="README_KR.md">⭐한국어⭐</a> | <a href="README_CN.md">중국어</a> </h3>
 </div>
 
 -----------------
