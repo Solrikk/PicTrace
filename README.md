@@ -1,4 +1,4 @@
-![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/Orb5.png) 
+![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/orb6.png) 
 
 <div align="center"> <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md">⭐English⭐</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">Russian</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md">German</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md">Japanese</a> | <a href="README_KR.md">Korean</a> | <a href="README_CN.md">Chinese</a> </h3> </div>
 
@@ -77,7 +77,7 @@ _For complex images with many details and possible presence of noise or distorti
 |<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_3-1.png" alt="" width="500"/>|**27,12%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/palegleam.jpg" alt="" width="300"/>|
 |<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_2.png" alt="" width="500"/>|**25,44%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/ryan-yao.jpg" alt="" width="300"/>|
 |<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_3.png" alt="" width="500"/>|**44,16%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/taro-ohtani.jpg" alt="" width="300"/>|
-|<img src="" alt="" width="400"/>|___|__|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/Orb5.png" alt="" width="500"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
 |<img src="" alt="" width="400"/>|___|__|
