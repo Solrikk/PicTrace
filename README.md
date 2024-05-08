@@ -4,9 +4,9 @@
 
 -----------------
 
-# PicTrace
+# PicTrace 🔎
 
- 🔎 _**PicTrace**_ is an efficient image matching platform leveraging `structural similarity` and `keypoint algorithms` for fast, accurate image searches. It allows direct uploads or URL submissions, quickly scanning a large database to find `similar images`. With `asynchronous processing`, PicTrace delivers a smooth and quick `visual search` experience.
+ _**PicTrace**_ is an efficient image matching platform leveraging `structural similarity` and `keypoint algorithms` for fast, accurate image searches. It allows direct uploads or URL submissions, quickly scanning a large database to find `similar images`. With `asynchronous processing`, PicTrace delivers a smooth and quick `visual search` experience.
 
 ## Features ⚙️
 - **_Supports Multiple-Technologies_** ☄️
@@ -70,7 +70,7 @@ python app.py
 
 -----------------
 
-## Results:
+## Results: 👨‍💻
 _For complex images with many details and possible presence of noise or distortions, even similarity at the level of **20%** and above can indicate the presence of significant common features. In such cases, a low percentage of similarity may be expected due to the complexity of the task and the limitations of the algorithm._
 |Image 1 vs Image 2|Similar|Image|
 |:-:|:-:|:-:|
