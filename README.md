@@ -30,21 +30,26 @@
 ## ⚠️ Getting Started with PicTrace: ⚠️
 _PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
-### _To work with PicTrace, make sure that you have the following components installed:_
-- **Python 3.8 or higher:** PicTrace is built with Python, and running it requires you to have Python 3.8 or a newer version installed on your system. You can download the latest version of Python from [the official website](https://www.python.org/downloads/).
-- **pip:** pip is the package installer for Python. It comes pre-installed with Python 3.4 and higher. We'll use pip to install the dependencies needed for PicTrace.
-- **Git:** You'll need Git to clone the PicTrace repository. If you don't have Git installed, follow the instructions on [Git's official site](https://git-scm.com/downloads) to set it up on your system.
-1. **_Clone the repository:_** ✔️
+### Prerequisites
+To work with PicTrace, ensure you have the following components installed:
 
-_First, you need to get a copy of the PicTrace source code on your local machine. Use the following command to clone the repository from `GitHub`:_
+- **Python 3.8 or higher:** PicTrace is built with Python. You can download the latest version of Python from [the official website](https://www.python.org/downloads/).
+- **pip:** The package installer for Python, which comes pre-installed with Python 3.4 and higher. We'll use pip to install the necessary dependencies.
+- **Git:** Required to clone the PicTrace repository. If Git is not already installed on your system, follow the installation instructions on [Git's official site](https://git-scm.com/downloads).
+
+### Steps to Set Up PicTrace
+
+1. **Clone the repository**
+
+_First, get a copy of the PicTrace source code on your local machine. Use the following commands to clone the repository from GitHub:_
 
 ```shell
-git clone https://github.com/yourusername/PicTrace.git
-cd PicTrace
+   git clone https://github.com/solrikk/PicTrace.git
+   cd PicTrace
 ```
 2. **_Set up a virtual environment:_** ✔️
 
-_A virtual environment is crucial for isolating the project dependencies from your global Python setup. This prevents version conflicts among different projects._
+_A virtual environment is crucial for isolating the project dependencies from your global Python setup, preventing version conflicts among different projects. To create and activate a virtual environment, execute the following commands:._
 
 To create and activate a virtual environment, follow these commands:
 
@@ -55,6 +60,7 @@ venv\Scripts\activate
 # Linux и MacOS
 source venv/bin/activate
 ```
+
 3. **_Install dependencies:_** ✔️
  - _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
 ```shell
@@ -85,68 +91,33 @@ _For complex images with many details and possible presence of noise or distorti
 (**_code with comments_**)
 
 ```Python 
-# Define an asynchronous function to process and compare an image against a target image.
-async def process_image(session, image_entry, target_image):
-  try:
-    # Obtain a list of image URLs from a webpage.
-    image_urls = await get_image_urls_from_page(session, image_entry["url"])
-    for image_url in image_urls:
-      # Download current image from the URL.
-      current_image = await download_image(session, image_url)
-      # Determine the optimal size for comparison, not exceeding 1024 pixels.
-      optimal_size = max(max(target_image.shape[:2]),
-                         max(current_image.shape[:2]))
-      optimal_size = min(1024, optimal_size)
-      # Resize both target and current images to the optimal size for comparison.
-      target_image_resized = cv2.resize(target_image,
-                                        (optimal_size, optimal_size))
-      current_image_resized = cv2.resize(current_image,
-                                         (optimal_size, optimal_size))
-      # Convert images to grayscale for the comparison process.
-      target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
-      current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
-      # Calculate the Structural Similarity Index (SSIM) between the two images.
-      ssim_index = ssim(target_gray, current_gray)
-      # Initialize ORB detector for feature extraction.
-      orb = cv2.ORB_create(nfeatures=500)
-      # Detect keypoints and compute descriptors for both images.
-      target_keypoints, target_descriptors = orb.detectAndCompute(
-          target_gray, None)
-      current_keypoints, current_descriptors = orb.detectAndCompute(
-          current_gray, None)
-      # Return early if no descriptors are found in either image.
-      if target_descriptors is None or current_descriptors is None:
-        return (0, image_entry["url"])
-      # Setup parameters for FLANN based matcher, used for finding good matches.
-      index_params = dict(algorithm=6,
-                          table_number=6,
-                          key_size=12,
-                          multi_probe_level=1)
-      search_params = dict(checks=50)
-      flann = cv2.FlannBasedMatcher(index_params, search_params)
-      # Match descriptors between the two images and filter good matches.
-      matches = flann.knnMatch(target_descriptors, current_descriptors, k=2)
-      good_matches = [m for m, n in matches if m.distance < 0.75 * n.distance]
-      # Calculate the feature score based on good matches.
-      feature_score = len(good_matches) / float(len(target_keypoints))
-      # Compute histograms for both images in RGB channels.
-      target_hist = cv2.calcHist([target_image_resized], [0, 1, 2], None,
-                                 [32, 32, 32], [0, 256, 0, 256, 0, 256])
-      current_hist = cv2.calcHist([current_image_resized], [0, 1, 2], None,
-                                  [32, 32, 32], [0, 256, 0, 256, 0, 256])
-      # Normalize histograms.
-      cv2.normalize(target_hist, target_hist)
-      cv2.normalize(current_hist, current_hist)
-      # Compare histograms using correlation method.
-      hist_score = cv2.compareHist(target_hist, current_hist,
-                                   cv2.HISTCMP_CORREL)
-      # Calculate the final score by averaging SSIM, feature, and histogram scores.
-      final_score = (feature_score + ssim_index + hist_score) / 3
-      return (final_score, image_entry["url"])
-  except Exception as e:
-    # Handle any errors during the process and return a zero score.
-    print(f"Failed to process image {image_entry['url']} due to {e}")
-    return (0, image_entry["url"])
+async def find_similar_images(file_path):
+    # Load the data from the database, which contains information about images.
+    db_data = load_db()
+    # Read the target image from the given file path.
+    target_image = cv2.imread(file_path)
+    # Extract features from the target image using a pre-trained model.
+    target_features = extract_features(target_image)
+    # Create an aiohttp asynchronous session for handling HTTP requests.
+    async with aiohttp.ClientSession() as session:
+        # Create asynchronous tasks for the compare_images function for each image in the database.
+        tasks = [
+            compare_images(session, entry, target_features) for entry in db_data
+            if "url" in entry  # Only perform comparisons for entries that contain an image URL.
+        ]
+        # Wait for all tasks to complete and gather the results.
+        results = await asyncio.gather(*tasks)
+    # Filter the results, keeping only those with a similarity score greater than 0.
+    valid_results = filter(lambda x: x[0] > 0, results)   
+    # Sort the filtered results by similarity score in descending order and take the top 5.
+    sorted_results = sorted(valid_results, key=lambda x: x[0], reverse=True)[:5]
+    # Create a list to store the URLs of the similar images.
+    similar_images = []
+    for result in sorted_results:
+        if result[1]:
+            similar_images.append(result[1])
+    # Return the list of URLs of the similar images.
+    return similar_images
 ```
 
 -----------------
