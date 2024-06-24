@@ -1,0 +1,50 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e8e8e8;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+input[type="file"], input[type="text"], button {
+    margin-bottom: 30px;
+    padding: 15px 20px;
+    border-radius: 35px;
+    border: 2px dashed #6a5acd;
+    font-size: 18px;
+    outline: none;
+    transition: border-color 0.3s ease, transform 0.2s;
+}
+input[type="file"]:hover, input[type="file"]:focus, 
+input[type="text"]:hover, input[type="text"]:focus,
+button:hover, button:focus {
+    border-color: #483d8b;
+    transform: scale(1.05);
+}
+button {
+    cursor: pointer;
+    background-color: #6a5acd;
+    color: white;
+    border: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+button:hover {
+    background-color: #483d8b;
+}
+#results {
+    margin-top: 30px;
+}
+img {
+    max-width: 400px;
+    margin-bottom: 10px;
+}
