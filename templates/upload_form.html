@@ -1,93 +1,22 @@
-  <!DOCTYPE html>
-  <html>
-      <head>
-          <style>
-              body, html {
-                  height: 100%;
-                  margin: 0;
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                  background-color: #e8e8e8; 
-              }
-              form {
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                  padding: 60px; 
-                  border-radius: 20px;
-                  background: #ffffff;
-                  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
-              }
-              input[type="file"] {
-                  margin-bottom: 30px;
-                  padding: 15px 20px; 
-                  border-radius: 35px;
-                  border: 2px dashed #6a5acd; 
-                  font-size: 18px; 
-                  outline: none;
-                  transition: border-color 0.3s ease, transform 0.2s;
-              }
-              input[type="file"]:hover,
-              input[type="file"]:focus {
-                  border-color: #483d8b; 
-                  transform: scale(1.05); 
-              }
-              input[type="submit"] {
-                  cursor: pointer;
-                  padding: 15px 30px; 
-                  border: none;
-                  border-radius: 35px;
-                  background-color: #6a5acd; 
-                  color: white;
-                  font-size: 18px; 
-                  transition: background-color 0.3s, transform 0.2s;
-              }
-              input[type="submit"]:hover {
-                  background-color: #483d8b; 
-                  transform: translateY(-3px); 
-              }
-              .progress {
-                  width: 90%;
-                  height: 25px;
-                  margin-top: 30px; 
-                  background-color: #f0f0f0; 
-                  border-radius: 35px; 
-                  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
-              }
-              .progress-bar {
-                  width: 0%;
-                  height: 25px;
-                  background-color: #6a5acd;
-                  border-radius: 30px;
-                  transition: width 60s linear;
-              }
-          </style>
-          <script>
-              function simulateUploadProgress() {
-                  var elem = document.getElementById("myBar");   
-                  var width = 0;
-                  var id = setInterval(frame, 20);
-                  function frame() {
-                      if (width >= 100) {
-                          clearInterval(id);
-                      } else {
-                          width++; 
-                          elem.style.width = width + '%'; 
-                      }
-                  }
-              }
-          </script>
-      </head>
-      <body>
-          <form action="/upload/" enctype="multipart/form-data" method="post" onsubmit="simulateUploadProgress()">
-              <input name="file" type="file">
-              <input type="submit" value="Search">
-              <div class="progress">
-                  <div id="myBar" class="progress-bar"></div>
-              </div>
-              <p>EchoImage_v.0.9.2</p>
-          </form>
-      </body>
-  </html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Upload</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+  <div>
+    <form id="upload-form">
+      <input type="file" id="file-input" name="file">
+      <button type="submit">Upload</button>
+    </form>
+    <div id="results"></div>
+  </div>
+  <script src="/static/scripts.js"></script>
+</body>
+
+</html>
