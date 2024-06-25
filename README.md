@@ -6,7 +6,7 @@
 
 # PicTrace 🔎
 
- _**PicTrace**_ is a cutting-edge image matching platform that utilizes advanced techniques for accurate and efficient image searches. By supporting both direct uploads and URL submissions, it can swiftly scan a large database to identify `similar images`. Leveraging the power of `asynchronous processing`, PicTrace ensures a seamless and quick `visual search` experience, offering unparalleled performance for your image matching needs.
+_**PicTrace**_ is a highly efficient image matching platform that leverages computer vision using _**OpenCV**_, deep learning with _**TensorFlow**_ and the _**ResNet50 model**_, asynchronous processing with _**aiohttp**_, and the _**FastAPI***_ web framework for rapid and accurate image search. PicTrace allows users to upload images directly or provide URLs, quickly scanning a vast database to find similar images. Asynchronous processing ensures smooth and fast visual search, enhancing the user experience.
 
 ## Features ⚙️
 - **_Supports Multiple-Technologies_** ☄️
