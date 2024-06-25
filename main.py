@@ -7,7 +7,7 @@ from image_utils import find_similar_images
 from database import init_db, add_image_to_db
 
 app = FastAPI()
-х
+
 init_db()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
