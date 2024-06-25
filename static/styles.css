@@ -1,50 +1,98 @@
-body, html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #e8e8e8;
+body,
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+}
+
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 60px;
-    border-radius: 20px;
-    background: #ffffff;
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  margin: 20px;
 }
-input[type="file"], input[type="text"], button {
-    margin-bottom: 30px;
-    padding: 15px 20px;
-    border-radius: 35px;
-    border: 2px dashed #6a5acd;
-    font-size: 18px;
-    outline: none;
-    transition: border-color 0.3s ease, transform 0.2s;
-}
-input[type="file"]:hover, input[type="file"]:focus, 
-input[type="text"]:hover, input[type="text"]:focus,
-button:hover, button:focus {
-    border-color: #483d8b;
-    transform: scale(1.05);
-}
+
+input[type="file"],
 button {
-    cursor: pointer;
-    background-color: #6a5acd;
-    color: white;
-    border: none;
-    transition: background-color 0.3s, transform 0.2s;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #6a5acd;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease, transform 0.2s;
+  width: 100%;
+  box-sizing: border-box;
 }
+
+input[type="file"]:hover,
+input[type="file"]:focus,
+button:hover,
+button:focus {
+  border-color: #483d8b;
+  transform: scale(1.05);
+}
+
+button {
+  cursor: pointer;
+  background-color: #6a5acd;
+  color: white;
+  border: none;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
 button:hover {
-    background-color: #483d8b;
+  background-color: #483d8b;
 }
+
 #results {
-    margin-top: 30px;
+  margin-top: 20px;
+  text-align: center;
 }
-img {
-    max-width: 400px;
-    margin-bottom: 10px;
+
+#results .image-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 15px;
+}
+
+#results img.uploaded-image,
+#results img.similar-image {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 10px;
+}
+
+#loading {
+  display: none;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #6a5acd;
 }
