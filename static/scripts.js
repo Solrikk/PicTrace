@@ -3,19 +3,27 @@ document.getElementById('upload-form').addEventListener('submit', async function
 
   const input = document.getElementById('file-input');
   const file = input.files[0];
-
+  const loadingElement = document.getElementById('loading');
   const formData = new FormData();
   formData.append('file', file);
 
   console.log("Uploading file...");
-  const response = await fetch('/upload/', {
-    method: 'POST',
-    body: formData
-  });
+  loadingElement.style.display = 'block';
 
-  const data = await response.json();
-  console.log("File uploaded. Data received: ", data);
-  displayResults(data);
+  try {
+    const response = await fetch('/upload/', {
+      method: 'POST',
+      body: formData
+    });
+
+    const data = await response.json();
+    console.log("File uploaded. Data received: ", data);
+    displayResults(data);
+  } catch (error) {
+    console.error("Error uploading file: ", error);
+  } finally {
+    loadingElement.style.display = 'none';
+  }
 });
 
 function displayResults(data) {
