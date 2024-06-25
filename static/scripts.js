@@ -1,32 +1,42 @@
 document.getElementById('upload-form').addEventListener('submit', async function(event) {
-    event.preventDefault();
+  event.preventDefault();
 
-    const input = document.getElementById('file-input');
-    const file = input.files[0];
-    
-    const formData = new FormData();
-    formData.append('file', file);
+  const input = document.getElementById('file-input');
+  const file = input.files[0];
 
-    const response = await fetch('/upload/', {
-        method: 'POST',
-        body: formData
-    });
+  const formData = new FormData();
+  formData.append('file', file);
 
-    const data = await response.json();
-    displayResults(data);
+  console.log("Uploading file...");
+  const response = await fetch('/upload/', {
+    method: 'POST',
+    body: formData
+  });
+
+  const data = await response.json();
+  console.log("File uploaded. Data received: ", data);
+  displayResults(data);
 });
 
 function displayResults(data) {
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = `
-        <h3>Uploaded Image:</h3>
-        <img src="/uploads/${data.filename}" /><br>
-        <h3>Similar Images:</h3>
-    `;
+  console.log("Displaying results...");
+  const resultsDiv = document.getElementById('results');
+  resultsDiv.innerHTML = `
+      <h3>Uploaded Image:</h3>
+      <div class="image-container">
+          <img src="/uploads/${data.filename}.jpg" alt="Uploaded Image" class="uploaded-image"/>
+      </div>
+      <h3>Similar Images:</h3>
+      <div class="similar-images-grid"></div>
+  `;
 
-    data.similar_images.forEach(image_url => {
-        const imgElement = document.createElement('img');
-        imgElement.src = image_url;
-        resultsDiv.appendChild(imgElement);
-    });
+  const grid = resultsDiv.querySelector('.similar-images-grid');
+  data.similar_images.forEach(image_url => {
+    console.log("Adding similar image: ", image_url);
+    const imgElement = document.createElement('img');
+    imgElement.src = image_url;
+    imgElement.alt = "Similar Image";
+    imgElement.classList.add('similar-image');
+    grid.appendChild(imgElement);
+  });
 }
