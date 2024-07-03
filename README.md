@@ -62,7 +62,7 @@ _A virtual environment is crucial for isolating the project dependencies from yo
 
 To create and activate a virtual environment, follow these commands:
 
-```shell
+```bash
 python -m venv venv
 # Windows
 venv\Scripts\activate
@@ -72,12 +72,12 @@ source venv/bin/activate
 
 3. **_Install dependencies:_** ✔️
  - _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
-```shell
+```bash
 pip install -r requirements.txt
 ```
 ### _Launching the application:_
 1. **_Start the server:_**
-```shell
+```bash
 python app.py
 ```
 `After starting the server, the application will be available at http://localhost:5000 .`
