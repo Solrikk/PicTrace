@@ -19,6 +19,18 @@ _**PicTrace**_ is a highly efficient image matching platform that leverages comp
 
 ![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/Pictrace.gif)
 
+## Table of Contents
+1. [Features ⚡](#features-⚡)
+2. [Getting Started with PicTrace 🚀](#getting-started-with-pictrace-🚀)
+   - [Prerequisites](#prerequisites)
+   - [Steps to Set Up PicTrace](#steps-to-set-up-pictrace)
+3. [Results: 👨‍💻](#results-👨‍💻)
+4. [Examples: 📋](#examples-📋)
+5. [How SSIM Works in PicTrace](#how-ssim-works-in-pictrace)
+6. [How ORB Works in PicTrace](#how-orb-works-in-pictrace)
+7. [Combining SSIM and ORB](#combining-ssim-and-orb)
+8. [Final Selection of Similar Images](#final-selection-of-similar-images)
+
 ## Features ⚡
 - **_Supports Multiple Technologies_** 💼
 
@@ -38,7 +50,7 @@ _**PicTrace**_ is a highly efficient image matching platform that leverages comp
 
 -----------------
 
-## 🚀 Getting Started with PicTrace
+## Getting Started with PicTrace 🚀
 _PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
 ### Prerequisites
@@ -49,7 +61,6 @@ To work with PicTrace, ensure you have the following components installed:
 - **Git:** Required to clone the PicTrace repository. If Git is not already installed on your system, follow the installation instructions on [Git's official site](https://git-scm.com/downloads).
 
 ### Steps to Set Up PicTrace
-
 1. **Clone the repository**
 
 _First, get a copy of the PicTrace source code on your local machine. Use the following commands to clone the repository from GitHub:_
