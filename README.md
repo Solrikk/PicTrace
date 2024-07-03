@@ -1,35 +1,44 @@
-![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/orb6.png) 
+![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/orb6.png)
 
-<div align="center"> <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md">⭐English⭐</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">Russian</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md">German</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md">Japanese</a> | <a href="README_KR.md">Korean</a> | <a href="README_CN.md">Chinese</a> </h3> </div>
+<div align="center">
+  <h3>
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md">⭐ English ⭐</a> |
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">🇷🇺 Russian</a> |
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md">🇩🇪 German</a> |
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md">🇯🇵 Japanese</a> |
+    <a href="README_KR.md">🇰🇷 Korean</a> |
+    <a href="README_CN.md">🇨🇳 Chinese</a>
+  </h3>
+</div>
 
 -----------------
 
-# PicTrace 🔎
+# PicTrace 🔍
 
 _**PicTrace**_ is a highly efficient image matching platform that leverages computer vision using _**OpenCV**_, deep learning with _**TensorFlow**_ and the _**ResNet50 model**_, asynchronous processing with _**aiohttp**_, and the _**FastAPI**_ web framework for rapid and accurate image search. PicTrace allows users to upload images directly or provide URLs, quickly scanning a vast database to find similar images. Asynchronous processing ensures smooth and fast visual search, enhancing the user experience.
 
 ![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/Pictrace.gif)
 
-## Features ⚙️
-- **_Supports Multiple-Technologies_** ☄️
+## Features ⚡
+- **_Supports Multiple Technologies_** 💼
 
     _**Python**_ with these powerful libraries:
   - **`FastAPI:`** Ideal for web application creation and handling HTTP requests, FastAPI is known for its high performance and support for asynchronous operations. [Details](https://fastapi.tiangolo.com/)
   - **`aiohttp:`** Perfect for handling asynchronous HTTP requests, such as downloading images by URL, making your app faster and more efficient. [Details](https://docs.aiohttp.org/en/stable/index.html)
-  - **`OpenCV (cv2):`** A robust computer vision library used for advanced image processing, including loading, resizing, and comparing images, making it a critical component for your image-related tasks. [Details](https://gamedevacademy.org/cv2-python-tutorial-complete-guide/#:~:text=%E2%80%98cv2%E2%80%99%20is%20OpenCV%E2%80%99s%20python%20library,perceive%20visuals%20like%20a%20human)
+  - **`OpenCV (cv2):`** A robust computer vision library used for advanced image processing, including loading, resizing, and comparing images, making it a critical component for your image-related tasks. [Details](https://docs.opencv.org/)
   - **`numpy:`** A versatile library for working with multi-dimensional arrays, often used alongside OpenCV for efficient image processing. [More Info](https://numpy.org/doc/)
   - **`scikit-image:`** Particularly, the `structural_similarity` (SSIM) function from this library is employed to compare the similarity of images, enhancing your application's accuracy in image matching. [Details](https://scikit-image.org/docs/stable/auto_examples/transform/plot_ssim.html)
   - **`hashlib:`** Utilized for generating unique hashes for each image, ensuring every image can be uniquely identified and efficiently managed. [More Info](https://docs.python.org/3/library/hashlib.html)
 
-- **_Supports Multiple-Indexes_** 🚀
+- **_Supports Multiple Indexes_** 🗂️
 
   - **`Image Hashing:`** Generating unique hashes for images to ensure unique identification and efficient management.
   - **`Feature Extraction with ResNet50:`** Utilizes the ResNet50 model for extracting robust feature representations from images.
   - **`Cosine Similarity:`** Measuring similarity between images using cosine similarity on feature vectors extracted from the images.
-    
+
 -----------------
 
-## ⚠️ Getting Started with PicTrace: ⚠️
+## 🚀 Getting Started with PicTrace
 _PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
 ### Prerequisites
@@ -45,10 +54,8 @@ To work with PicTrace, ensure you have the following components installed:
 
 _First, get a copy of the PicTrace source code on your local machine. Use the following commands to clone the repository from GitHub:_
 
-```shell
-   git clone https://github.com/solrikk/PicTrace.git
-   cd PicTrace
-```
+```git clone https://github.com/solrikk/PicTrace.git```
+
 2. **_Set up a virtual environment:_** ✔️
 
 _A virtual environment is crucial for isolating the project dependencies from your global Python setup, preventing version conflicts among different projects. To create and activate a virtual environment, execute the following commands:._
