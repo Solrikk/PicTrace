@@ -24,12 +24,16 @@ _**PicTrace**_ is a highly efficient image matching platform that leverages comp
 2. [Getting Started with PicTrace 🚀](#getting-started-with-pictrace-🚀)
    - [Prerequisites](#prerequisites)
    - [Steps to Set Up PicTrace](#steps-to-set-up-pictrace)
+   - [Launching the application](#launching-the-application)
 3. [Results: 👨‍💻](#results-👨‍💻)
 4. [Examples: 📋](#examples-📋)
+   - [Code with Comments](#code-with-comments)
 5. [How SSIM Works in PicTrace](#how-ssim-works-in-pictrace)
 6. [How ORB Works in PicTrace](#how-orb-works-in-pictrace)
 7. [Combining SSIM and ORB](#combining-ssim-and-orb)
-8. [Final Selection of Similar Images](#final-selection-of-similar-images)
+8. [OpenCV (Open Source Computer Vision Library) 🌐](#opencv-open-source-computer-vision-library-🌐)
+9. [Neural Network Model (ResNet50) 🧠](#neural-network-model-resnet50-🧠)
+10. [Final Selection of Similar Images](#final-selection-of-similar-images)
 
 ## Features ⚡
 - **_Supports Multiple Technologies_** 💼
