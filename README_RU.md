@@ -149,50 +149,36 @@ async def find_similar_images(file_path):
 ## Модель Нейросети (ResNet50) 🧠:
 Модель **ResNet50** (Residual Network) является одной из самых популярных и мощных архитектур глубокого обучения для задач классификации изображений и извлечения признаков. Ваша модель нейросети **ResNet50** предоставляет следующие преимущества:
 
-1. **Глубокие остаточные сети**: Использует остаточные сети для облегчения обучения глубоких нейронных сетей, что позволяет строить очень глубокие архитектуры без риска затухания градиента.
-2. **Предварительно обученные веса**: Модель поставляется с предварительно обученными весами на наборе данных ImageNet, что позволяет значительно ускорить обучение и улучшить точность при классификации изображений.
-3. **Извлечение признаков**: Модель может использоваться для извлечения признаков из изображений, что полезно для задач, связанных с когнитивным исследованием данных и машинным обучением.
-4. **Гибкость применения**: Модель может быть использована как для классификации, так и для задачи извлечения и сравнения признаков изображений, что подходит для вашего приложения.
+1. **Глубокие остаточные сети 🏗️**: Использует остаточные сети для облегчения обучения глубоких нейронных сетей, что позволяет строить очень глубокие архитектуры без риска затухания градиента.
+2. **Предварительно обученные веса 🎓**: Модель поставляется с предварительно обученными весами на наборе данных ImageNet, что позволяет значительно ускорить обучение и улучшить точность при классификации изображений.
+3. **Извлечение признаков 🔑**: Модель может использоваться для извлечения признаков из изображений, что полезно для задач, связанных с когнитивным исследованием данных и машинным обучением.
+4. **Гибкость применения 🚀**: Модель может быть использована как для классификации, так и для задачи извлечения и сравнения признаков изображений, что подходит для вашего приложения.
 
 Вместе **OpenCV** и **ResNet50** могут использоваться для создания мощных приложений компьютерного зрения, которые могут анализировать визуальные данные и выполнять сложные задания, такие как автоматическое распознавание и классификация объектов.
- 
-ORB method used in computer vision, particularly popular for tasks related to object recognition, image matching, and tracking. This method is focused on quickly finding key points on images and describing them in a way that allows for efficient comparison. Let's break down what ORB does with simpler examples:
+
+---
+
+Метод ORB, используемый в компьютерном зрении, особенно популярен для задач, связанных с распознаванием объектов, сопоставлением изображений и отслеживанием. Этот метод сосредоточен на быстром нахождении ключевых точек на изображениях и их описании таким образом, чтобы обеспечить эффективное сравнение.
 
 <img src="https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/ORB3.png" width="95%" /> 
 
-1) **Oriented FAST (Features from Accelerated Segment Test):** This part is responsible for detecting points of interest (or key points) on the image. It quickly identifies corners or edges that stand out in comparison to their surrounding areas. This way, significant or unique sections of the image can be identified.
+1. **Oriented FAST (Features from Accelerated Segment Test) 🚀:** Этот компонент отвечает за обнаружение точек интереса (или ключевых точек) на изображении. Он быстро определяет углы или края, которые выделяются по сравнению с окружающими областями. Таким образом, можно идентифицировать значительные или уникальные секции изображения.
 
-2) **Rotated BRIEF (Binary Robust Independent Elementary Features):** After key points have been found, it's necessary to create a description of each to allow comparison with key points from another image. BRIEF generates a brief binary description of the points but lacks resistance to image rotation. This is where the "rotated" part comes in - ORB adds the ability to stably describe points even when images are rotated.
+2. **Rotated BRIEF (Binary Robust Independent Elementary Features) 🔄:** После нахождения ключевых точек необходимо создать описание каждой из них для возможности сравнения с ключевыми точками другого изображения. BRIEF генерирует краткое бинарное описание точек, но не устойчив к повороту изображений. Здесь на помощь приходит "повернутая" часть - ORB добавляет возможность стабильно описывать точки даже при поворотах изображений.
 
-By combining these two approaches, ORB provides a fast and efficient way of matching images despite changes in viewing angle, scale, or lighting.
+Сочетая эти два подхода, ORB обеспечивает быстрое и эффективное сопоставление изображений несмотря на изменения угла обзора, масштаба или освещения.
 
-_Using the ORB algorithm, key points and descriptors are determined for both the current and target images._
+PicTrace использует методы **SSIM** и **ORB** для нахождения изображений, которые похожи на загруженное изображение. Вот упрощенное объяснение того, как каждый метод работает в контексте вашего приложения и способствует нахождению похожих изображений:
 
-The found key points are compared with each other to determine matches. These matches allow assessing the similarity of images from a perspective other than SSIM. The final similarity score is calculated as the average between the SSIM score and the relative number of matching key points (using the ORB algorithm), providing a comprehensive approach to analyzing the similarity of images.
+## Как работает SSIM в PicTrace:
+1. **Изменение размера изображений 🔧:** При сравнении загруженного изображения с каждым изображением в базе данных оба изображения масштабируются до одинаковых размеров (256х256 пикселей). Это стандартизирует сравнение, делая его справедливым и более эффективным.
+2. **Преобразование в оттенки серого 🌑:** Оба изображения конвертируются в оттенки серого. Это упрощает сравнение, фокусируясь на структуре и интенсивности света, а не на цветовых различиях.
+3. **Сравнение структурной схожести 🧩:** Метод SSIM затем сравнивает эти изображения в оттенках серого для оценки их структурной схожести. Высокая оценка означает, что изображения структурно схожи.
 
-PicTrace application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
+## Как работает ORB в PicTrace:
+1. **Обнаружение ключевых точек 📍:** ORB сначала определяет ключевые точки как в загруженном изображении, так и в каждом изображении базы данных. Эти точки легко распознаваемы и могут быть сравнены между изображениями.
+2. **Описание ключевых точек 🖊️:** Для каждой обнаруженной ключевой точки ORB генерирует уникальный дескриптор, который резюмирует характеристики ключевой точки. Этот дескриптор инвариантен к поворотам изображений.
+3. **Сопоставление ключевых точек 🔗:** Приложение сопоставляет ключевые точки между загруженным изображением и каждым изображением в базе данных. Процесс включает нахождение точек в изображении базы данных, имеющих дескрипторы, похожие на дескрипторы загруженного изображения.
+4. **Оценка совпадений 🏅:** Чем больше ключевых точек совпадает между двумя изображениями, тем выше оценка схожести на основе ORB. Эта оценка отражает, сколько уникальных особенностей разделяют изображения.
 
-## How SSIM Works in PicTrace:
-1) **_Resizing Images:_** When comparing the uploaded image to each image in the database, both images are resized to the same dimensions `(256x256 pixels)`. This standardizes the comparison, making it fair and more efficient since we're working with images of the same size.
-
-2) **_Converting to Grayscale:_** Both images are converted to grayscale. This simplifies the comparison by focusing on the structure and intensity of light rather than being distracted by color differences.
-
-3) **_Structural Similarity Comparison:_** The SSIM method then compares these grayscale images to assess their structural similarity. This involves analyzing how similar the patterns of light and shadow are between the two images, giving a score that reflects their similarity. A high score means the images are structurally similar.
-
-## How ORB Works in PicTrace:
-1) **_Detecting Key Points:_** ORB first identifies key points in both the uploaded image and each database image. These key points are distinctive spots that can be easily recognized and compared between images, such as corners and interesting textures.
-
-2) **_Describing Key Points:_** For each key point detected, ORB generates a unique descriptor that summarizes the key point's characteristics. This descriptor is made rotation-invariant, meaning it describes the key point in a way that's consistent even if the image is rotated.
-
-3) **_Matching Key Points:_** The application then matches key points between the uploaded image and each database image using these descriptors. The matching process involves finding key points in the database image that have descriptors similar to those in the uploaded image.
-
-4) **_Scoring Matches:_** The more key points that match between two images, the higher the score of similarity based on ORB. This score reflects how many distinctive features are shared between the images.
-
-## Combining SSIM and ORB:
-After calculating similarity scores using both SSIM and ORB for each image comparison, Harmony-Image averages these scores to get a final measure of similarity.
-Images from the database are then ranked based on their final similarity scores, and the top 5 most similar images are selected.
-
-## Final Selection of Similar Images:
-The application filters out duplicate URLs to ensure a diverse set of similar images.
- It returns URLs of the top similar images, which can then be presented to the user.
- In essence, your application uses a combination of structural analysis (SSIM) and feature matching (ORB) to find and rank images in your database that are most similar to an image uploaded by the user. This dual approach leverages the strengths of both methods, ensuring a robust and nuanced comparison that goes beyond simple pixel-by-pixel analysis.
+Вместе методики **SSIM** и **ORB** предоставляют надежный и точный способ нахождения и сопоставления изображений, похожих на загруженное изображение.
