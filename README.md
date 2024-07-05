@@ -17,7 +17,7 @@
 
 _**PicTrace**_ is a highly efficient image matching platform that leverages computer vision using _**OpenCV**_, deep learning with _**TensorFlow**_ and the _**ResNet50 model**_, asynchronous processing with _**aiohttp**_, and the _**FastAPI**_ web framework for rapid and accurate image search. PicTrace allows users to upload images directly or provide URLs, quickly scanning a vast database to find similar images. Asynchronous processing ensures smooth and fast visual search, enhancing the user experience.
 
-# Online Demos
+# Online Demos:
 
 Curious to see how _PicTrace_ works in real-time? 
 
@@ -27,7 +27,7 @@ Explore my online demo and witness the capabilities of my image matching platfor
 
 ![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/Pictrace.gif)
 
-## Table of Contents
+## Table of Contents:
 1. [Features ⚡](#features-⚡)
 2. [Getting Started with PicTrace 🚀](#getting-started-with-pictrace-🚀)
    - [Prerequisites](#prerequisites)
@@ -43,7 +43,7 @@ Explore my online demo and witness the capabilities of my image matching platfor
 9. [Neural Network Model (ResNet50) 🧠](#neural-network-model-resnet50-🧠)
 10. [Final Selection of Similar Images](#final-selection-of-similar-images)
 
-## Features ⚡
+## Features: ⚡
 - **_Supports Multiple Technologies_** 💼
 
     _**Python**_ with these powerful libraries:
@@ -62,7 +62,7 @@ Explore my online demo and witness the capabilities of my image matching platfor
 
 -----------------
 
-## Getting Started with PicTrace 🚀
+## Getting Started with PicTrace: 🚀
 _PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
 ### Prerequisites
@@ -72,7 +72,7 @@ To work with PicTrace, ensure you have the following components installed:
 - **pip:** The package installer for Python, which comes pre-installed with Python 3.4 and higher. We'll use pip to install the necessary dependencies.
 - **Git:** Required to clone the PicTrace repository. If Git is not already installed on your system, follow the installation instructions on [Git's official site](https://git-scm.com/downloads).
 
-### Steps to Set Up PicTrace
+### Steps to Set Up PicTrace:
 1. **Clone the repository**
 
 _First, get a copy of the PicTrace source code on your local machine. Use the following commands to clone the repository from GitHub:_
