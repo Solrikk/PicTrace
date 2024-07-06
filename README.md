@@ -152,6 +152,8 @@ async def find_similar_images(file_path):
 
 ## _OpenCV (Open Source Computer Vision Library) 🌐:_
 
+<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/OpenCV%20-%20result/parrot.png" width="95%" /> 
+
 **OpenCV** is a powerful computer vision library that provides tools for image and video processing. It is widely used in fields related to machine vision, image recognition, video analysis, and more. The library includes a wide range of algorithms for image analysis, such as object detection, face recognition, motion tracking, video manipulation, and more.
 
 Key features of **OpenCV** include:
@@ -174,7 +176,7 @@ Together, **OpenCV** and **ResNet50** can be used to create powerful computer vi
 
 The ORB method, used in computer vision, is particularly popular for tasks related to object recognition, image matching, and tracking. This method focuses on quickly finding key points on images and describing them in a way that allows for efficient comparison.
 
-<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/ORB3.png" width="95%" /> 
+<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/ORB3.png" width="65%" /> 
 
 1. **Oriented FAST (Features from Accelerated Segment Test) 🚀:** This component is responsible for detecting points of interest (or key points) on the image. It quickly identifies corners or edges that stand out in comparison to their surrounding areas. This way, significant or unique sections of the image can be identified.
 
