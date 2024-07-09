@@ -79,6 +79,8 @@ _First, get a copy of the PicTrace source code on your local machine. Use the fo
 
 ```git clone https://github.com/solrikk/PicTrace.git```
 
+![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/shell-PicTrrace.gif)
+
 2. **_Set up a virtual environment:_** ✔️
 
 _A virtual environment is crucial for isolating the project dependencies from your global Python setup, preventing version conflicts among different projects. To create and activate a virtual environment, execute the following commands:._
