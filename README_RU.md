@@ -1,4 +1,4 @@
-![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/orb6.png)
+![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/OpenCV%20-%20result/bee.jpg)
 
 <div align="center">
   <h3>
