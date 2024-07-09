@@ -1,216 +1,203 @@
-![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/Orb5.png) 
+![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/OpenCV%20-%20result/bee.jpg)
 
-<div align="center"> <h3> <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md">Englisch</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">Russisch</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md">⭐Deutsch⭐</a> | <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md">Japanisch</a> | <a href="README_KR.md">Koreanisch</a> | <a href="README_CN.md">Chinesisch</a> </h3> </div>
+<div align="center">
+  <h3>
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md">English</a> |
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">Russian</a> |
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md">⭐Deutsch⭐</a> |
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md">Japanese</a> |
+    <a href="README_KR.md">Korean</a> |
+    <a href="README_CN.md">Chinese</a>
+  </h3>
+</div>
 
 -----------------
 
-# PicTrace
+# PicTrace 🔍
 
-🔎 _**PicTrace**_ ist eine effiziente Plattform zur Bildsuche, die `strukturelle Ähnlichkeit` und `Schlüsselpunkt-Algorithmen` nutzt, um schnell und präzise ähnliche Bilder zu finden. Es ermöglicht direkte Uploads oder die Einreichung über URLs, scannt schnell eine große Datenbank nach ähnlichen Bildern und bietet mit `asynchroner Verarbeitung` ein flüssiges und schnelles `visuelles Sucherlebnis`.
+_**PicTrace**_ ist eine hocheffiziente Bildabgleichsplattform, die Computer Vision mit _**OpenCV**_, Deep Learning mit _**TensorFlow**_ und dem _**ResNet50-Modell**_, asynchrone Verarbeitung mit _**aiohttp**_ sowie das _**FastAPI**_-Webframework für schnelle und genaue Bildersuche nutzt. PicTrace ermöglicht es Benutzern, Bilder direkt hochzuladen oder URLs bereitzustellen und durchforstet schnell eine umfangreiche Datenbank, um ähnliche Bilder zu finden. Asynchrone Verarbeitung sorgt für eine reibungslose und schnelle visuelle Suche und verbessert das Benutzererlebnis.
 
-## Funktionen ⚙️
-- **_Unterstützt Mehrere Technologien_** ☄️
+# Online-Demos:
 
-    _**Python**_ mit Bibliotheken:
-  - `FastAPI` - Wird für die Erstellung von Webanwendungen und die Bearbeitung von HTTP-Anfragen verwendet, unterstützt asynchrone Operationen. ([Details](https://fastapi.tiangolo.com/))
-  - `aiohttp` - Wird für asynchrone HTTP-Anfragen genutzt, z.B. für das Herunterladen von Bildern über URLs. ([Details](https://docs.aiohttp.org/en/stable/index.html))
-  - `OpenCV (cv2)` - Eine `Computer-Vision`-Bibliothek, die für die Bildverarbeitung, einschließlich Laden, Größenänderung und Vergleich von Bildern, verwendet wird. ([Details](https://gamedevacademy.org/cv2-python-tutorial-complete-guide/#:~:text=%E2%80%98cv2%E2%80%99%20is%20OpenCV%E2%80%99s%20python%20library,perceive%20visuals%20like%20a%20human))
-  - `numpy` - Eine Bibliothek für die Arbeit mit mehrdimensionalen Arrays, die zusammen mit OpenCV für die Bildverarbeitung verwendet wird.
-  - `skimage` - Speziell die Funktion `structural_similarity` wird verwendet, um die Ähnlichkeit von Bildern zu vergleichen.
-  - `hashlib` - Wird verwendet, um Bildhashes zu generieren, wodurch jedes Bild eindeutig identifiziert werden kann.
+Neugierig zu sehen, wie _PicTrace_ in Echtzeit funktioniert? 
 
-- **_Supports Multiple-Indexes_** 🚀
+Erkunden Sie mein Online-Demo und erleben Sie die Fähigkeiten meiner Bildabgleichsplattform.
 
-  - `Structural Similarity Index (SSIM)` ([details](https://en.wikipedia.org/wiki/Structural_similarity_index_measure))
-  - `Feature Matching with ORB (Oriented FAST and Rotated BRIEF) Descriptor` ([details](https://en.wikipedia.org/wiki/Oriented_FAST_and_rotated_BRIEF))
-  - `Resizing and Grayscale Conversion` ([details](https://en.wikipedia.org/wiki/Grayscale))
-  - `Hashing for Image Identification`
-    
-## ⚠️ Getting Started with PicTrace: ⚠️
-_PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
+[Online Demo](https://PicTrace.replit.app) - **Probieren Sie es aus und überzeugen Sie sich selbst!**
 
-### _To work with PicTrace, make sure that you have the following components installed:_
-- `Python 3.8 or higher`: The core programming language used for the development of PicTrace.
-- `pip`: The package installer for Python, used for managing software packages.
-1. **_Clone the repository:_** ✔️
+![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/Pictrace.gif)
 
-_First, you need to get a copy of the PicTrace source code on your local machine. Use the following command to clone the repository from `GitHub`:_
+## Inhaltsverzeichnis:
+1. [Funktionen ⚡](#funktionen-⚡)
+2. [Erste Schritte mit PicTrace 🚀](#erste-schritte-mit-pictrace-🚀)
+   - [Voraussetzungen](#voraussetzungen)
+   - [Schritte zur Einrichtung von PicTrace](#schritte-zur-einrichtung-von-pictrace)
+   - [Starten der Anwendung](#starten-der-anwendung)
+3. [Ergebnisse: 👨‍💻](#ergebnisse-👨‍💻)
+4. [Beispiele: 📋](#beispiele-📋)
+   - [Code mit Kommentaren](#code-mit-kommentaren)
+5. [Wie SSIM in PicTrace funktioniert](#wie-ssim-in-pictrace-funktioniert)
+6. [Wie ORB in PicTrace funktioniert](#wie-orb-in-pictrace-funktioniert)
+7. [Kombinieren von SSIM und ORB](#kombinieren-von-ssim-und-orb)
+8. [OpenCV (Open Source Computer Vision Library) 🌐](#opencv-open-source-computer-vision-library-🌐)
+9. [Neuronales Netzwerkmodell (ResNet50) 🧠](#neuronales-netzwerkmodell-resnet50-🧠)
+10. [Endauswahl ähnlicher Bilder](#endauswahl-ähnlicher-bilder)
 
-- `git clone https://github.com/<Solrikk>/PicTrace.git`
-- `cd PicTrace`
+## Funktionen: ⚡
+- **_Unterstützt mehrere Technologien_** 💼
+
+    _**Python**_ mit diesen leistungsstarken Bibliotheken:
+  - **`FastAPI:`** Ideal für die Erstellung von Webanwendungen und die Handhabung von HTTP-Anfragen, bekannt für hohe Leistung und Unterstützung asynchroner Operationen. [Details](https://fastapi.tiangolo.com/)
+  - **`aiohttp:`** Perfekt für die Handhabung asynchroner HTTP-Anfragen, wie das Herunterladen von Bildern über URLs, wodurch Ihre App schneller und effizienter wird. [Details](https://docs.aiohttp.org/en/stable/index.html)
+  - **`OpenCV (cv2):`** Eine robuste Computer-Vision-Bibliothek für fortgeschrittene Bildverarbeitung, einschließlich Laden, Größenänderung und Vergleich von Bildern, ein kritischer Bestandteil für Ihre bildbezogenen Aufgaben. [Details](https://docs.opencv.org/)
+  - **`numpy:`** Eine vielseitige Bibliothek zur Arbeit mit mehrdimensionalen Arrays, oft in Verbindung mit OpenCV für effiziente Bildverarbeitung verwendet. [Mehr Info](https://numpy.org/doc/)
+  - **`scikit-image:`** Insbesondere die `structural_similarity` (SSIM) Funktion aus dieser Bibliothek wird verwendet, um die Ähnlichkeit von Bildern zu vergleichen und die Genauigkeit Ihrer Anwendung beim Bildabgleich zu erhöhen. [Details](https://scikit-image.org/docs/stable/auto_examples/transform/plot_ssim.html)
+  - **`hashlib:`** Wird verwendet, um eindeutige Hashes für jedes Bild zu generieren, wodurch jedes Bild eindeutig identifiziert und effizient verwaltet werden kann. [Mehr Info](https://docs.python.org/3/library/hashlib.html)
+
+- **_Unterstützt mehrere Indizes_** 🗂️
+
+  - **`Bild-Hashing:`** Erstellen von eindeutigen Hashes für Bilder zur Sicherstellung der eindeutigen Identifikation und effizienten Verwaltung.
+  - **`Merkmalextraktion mit ResNet50:`** Nutzt das ResNet50-Modell zur Extraktion robuster Merkmalsdarstellungen aus Bildern.
+  - **`Kosinus-Ähnlichkeit:`** Messen der Ähnlichkeit zwischen Bildern mittels Kosinus-Ähnlichkeit auf den aus den Bildern extrahierten Merkmalsvektoren.
+
+-----------------
+
+## Erste Schritte mit PicTrace: 🚀
+_PicTrace ist ein leistungsstarkes Werkzeug zur Bildverfolgung und -vergleichung, das entwickelt wurde, um Ihren Entwicklungsprozess zu optimieren. Befolgen Sie diese Schritte, um Ihre Umgebung einzurichten und die Anwendung erfolgreich zu starten._
+
+### Voraussetzungen
+Um mit PicTrace zu arbeiten, stellen Sie sicher, dass folgende Komponenten installiert sind:
+
+- **Python 3.8 oder höher:** PicTrace ist in Python geschrieben. Sie können die neueste Version von Python von der [offiziellen Website](https://www.python.org/downloads/) herunterladen.
+- **pip:** Der Paket-Installer für Python, der ab Python 3.4 und höher vorinstalliert ist. Wir verwenden pip, um die notwendigen Abhängigkeiten zu installieren.
+- **Git:** Erforderlich zum Klonen des PicTrace-Repositories. Falls Git noch nicht auf Ihrem System installiert ist, folgen Sie den Installationsanweisungen auf der [offiziellen Git-Website](https://git-scm.com/downloads).
+
+### Schritte zur Einrichtung von PicTrace:
+1. **Repository klonen**
+
+_Zuerst erhalten Sie eine Kopie des PicTrace-Quellcodes auf Ihrem lokalen Computer. Verwenden Sie die folgenden Befehle, um das Repository von GitHub zu klonen:_
+
+```git clone https://github.com/solrikk/PicTrace.git```
+
 2. **_Set up a virtual environment:_** ✔️
 
-_A virtual environment is crucial for isolating the project dependencies from your global Python setup. This prevents version conflicts among different projects._
+_A virtual environment is crucial for isolating the project dependencies from your global Python setup, preventing version conflicts among different projects. To create and activate a virtual environment, execute the following commands:._
 
 To create and activate a virtual environment, follow these commands:
 
-```ShellScript
+```bash
 python -m venv venv
 # Windows
 venv\Scripts\activate
 # Linux и MacOS
 source venv/bin/activate
 ```
+
 3. **_Install dependencies:_** ✔️
  - _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
-```ShellScript
+```bash
 pip install -r requirements.txt
 ```
 ### _Launching the application:_
 1. **_Start the server:_**
-```ShellScript
+```bash
 python app.py
 ```
 `After starting the server, the application will be available at http://localhost:5000 .`
 
-## Results:
-|Image 1 vs Image 2|Similar|Image|
-|:-:|:-:|:-:|
-|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_1.jpg" alt="" width="400"/>|YES|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/melbourne.jpg" alt="" width="200"/>|
-|<img src="" alt="" width="400"/>|___|__|
-|<img src="" alt="" width="400"/>|___|__|
-|<img src="" alt="" width="400"/>|___|__|
-|<img src="" alt="" width="400"/>|___|__|
-|<img src="" alt="" width="400"/>|___|__|
-|<img src="" alt="" width="400"/>|___|__|
+-----------------
 
-## Examples: 📋
-(**_code with comments_**)
+## Ergebnisse: 👨‍💻
+_Für komplexe Bilder mit vielen Details und möglicher Anwesenheit von Rauschen oder Verzerrungen kann selbst eine Ähnlichkeit auf dem Niveau von **20%** und darüber auf das Vorhandensein signifikanter gemeinsamer Merkmale hinweisen. In solchen Fällen kann aufgrund der Komplexität der Aufgabe und der Einschränkungen des Algorithmus ein niedriger Prozentsatz der Ähnlichkeit erwartet werden._
+|Bild 1 vs Bild 2|Ähnlichkeit|Bild|
+|:-:|:-:|:-:|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_3-1.png" alt="" width="500"/>|**27,12%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/palegleam.jpg" alt="" width="300"/>|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_2.png" alt="" width="500"/>|**25,44%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/ryan-yao.jpg" alt="" width="300"/>|
+|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_3.png" alt="" width="500"/>|**44,16%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/taro-ohtani.jpg" alt="" width="300"/>|
+
+## Beispiele: 📋
+(**_Code mit Kommentaren_**)
 
 ```Python 
-# Define an asynchronous function to process and compare an image against a target image.
-async def process_image(session, image_entry, target_image):
-  try:
-    # Obtain a list of image URLs from a webpage.
-    image_urls = await get_image_urls_from_page(session, image_entry["url"])
-    for image_url in image_urls:
-      # Download current image from the URL.
-      current_image = await download_image(session, image_url)
-      # Determine the optimal size for comparison, not exceeding 1024 pixels.
-      optimal_size = max(max(target_image.shape[:2]),
-                         max(current_image.shape[:2]))
-      optimal_size = min(1024, optimal_size)
-      # Resize both target and current images to the optimal size for comparison.
-      target_image_resized = cv2.resize(target_image,
-                                        (optimal_size, optimal_size))
-      current_image_resized = cv2.resize(current_image,
-                                         (optimal_size, optimal_size))
-      # Convert images to grayscale for the comparison process.
-      target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
-      current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
-      # Calculate the Structural Similarity Index (SSIM) between the two images.
-      ssim_index = ssim(target_gray, current_gray)
-      # Initialize ORB detector for feature extraction.
-      orb = cv2.ORB_create(nfeatures=500)
-      # Detect keypoints and compute descriptors for both images.
-      target_keypoints, target_descriptors = orb.detectAndCompute(
-          target_gray, None)
-      current_keypoints, current_descriptors = orb.detectAndCompute(
-          current_gray, None)
-      # Return early if no descriptors are found in either image.
-      if target_descriptors is None or current_descriptors is None:
-        return (0, image_entry["url"])
-      # Setup parameters for FLANN based matcher, used for finding good matches.
-      index_params = dict(algorithm=6,
-                          table_number=6,
-                          key_size=12,
-                          multi_probe_level=1)
-      search_params = dict(checks=50)
-      flann = cv2.FlannBasedMatcher(index_params, search_params)
-      # Match descriptors between the two images and filter good matches.
-      matches = flann.knnMatch(target_descriptors, current_descriptors, k=2)
-      good_matches = [m for m, n in matches if m.distance < 0.75 * n.distance]
-      # Calculate the feature score based on good matches.
-      feature_score = len(good_matches) / float(len(target_keypoints))
-      # Compute histograms for both images in RGB channels.
-      target_hist = cv2.calcHist([target_image_resized], [0, 1, 2], None,
-                                 [32, 32, 32], [0, 256, 0, 256, 0, 256])
-      current_hist = cv2.calcHist([current_image_resized], [0, 1, 2], None,
-                                  [32, 32, 32], [0, 256, 0, 256, 0, 256])
-      # Normalize histograms.
-      cv2.normalize(target_hist, target_hist)
-      cv2.normalize(current_hist, current_hist)
-      # Compare histograms using correlation method.
-      hist_score = cv2.compareHist(target_hist, current_hist,
-                                   cv2.HISTCMP_CORREL)
-      # Calculate the final score by averaging SSIM, feature, and histogram scores.
-      final_score = (feature_score + ssim_index + hist_score) / 3
-      return (final_score, image_entry["url"])
-  except Exception as e:
-    # Handle any errors during the process and return a zero score.
-    print(f"Failed to process image {image_entry['url']} due to {e}")
-    return (0, image_entry["url"])
+async def find_similar_images(file_path):
+    # Laden Sie die Daten aus der Datenbank, die Informationen über Bilder enthält.
+    db_data = load_db()
+    # Lesen Sie das Zielbild von dem angegebenen Dateipfad.
+    target_image = cv2.imread(file_path)
+    # Extrahieren Sie Merkmale aus dem Zielbild unter Verwendung eines vortrainierten Modells.
+    target_features = extract_features(target_image)
+    # Erstellen Sie eine aiohttp-asynchrone Sitzung zur Handhabung von HTTP-Anfragen.
+    async with aiohttp.ClientSession() as session:
+        # Erstellen Sie asynchrone Aufgaben für die Funktion compare_images für jedes Bild in der Datenbank.
+        tasks = [
+            compare_images(session, entry, target_features) for entry in db_data
+            if "url" in entry  # Vergleiche nur für Einträge, die eine Bild-URL enthalten.
+        ]
+        # Warten Sie, bis alle Aufgaben abgeschlossen sind und sammeln Sie die Ergebnisse.
+        results = await asyncio.gather(*tasks)
+    # Filtern Sie die Ergebnisse und behalten Sie nur diejenigen mit einem Ähnlichkeitswert größer als 0 bei.
+    valid_results = filter(lambda x: x[0] > 0, results)   
+    # Sortieren Sie die gefilterten Ergebnisse nach dem Ähnlichkeitswert in absteigender Reihenfolge und nehmen Sie die Top 5.
+    sorted_results = sorted(valid_results, key=lambda x: x[0], reverse=True)[:5]
+    # Erstellen Sie eine Liste zur Speicherung der URLs der ähnlichen Bilder.
+    similar_images = []
+    for result in sorted_results:
+        if result[1]:
+            similar_images.append(result[1])
+    # Geben Sie die Liste der URLs der ähnlichen Bilder zurück.
+    return similar_images
 ```
 
 -----------------
 
+## _OpenCV (Open Source Computer Vision Library) 🌐:_
 
-![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/4203f29f732e5cdc9d8a95907ef6d8e12f08ca09)
+<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/OpenCV%20-%20result/parrot.png" width="95%" /> 
 
-SSIM compares patterns of pixel intensity changes which are important attributes for human vision. The SSIM score ranges from `-1 to +1`, where a `value of 1` indicates identical images. The process can be broken down into three components:
+**OpenCV** ist eine leistungsstarke Computer-Vision-Bibliothek, die Werkzeuge zur Verarbeitung von Bildern und Videos bereitstellt. Sie wird in vielen Bereichen verwendet, die mit maschinellem Sehen, Bilderkennung, Videoanalyse und mehr zu tun haben. Die Bibliothek umfasst eine breite Palette von Algorithmen zur Bildanalyse, wie Objekterkennung, Gesichtserkennung, Bewegungserkennung, Videomanipulation und mehr.
 
-<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ssim/ssim2.png" width="95%" /> 
+Die wichtigsten Funktionen von **OpenCV** sind:
+1. **Bilder laden und speichern 🖼️**: Unterstützt verschiedene Bildformate und ermöglicht das einfache Laden, Ändern der Größe und Speichern von Bildern, was für die Verarbeitung großer Datenmengen entscheidend ist.
+2. **Bildverarbeitung ✨**: Bietet Funktionen zum Filtern von Bildern, Umwandeln in Graustufen, Ändern der Größe, Drehen und anderen Manipulationen. Dies ist wichtig für die Vorverarbeitung von Bildern vor der Analyse.
+3. **Objekterkennung 🔍**: Beinhaltet Algorithmen zur Erkennung von Kanten, Ecken und anderen wichtigen Punkten, die helfen, bestimmte Objekte in einem Bild zu identifizieren und zu verfolgen.
+4. **Objekterkennung 👁️**: Bietet Werkzeuge zur Erkennung von Gesichtern, Gesten und anderen Objekten in Bildern und Videos, was für viele Computer-Vision-Anwendungen entscheidend ist.
 
-1) **_Luminance Comparison_** allows for the assessment of the overall luminance of the images. Luminance in SSIM is measured as the average of all pixel values.
-```Python
-target_gray = cv2.cvtColor(target_image_resized, cv2.COLOR_BGR2GRAY)
-current_gray = cv2.cvtColor(current_image_resized, cv2.COLOR_BGR2GRAY)
-ssim_index = ssim(target_gray, current_gray)
-```
-2) **_Contrast Comparison_** is measured through the variance of pixel intensities (variations from the average value), understanding how similar the patterns of light and shadow distribution are between two images.
-```Python
-cv2.normalize(target_hist, target_hist)
-cv2.normalize(current_hist, current_hist)
-hist_score = cv2.compareHist(target_hist, current_hist, cv2.HISTCMP_CORREL)
-```
-3) **_Structure Comparison_** compares patterns of spatial pixel distribution, ignoring variations in luminance and contrast. It is done by calculating the covariance between the images relative to their local average values.
-```Python
-ssim_index = ssim(target_gray, current_gray)
-```
-![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/96b4f1c3840c3707a93197798dcbfbfff24fa92b)
-![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/fcda97086476fa420b3b06568a0d202980a600d0)
-![image](https://wikimedia.org/api/rest_v1/media/math/render/svg/1aebd62ba5b7e6ae47780ccfa659333f078d6eac)
+## Neuronales Netzwerkmodell (ResNet50) 🧠:
 
-To compare images, the Structural Similarity Index **(SSIM)** is used to assess the similarity between images, as well as the **ORB (Oriented FAST and Rotated BRIEF)** algorithm for detecting key points and their descriptions.
+![image](https://github.com/Solrikk/PicTrace/assets/70236693/d47bd022-8a05-48fc-b6c8-147ec99520ce)
 
-## _ORB (Oriented FAST and Rotated BRIEF)_ 
-ORB method used in computer vision, particularly popular for tasks related to object recognition, image matching, and tracking. This method is focused on quickly finding key points on images and describing them in a way that allows for efficient comparison. Let's break down what ORB does with simpler examples:
+Das **ResNet50**-Modell (Residual Network) ist eine der beliebtesten und leistungsstärksten Deep-Learning-Architekturen für Aufgaben der Bildklassifikation und Merkmalsextraktion. Ihr neuronales Netzwerkmodell **ResNet50** bietet folgende Vorteile:
 
-<img src="https://github.com/Solrikk/EchoImage/blob/main/assets/ORB/ORB3.png" width="95%" /> 
+1. **Tiefe Residual-Netzwerke 🏗️**: Verwenden Residual-Netzwerke, um das Training tiefer neuronaler Netzwerke zu erleichtern, was den Aufbau sehr tiefer Architekturen ohne das Risiko verschwindender Gradienten ermöglicht.
+2. **Vorgefertigte Gewichte 🎓**: Das Modell wird mit vortrainierten Gewichten auf dem ImageNet-Datensatz geliefert, was das Training erheblich beschleunigen und die Genauigkeit bei Bildklassifikationsaufgaben verbessern kann.
+3. **Merkmalextraktion 🔑**: Das Modell kann zur Extraktion von Merkmalen aus Bildern verwendet werden, was für Aufgaben der kognitiven Datenanalyse und des maschinellen Lernens nützlich ist.
+4. **Flexibilität 🚀**: Das Modell kann sowohl zur Klassifikation als auch zur Extraktion und Vergleich von Bildmerkmalen verwendet werden, was für Ihre Anwendung geeignet ist.
 
-1) **Oriented FAST (Features from Accelerated Segment Test):** This part is responsible for detecting points of interest (or key points) on the image. It quickly identifies corners or edges that stand out in comparison to their surrounding areas. This way, significant or unique sections of the image can be identified.
+Zusammen können **OpenCV** und **ResNet50** verwendet werden, um leistungsstarke Computer-Vision-Anwendungen zu erstellen, die visuelle Daten analysieren und komplexe Aufgaben wie die automatische Objekterkennung und Bildklassifikation ausführen können.
 
-2) **Rotated BRIEF (Binary Robust Independent Elementary Features):** After key points have been found, it's necessary to create a description of each to allow comparison with key points from another image. BRIEF generates a brief binary description of the points but lacks resistance to image rotation. This is where the "rotated" part comes in - ORB adds the ability to stably describe points even when images are rotated.
+---
 
-By combining these two approaches, ORB provides a fast and efficient way of matching images despite changes in viewing angle, scale, or lighting.
+Die ORB-Methode, die im Computer-Vision-Bereich verwendet wird, ist besonders beliebt für Aufgaben im Zusammenhang mit der Objekterkennung, dem Abgleichen von Bildern und dem Tracking. Diese Methode konzentriert sich darauf, schnell Schlüsselpunkte auf Bildern zu finden und zu beschreiben, um einen effizienten Vergleich zu ermöglichen.
 
-_Using the ORB algorithm, key points and descriptors are determined for both the current and target images._
+<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/ORB/images/ORB3.png" width="65%" /> 
 
-The found key points are compared with each other to determine matches. These matches allow assessing the similarity of images from a perspective other than SSIM. The final similarity score is calculated as the average between the SSIM score and the relative number of matching key points (using the ORB algorithm), providing a comprehensive approach to analyzing the similarity of images.
+1. **Oriented FAST (Features from Accelerated Segment Test) 🚀:** Diese Komponente ist für die Erkennung von interessanten Punkten (oder Schlüsselpunkten) auf dem Bild verantwortlich. Sie identifiziert schnell Ecken oder Kanten, die sich im Vergleich zu ihrer Umgebung abheben, wodurch signifikante oder einzigartige Bereiche des Bildes identifiziert werden können.
 
-EchoImage application, both the SSIM and ORB methods are utilized to find images that are similar to an uploaded image. Here's a simplified explanation of how each method works in the context of your application and contributes to finding similar images:
+2. **Rotated BRIEF (Binary Robust Independent Elementary Features) 🔄:** Nachdem die Schlüsselpunkte gefunden wurden, ist es notwendig, eine Beschreibung für jeden zu erstellen, um den Vergleich mit Schlüsselpunkten eines anderen Bildes zu ermöglichen. BRIEF erzeugt eine kurze binäre Beschreibung der Punkte, jedoch fehlt es an Widerstandsfähigkeit gegen Bildrotationen. Hier kommt der Teil "rotated" ins Spiel - ORB fügt die Fähigkeit hinzu, Punkte stabil zu beschreiben, auch wenn Bilder gedreht werden.
 
-## How SSIM Works in EchoImage:
-1) **_Resizing Images:_** When comparing the uploaded image to each image in the database, both images are resized to the same dimensions `(256x256 pixels)`. This standardizes the comparison, making it fair and more efficient since we're working with images of the same size.
+Durch die Kombination dieser beiden Ansätze bietet ORB eine schnelle und effiziente Möglichkeit, Bilder trotz Änderungen des Betrachtungswinkels, der Skalierung oder der Beleuchtung abzugleichen.
 
-2) **_Converting to Grayscale:_** Both images are converted to grayscale. This simplifies the comparison by focusing on the structure and intensity of light rather than being distracted by color differences.
+PicTrace verwendet sowohl **SSIM** als auch **ORB**-Methoden, um Bilder zu finden, die einem hochgeladenen Bild ähneln. Hier ist eine vereinfachte Erklärung, wie jede Methode im Kontext Ihrer Anwendung funktioniert und zum Finden ähnlicher Bilder beiträgt:
 
-3) **_Structural Similarity Comparison:_** The SSIM method then compares these grayscale images to assess their structural similarity. This involves analyzing how similar the patterns of light and shadow are between the two images, giving a score that reflects their similarity. A high score means the images are structurally similar.
+## Wie SSIM in PicTrace funktioniert:
+1. **Bilder skalieren 🔧:** Beim Vergleich des hochgeladenen Bildes mit jedem Bild in der Datenbank werden beide Bilder auf die gleichen Abmessungen (256x256 Pixel) skaliert. Dies standardisiert den Vergleich und macht ihn fairer und effizienter.
+2. **Konvertieren in Graustufen 🌑:** Beide Bilder werden in Graustufen konvertiert. Dies vereinfacht den Vergleich, indem der Fokus auf die Struktur und die Lichtintensität gelegt wird, anstatt durch Farbunterschiede abgelenkt zu werden.
+3. **Vergleich der strukturellen Ähnlichkeit 🧩:** Die SSIM-Methode vergleicht dann diese Graustufenbilder, um ihre strukturelle Ähnlichkeit zu bewerten. Ein hoher Wert bedeutet, dass die Bilder strukturell ähnlich sind.
 
-## How ORB Works in EchoImage:
-1) **_Detecting Key Points:_** ORB first identifies key points in both the uploaded image and each database image. These key points are distinctive spots that can be easily recognized and compared between images, such as corners and interesting textures.
+## Wie ORB in PicTrace funktioniert:
+1. **Erkennung von Schlüsselpunkten 📍:** ORB identifiziert zuerst Schlüsselpunkte sowohl auf dem hochgeladenen Bild als auch auf jedem Datenbankbild. Diese Punkte sind leicht erkennbar und können zwischen den Bildern verglichen werden.
+2. **Beschreibung der Schlüsselpunkte 🖊️:** Für jeden erkannten Schlüsselpunkt erzeugt ORB einen eindeutigen Deskriptor, der die Merkmale des Schlüsselpunktes zusammenfasst. Dieser Deskriptor ist unempfindlich gegenüber Bildrotationen.
+3. **Abgleich der Schlüsselpunkte 🔗:** Die Anwendung gleicht die Schlüsselpunkte zwischen dem hochgeladenen Bild und jedem Datenbankbild ab. Der Prozess umfasst das Finden von Schlüsselpunkten im Datenbankbild, die ähnliche Deskriptoren wie das hochgeladene Bild haben.
+4. **Bewertung der Übereinstimmungen 🏅:** Je mehr Schlüsselpunkte zwischen zwei Bildern übereinstimmen, desto höher ist der Ähnlichkeitswert auf der Grundlage von ORB. Dieser Wert spiegelt wider, wie viele charakteristische Merkmale die Bilder teilen.
 
-2) **_Describing Key Points:_** For each key point detected, ORB generates a unique descriptor that summarizes the key point's characteristics. This descriptor is made rotation-invariant, meaning it describes the key point in a way that's consistent even if the image is rotated.
-
-3) **_Matching Key Points:_** The application then matches key points between the uploaded image and each database image using these descriptors. The matching process involves finding key points in the database image that have descriptors similar to those in the uploaded image.
-
-4) **_Scoring Matches:_** The more key points that match between two images, the higher the score of similarity based on ORB. This score reflects how many distinctive features are shared between the images.
-
-## Combining SSIM and ORB:
-After calculating similarity scores using both SSIM and ORB for each image comparison, Harmony-Image averages these scores to get a final measure of similarity.
-Images from the database are then ranked based on their final similarity scores, and the top 5 most similar images are selected.
-
-## Final Selection of Similar Images:
-The application filters out duplicate URLs to ensure a diverse set of similar images.
- It returns URLs of the top similar images, which can then be presented to the user.
- In essence, your application uses a combination of structural analysis (SSIM) and feature matching (ORB) to find and rank images in your database that are most similar to an image uploaded by the user. This dual approach leverages the strengths of both methods, ensuring a robust and nuanced comparison that goes beyond simple pixel-by-pixel analysis.
+Zusammen bieten die Methoden **SSIM** und **ORB** eine robuste und genaue Möglichkeit, ähnliche Bilder zum hochgeladenen Bild zu finden und zu vergleichen.
