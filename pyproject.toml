@@ -1,33 +1,81 @@
-[tool.poetry]
+[project]
 name = "PicTrace"
-version = "0.8.2"
-description = "🔎 PicTrace is an efficient image matching platform leveraging structural similarity and keypoint algorithms for fast, accurate image searches. It allows direct uploads or URL submissions, quickly scanning a large database to find similar images. With asynchronous processing, PicTrace delivers a smooth and quick visual search experience."
-authors = ["Sviatoslav König <reveni324@gmail.com"]
-
-[tool.poetry.dependencies]
-python = ">=3.10.0,<3.11"
-fastapi = "^0.104.0"
-uvicorn = "0.23.2"
-image = "^1.5.33"
-aiohttp = "^3.9.3"
-numpy = "^1.26.4"
-opencv-python = "^4.9.0.80"
-scikit-image = "^0.22.0"
-tensorflow = "^2.16.1"
-scipy = "^1.13.0"
-beautifulsoup4 = "^4.12.3"
-consultor = "^0.2.0"
-
-[tool.pyright]
-# https://github.com/microsoft/pyright/blob/main/docs/configuration.md
-useLibraryCodeForTypes = true
-exclude = [".cache"]
-
-[tool.ruff]
-# https://beta.ruff.rs/docs/configuration/
-select = ['E', 'W', 'F', 'I', 'B', 'C4', 'ARG', 'SIM']
-ignore = ['W291', 'W292', 'W293']
+version = "1.0.12a"
+description = "🔎 PicTrace is a highly efficient image matching platform that leverages computer vision using OpenCV, deep learning with TensorFlow and the ResNet50 model, asynchronous processing with aiohttp, and the FastAPI web framework for rapid and accurate image search."
+authors = ["Sviatoslav König <reveni324@gmail.com>"]
+license = { text = "Apache" }
+readme = "README.md"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.dependencies]
+fastapi = ">=0.104.0,<0.105.0"
+uvicorn = ">=0.23.2,<0.24.0"
+aiohttp = ">=3.9.3,<4.0.0"
+opencv-python = ">=4.9.0.80,<5.0.0"
+tensorflow = ">=2.16.1,<3.0.0"
+scipy = ">=1.13.0,<2.0.0"
+scikit-learn = ">=1.5.0,<2.0.0"
+boto3 = ">=1.34.140,<2.0.0"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q"
+
+[tool.mypy]
+python_version = "3.8"
+disallow_untyped_calls = true
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W"]
+ignore = ["E501", "W503"]
+
+# Настройки для flake8
+[tool.flake8]
+max-line-length = 88
+ignore = ["E501", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    "*.pyc",
+    "venv",
+    "env"
+]
+
+[tool.coverage.run]
+branch = true
+source = ["src"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+
+[tool.pre-commit]
+repos = [
+  { repo = "https://github.com/pre-commit/mirrors-prettier", rev = "v2.2.1", hooks = ["prettier"] },
+  { repo = "https://github.com/pre-commit/black", rev = "stable", hooks = ["black"] },
+  { repo = "https://github.com/pre-commit/mirrors-isort", rev = "v5.9.3", hooks = ["isort"] },
+  { repo = "https://github.com/pre-commit/mirrors-mypy", rev = "v0.910", hooks = ["mypy"] }
+]
+
+[tool.sphinx]
+project = "PicTrace"
+author = "Sviatoslav König"
+version = "1.0.12a"
+release = "1.0.12a"
+
+[tool.sphinx.html_theme]
+name = "sphinx_rtd_theme"
