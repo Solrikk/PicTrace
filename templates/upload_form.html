@@ -4,20 +4,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upload Image</title>
+  <title>PicTrace</title>
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 
-<body>
   <div class="container">
+    <h1>Hello!</h1>
+    <p>Please upload a photo to search for similar images.</p>
     <form id="upload-form">
-      <input type="file" id="file-input" name="file">
+      <input type="file" id="file-input" name="file" accept="image/*" required>
       <button type="submit">Upload</button>
       <div id="loading" style="display: none;">Loading...</div>
     </form>
     <div id="results"></div>
   </div>
+
   <script src="/static/scripts.js"></script>
+
 </body>
 
 </html>
