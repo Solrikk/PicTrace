@@ -3,12 +3,9 @@ from fastapi.responses import JSONResponse, FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 import hashlib
 import os
-from image_utils import find_similar_images
-from database import init_db, add_image_to_db
+from image_utils import find_similar_images, s3_client, S3_BUCKET_NAME
 
 app = FastAPI()
-
-init_db()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
@@ -28,7 +25,9 @@ async def create_upload_file(file: UploadFile = File(...)):
   os.makedirs(os.path.dirname(file_path), exist_ok=True)
   with open(file_path, 'wb') as f:
     f.write(contents)
-  add_image_to_db(file_path, image_hash)
+
+  s3_client.upload_file(file_path, S3_BUCKET_NAME, f'{image_hash}.jpg')
+
   similar_images = await find_similar_images(file_path)
 
   response_data = {
