@@ -1,13 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
+
 body,
 html {
-  height: 100%;
   margin: 0;
+  padding: 0;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f4f9;
-  color: #333;
+  font-family: 'Montserrat', sans-serif;
+  display: grid;
+  place-content: center;
+  background-color: #39373e;
+}
+
+.canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .container {
@@ -20,19 +32,26 @@ html {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   max-width: 800px;
   width: 100%;
+  z-index: 1;
+}
+
+h1,
+p {
+  color: black;
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+p {
+  font-size: 18px;
 }
 
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  border-radius: 10px;
-  background: #ffffff;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  width: 100%;
-  margin: 20px;
+  margin-top: 20px;
 }
 
 input[type="file"],
@@ -58,14 +77,25 @@ button:focus {
 
 button {
   cursor: pointer;
-  background-color: #6a5acd;
-  color: white;
+  background-color: blueviolet;
+  color: whitesmoke;
   border: none;
-  transition: background-color 0.3s, transform 0.2s;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 18px;
+  width: 200px;
 }
 
 button:hover {
-  background-color: #483d8b;
+  background-color: darkviolet;
+  transform: translateY(-2px);
+}
+
+#loading {
+  display: none;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #000000;
+  font-weight: bold;
 }
 
 #results {
@@ -90,9 +120,47 @@ button:hover {
   margin-bottom: 10px;
 }
 
-#loading {
-  display: none;
-  margin-top: 10px;
+#contactInfo {
+  margin-top: 20px;
+  font-size: 14px;
+  color: whitesmoke;
+}
+
+.header {
+  width: 100%;
+  background-color: #333;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.user-panel {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.user-panel a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
   font-size: 16px;
-  color: #6a5acd;
+}
+
+.user-panel a:hover {
+  background-color: #444;
+}
+
+canvas#neuro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  opacity: .95;
 }
