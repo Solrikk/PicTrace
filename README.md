@@ -77,7 +77,9 @@ To work with PicTrace, ensure you have the following components installed:
 
 _First, get a copy of the PicTrace source code on your local machine. Use the following commands to clone the repository from GitHub:_
 
-```git clone https://github.com/solrikk/PicTrace.git```
+```bash
+git clone https://github.com/solrikk/PicTrace.git
+```
 
 ![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/shell-PicTrrace.gif)
 
@@ -96,16 +98,16 @@ source venv/bin/activate
 ```
 
 3. **_Install dependencies:_** ✔️
- - _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
+- _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
 ```bash
 pip install -r requirements.txt
 ```
-### _Launching the application:_
-1. **_Start the server:_**
+### _Start the server:_
 ```bash
-python app.py
+uvicorn main:app --host 0.0.0.0 --port 8000
 ```
-`After starting the server, the application will be available at http://localhost:5000 .`
+
+After starting the server, the application will be available at **http://localhost:8000.
 
 -----------------
 
