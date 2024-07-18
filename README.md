@@ -79,23 +79,23 @@ _First, get a copy of the PicTrace source code on your local machine. Use the fo
 
 ```bash
 git clone https://github.com/solrikk/PicTrace.git
+cd PicTrace
 ```
 
 ![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/shell-PicTrrace.gif)
 
-2. **_Set up a virtual environment:_** ✔️
+### Steps to Set Up PicTrace:
+2. **Set up a virtual environment:** ✔️
 
-_A virtual environment is crucial for isolating the project dependencies from your global Python setup, preventing version conflicts among different projects. To create and activate a virtual environment, execute the following commands:._
+_A virtual environment is crucial for isolating the project dependencies from your global Python setup, preventing version conflicts among different projects. To create and activate a virtual environment, execute the following commands:_
 
-To create and activate a virtual environment, follow these commands:
+1. **Create the virtual environment:**
 
-```bash
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# Linux и MacOS
-source venv/bin/activate
-```
+   Run the following command to create a virtual environment named `venv` in the root of your project directory: **python -m venv venv**
+  - Execute the following command to activate the virtual environment on Windows: **venv\Scripts\activate**
+  - Execute the following command to activate the virtual environment on Linux and macOS: **source venv/bin/activate**
+
+Once the virtual environment is activated, you'll notice that your terminal prompt is prefixed with (venv), indicating that all the Python packages you install will now be isolated to this environment.
 
 3. **_Install dependencies:_** ✔️
 - _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
