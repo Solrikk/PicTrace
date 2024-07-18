@@ -84,12 +84,9 @@ cd PicTrace
 
 ![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/shell-PicTrrace.gif)
 
-### Steps to Set Up PicTrace:
-2. **Set up a virtual environment:** ✔️
+2. **Create the virtual environment:** ✔️
 
 _A virtual environment is crucial for isolating the project dependencies from your global Python setup, preventing version conflicts among different projects. To create and activate a virtual environment, execute the following commands:_
-
-1. **Create the virtual environment:**
 
    Run the following command to create a virtual environment named `venv` in the root of your project directory: **python -m venv venv**
   - Execute the following command to activate the virtual environment on Windows: **venv\Scripts\activate**
