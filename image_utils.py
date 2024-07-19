@@ -7,7 +7,8 @@ import asyncio
 from concurrent.futures import ThreadPoolExecutor
 from classification_utils import (is_architecture_image, is_aviation_image,
                                   is_background_image, is_animal_image,
-                                  is_people_image, extract_features_batch)
+                                  is_people_image, is_flower_image,
+                                  extract_features_batch)
 from sklearn.metrics.pairwise import cosine_similarity
 
 S3_BUCKET_NAME = 'YOUR_S3_BUCKET_NAME'
@@ -89,6 +90,7 @@ async def find_similar_images(file_path):
   is_background = await is_background_image(file_path)
   is_animal = await is_animal_image(file_path)
   is_people = await is_people_image(file_path)
+  is_flower = await is_flower_image(file_path)
 
   if is_architecture:
     folder = "Architecture/"
@@ -100,6 +102,8 @@ async def find_similar_images(file_path):
     folder = "Animals/"
   elif is_people:
     folder = "People/"
+  elif is_flower:
+    folder = "Flowers/"
   else:
     folder = ''
 
