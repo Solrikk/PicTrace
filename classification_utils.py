@@ -1,30 +1,17 @@
 import cv2
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
-from tensorflow.keras.applications.resnet50 import ResNet50, preprocess_input
+from tensorflow.keras.applications.resnet50 import preprocess_input, ResNet50
 from tensorflow.keras.models import Model
 import tensorflow as tf
 
-physical_devices = tf.config.list_physical_devices('GPU')
-if physical_devices:
-  try:
-    tf.config.experimental.set_memory_growth(physical_devices[0], True)
-    print(f'{len(physical_devices)} GPUs are available')
-  except:
-    print("Error setting up GPU memory growth")
-
-base_model = ResNet50(weights='imagenet', include_top=False, pooling='avg')
-model = Model(inputs=base_model.input, outputs=base_model.output)
+model = ResNet50(weights='imagenet', include_top=False, pooling='avg')
 
 
-def extract_features_batch(img_list, batch_size=32):
-  img_array = np.array(
-      [cv2.resize(img, (224, 224)) for img in img_list if img is not None])
-  if len(img_array) == 0:
-    return np.array([])
-  img_array = preprocess_input(img_array)
-  with tf.device('/GPU:0'):
-    features = model.predict(img_array, batch_size=batch_size)
+def extract_features_batch(images):
+  preprocessed_batch = np.array(
+      [preprocess_input(np.array(img)) for img in images])
+  features = model.predict(preprocessed_batch)
   return features
 
 
@@ -66,3 +53,8 @@ async def is_animal_image(image_path):
 async def is_people_image(image_path):
   people_features = extract_dummy_features(200)
   return await is_category_image(image_path, people_features)
+
+
+async def is_flower_image(image_path):
+  flower_features = extract_dummy_features(100)
+  return await is_category_image(image_path, flower_features)
