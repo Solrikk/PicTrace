@@ -17,6 +17,27 @@
 
 _**PicTrace**_ is a highly efficient image matching platform that leverages computer vision using _**OpenCV**_, deep learning with _**TensorFlow**_ and the _**ResNet50 model**_, asynchronous processing with _**aiohttp**_, and the _**FastAPI**_ web framework for rapid and accurate image search. PicTrace allows users to upload images directly or provide URLs, quickly scanning a vast database to find similar images. Asynchronous processing ensures smooth and fast visual search, enhancing the user experience.
 
+-----------------
+## Getting Started with PicTrace: 🚀
+_PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
+
+### Prerequisites
+To work with PicTrace, ensure you have the following components installed:
+
+- **Python 3.8 or higher:** PicTrace is built with Python. You can download the latest version of Python from [the official website](https://www.python.org/downloads/).
+- **pip:** The package installer for Python, which comes pre-installed with Python 3.4 and higher. We'll use pip to install the necessary dependencies.
+- **Git:** Required to clone the PicTrace repository. If Git is not already installed on your system, follow the installation instructions on [Git's official site](https://git-scm.com/downloads).
+
+| **Operating System** | **Commands for Setup and Launch** |
+|----------------------|----------------------------------|
+| **Linux**            | ```bash sudo git clone https://github.com/Solrikk/PicTrace.git cd PicTrace sudo pip install poetry sudo poetry install sudo poetry run python3 main.py ``` |
+| **macOS**            | ```bash sudo git clone https://github.com/Solrikk/PicTrace.git cd PicTrace sudo pip install poetry sudo poetry install sudo poetry run python3 main.py ``` |
+| **Windows**          | Open Command Prompt as Administrator and run: ```bash git clone https://github.com/Solrikk/PicTrace.git cd PicTrace pip install poetry poetry install poetry run python main.py ``` |
+
+![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/shell-PicTrrace.gif)
+
+-----------------
+
 # Online Demos:
 
 Curious to see how _PicTrace_ works in real-time? 
@@ -59,52 +80,6 @@ Explore my online demo and witness the capabilities of my image matching platfor
   - **`Image Hashing:`** Generating unique hashes for images to ensure unique identification and efficient management.
   - **`Feature Extraction with ResNet50:`** Utilizes the ResNet50 model for extracting robust feature representations from images.
   - **`Cosine Similarity:`** Measuring similarity between images using cosine similarity on feature vectors extracted from the images.
-
------------------
-
-## Getting Started with PicTrace: 🚀
-_PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
-
-### Prerequisites
-To work with PicTrace, ensure you have the following components installed:
-
-- **Python 3.8 or higher:** PicTrace is built with Python. You can download the latest version of Python from [the official website](https://www.python.org/downloads/).
-- **pip:** The package installer for Python, which comes pre-installed with Python 3.4 and higher. We'll use pip to install the necessary dependencies.
-- **Git:** Required to clone the PicTrace repository. If Git is not already installed on your system, follow the installation instructions on [Git's official site](https://git-scm.com/downloads).
-
-### Steps to Set Up PicTrace:
-1. **Clone the repository**
-
-_First, get a copy of the PicTrace source code on your local machine. Use the following commands to clone the repository from GitHub:_
-
-```bash
-git clone https://github.com/solrikk/PicTrace.git
-cd PicTrace
-```
-
-![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/shell-PicTrrace.gif)
-
-2. **Create the virtual environment:** ✔️
-
-_A virtual environment is crucial for isolating the project dependencies from your global Python setup, preventing version conflicts among different projects. To create and activate a virtual environment, execute the following commands:_
-
-   Run the following command to create a virtual environment named `venv` in the root of your project directory: **python -m venv venv**
-  - Execute the following command to activate the virtual environment on Windows: **venv\Scripts\activate**
-  - Execute the following command to activate the virtual environment on Linux and macOS: **source venv/bin/activate**
-
-Once the virtual environment is activated, you'll notice that your terminal prompt is prefixed with (venv), indicating that all the Python packages you install will now be isolated to this environment.
-
-3. **_Install dependencies:_** ✔️
-- _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
-```bash
-pip install -r requirements.txt
-```
-### _Start the server:_
-```bash
-uvicorn main:app --host 0.0.0.0 --port 8000
-```
-
-After starting the server, the application will be available at **http://localhost:8000.
 
 -----------------
 
