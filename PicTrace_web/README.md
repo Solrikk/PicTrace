@@ -14,3 +14,5 @@
 -----------------
 
 # PicTrace_web 🔍
+
+**_PicTrace_** is a highly efficient image matching platform that leverages computer vision using **_OpenCV_**, deep learning with **_TensorFlow_** and the **_ResNet50 model_**, asynchronous processing with **_aiohttp_**, and **_Selenium_** for browser automation. UTrace allows users to upload images directly or provide URLs, quickly scanning a vast database to find similar images. Asynchronous processing ensures smooth and fast visual search, enhancing the user experience.
