@@ -1,0 +1,12 @@
+tensorflow
+numpy
+requests
+Pillow
+selenium
+webdriver-manager
+beautifulsoup4
+spacy
+dateparser
+pandas
+openpyxl
+scikit-learn
