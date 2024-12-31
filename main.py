@@ -11,7 +11,7 @@ from tkinter import ttk
 ZIP_PATH = 'photos.zip'
 MODEL_PATH = 'resnet50_local.h5'
 TOP_K = 5
-SIMILARITY_THRESHOLD = 0.8
+SIMILARITY_THRESHOLD = 0.6
 model = load_model(MODEL_PATH)
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
