@@ -1,5 +1,6 @@
 import os
 import zipfile
+import webbrowser
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model
@@ -74,41 +75,118 @@ def find_similar_images(uploaded_image: Image.Image):
             similar_images.append((saved_image_name, sim_val))
     return similar_images
 
-class SimilarImageApp:
+class PicTraceApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Поиск похожих изображений")
-        self.root.geometry("900x600")
+        self.root.title("PicTrace")
+        self.root.geometry("1000x700")
 
         style = ttk.Style()
         style.theme_use("clam")
-        style.configure(".", font=("Helvetica", 10))
-        style.configure("TFrame", background="#2b2b2b")
-        style.configure("TLabel", background="#2b2b2b", foreground="#ffffff", font=("Helvetica", 11))
-        style.configure("TButton", background="#ff595e", foreground="#ffffff", font=("Helvetica", 12, "bold"))
-        style.map("TButton", background=[("active", "#ff7b84")])
+
+        style.configure(
+            ".",
+            font=("Helvetica", 10),
+            background="#3c3f41"
+        )
+        style.configure(
+            "TFrame",
+            background="#3c3f41"
+        )
+        style.configure(
+            "TLabel",
+            background="#3c3f41",
+            foreground="#ffffff",
+            font=("Helvetica", 11)
+        )
+        style.configure(
+            "TButton",
+            background="#5294e2",
+            foreground="#ffffff",
+            font=("Helvetica", 12, "bold")
+        )
+        style.map(
+            "TButton",
+            background=[("active", "#6aa5ec")]
+        )
+        style.configure(
+            "MyLabelframe.TLabelframe",
+            background="#3c3f41",
+            borderwidth=2
+        )
+        style.configure(
+            "MyLabelframe.TLabelframe.Label",
+            background="#3c3f41",
+            foreground="#ffffff",
+            font=("Helvetica", 12, "bold")
+        )
 
         self.main_frame = ttk.Frame(self.root)
         self.main_frame.pack(fill=tk.BOTH, expand=True)
 
-        self.title_label = ttk.Label(self.main_frame, text="Поиск похожих изображений", font=("Helvetica", 16, "bold"))
+        self.title_label = ttk.Label(
+            self.main_frame,
+            text="PicTrace - Find Similar Images",
+            font=("Helvetica", 18, "bold")
+        )
         self.title_label.pack(pady=20)
 
         self.button_frame = ttk.Frame(self.main_frame)
         self.button_frame.pack(pady=10)
 
-        self.upload_button = ttk.Button(self.button_frame, text="Загрузить изображение", command=self.on_upload_button)
+        self.upload_button = ttk.Button(
+            self.button_frame,
+            text="Select Image",
+            command=self.on_upload_button
+        )
         self.upload_button.pack()
 
-        self.result_label = ttk.Label(self.main_frame, text="Результаты появятся ниже", anchor="center")
+        self.result_label = ttk.Label(
+            self.main_frame,
+            text="Results will appear here",
+            anchor="center"
+        )
         self.result_label.pack(pady=10)
 
-        self.preview_frame = ttk.Frame(self.main_frame)
-        self.preview_frame.pack(pady=10)
+        self.preview_labelframe = ttk.Labelframe(
+            self.main_frame,
+            text="Similar Images (Threshold: 60%)",
+            style="MyLabelframe.TLabelframe"
+        )
+        self.preview_labelframe.pack(pady=10, fill=tk.BOTH, expand=True)
+
+        self.preview_frame = ttk.Frame(self.preview_labelframe)
+        self.preview_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+
+        self.footer_frame = ttk.Frame(self.main_frame)
+        self.footer_frame.pack(side=tk.BOTTOM, pady=5)
+
+        self.footer_label = ttk.Label(
+            self.footer_frame,
+            text="Created by Svyatoslav Köning aka Solrikk",
+            anchor="center",
+            font=("Helvetica", 8),
+            foreground="#aaaaaa"
+        )
+        self.footer_label.pack(side=tk.LEFT)
+
+        self.footer_email_label = ttk.Label(
+            self.footer_frame,
+            text="reveni324@gmail.com",
+            anchor="center",
+            font=("Helvetica", 8, "underline"),
+            foreground="#aaaaaa",
+            cursor="hand2"
+        )
+        self.footer_email_label.pack(side=tk.LEFT, padx=10)
+        self.footer_email_label.bind("<Button-1>", self.on_email_click)
+
+    def on_email_click(self, event):
+        webbrowser.open("mailto:reveni324@gmail.com")
 
     def on_upload_button(self):
         file_path = filedialog.askopenfilename(
-            title="Выберите изображение",
+            title="Select an image",
             filetypes=[("Images", "*.jpg *.jpeg *.png *.bmp *.gif")]
         )
         if not file_path:
@@ -116,23 +194,27 @@ class SimilarImageApp:
         try:
             uploaded_image = Image.open(file_path)
         except UnidentifiedImageError:
-            messagebox.showerror("Ошибка", "Не удалось открыть файл как изображение")
+            messagebox.showerror("Error", "File is not a valid image")
             return
         except Exception as e:
-            messagebox.showerror("Ошибка", str(e))
+            messagebox.showerror("Error", str(e))
             return
 
-        self.result_label.config(text="Идёт поиск похожих изображений, подождите...")
+        self.result_label.config(
+            text="Searching for similar images (threshold 60%)..."
+        )
         self.root.update_idletasks()
 
         similar_images = find_similar_images(uploaded_image)
         if similar_images:
-            result_text = "Похожие изображения (схожесть ≥ 80%):\n"
+            result_text = "Similar images found (similarity ≥ 60%):\n"
             for img_name, sim_val in similar_images:
-                result_text += f"- {img_name} (схожесть: {sim_val:.2f})\n"
+                result_text += f"- {img_name} (similarity: {sim_val:.2f})\n"
             self.result_label.config(text=result_text)
         else:
-            self.result_label.config(text="Подходящих изображений не найдено.")
+            self.result_label.config(
+                text="No matching images found."
+            )
 
         for widget in self.preview_frame.winfo_children():
             widget.destroy()
@@ -140,13 +222,15 @@ class SimilarImageApp:
         for img_name, sim_val in similar_images:
             full_path = os.path.join(UPLOAD_FOLDER, img_name)
             if os.path.exists(full_path):
-                img_pil = Image.open(full_path).resize((120, 120), Image.Resampling.LANCZOS)
+                img_pil = Image.open(full_path).resize(
+                    (150, 150), Image.Resampling.LANCZOS
+                )
                 img_tk = ImageTk.PhotoImage(img_pil)
                 preview_label = ttk.Label(self.preview_frame, image=img_tk)
                 preview_label.image = img_tk
-                preview_label.pack(side=tk.LEFT, padx=5)
+                preview_label.pack(side=tk.LEFT, padx=10, pady=5)
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = SimilarImageApp(root)
+    app = PicTraceApp(root)
     root.mainloop()
