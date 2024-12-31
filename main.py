@@ -3,23 +3,17 @@ import zipfile
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model
-from fastapi import FastAPI, UploadFile, File, Request
-from fastapi.responses import HTMLResponse
-from fastapi.templating import Jinja2Templates
-from fastapi.staticfiles import StaticFiles
-from io import BytesIO
-from PIL import Image, UnidentifiedImageError
-
-app = FastAPI()
-
-model = load_model('resnet50_local.h5')
-templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
-app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+from PIL import Image, ImageTk, UnidentifiedImageError
+import tkinter as tk
+from tkinter import filedialog, messagebox
+from tkinter import ttk
 
 ZIP_PATH = 'photos.zip'
+MODEL_PATH = 'resnet50_local.h5'
+TOP_K = 5
+SIMILARITY_THRESHOLD = 0.8
+model = load_model(MODEL_PATH)
 UPLOAD_FOLDER = 'uploads'
-
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def preprocess_image(image: Image.Image):
@@ -36,8 +30,12 @@ def get_image_features(image: Image.Image):
     features = model.predict(preprocessed_image)
     return features
 
-def compare_images(image1_features, image2_features):
-    return np.linalg.norm(image1_features - image2_features)
+def cosine_similarity(features1, features2):
+    f1 = features1.flatten()
+    f2 = features2.flatten()
+    num = np.dot(f1, f2)
+    den = np.linalg.norm(f1) * np.linalg.norm(f2)
+    return num / (den + 1e-9)
 
 def get_images_from_zip():
     with zipfile.ZipFile(ZIP_PATH, 'r') as archive:
@@ -46,50 +44,109 @@ def get_images_from_zip():
 
 def extract_and_save_image(archive, image_key):
     with archive.open(image_key) as image_file:
-        image = Image.open(image_file)
+        image = Image.open(image_file).convert('RGB')
         safe_image_name = os.path.basename(image_key)
         image_path = os.path.join(UPLOAD_FOLDER, safe_image_name)
         image.save(image_path)
         return safe_image_name
 
-@app.get("/", response_class=HTMLResponse)
-async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
-
-@app.post("/find_similar/")
-async def find_similar_images(file: UploadFile = File(...)):
-    uploaded_image = Image.open(BytesIO(await file.read()))
+def find_similar_images(uploaded_image: Image.Image):
     uploaded_image_features = get_image_features(uploaded_image)
-    images = get_images_from_zip()
+    image_keys = get_images_from_zip()
     similarities = []
-
     with zipfile.ZipFile(ZIP_PATH, 'r') as archive:
-        for image_key in images:
+        for image_key in image_keys:
             try:
                 with archive.open(image_key) as image_file:
-                    image = Image.open(image_file)
-                    image = image.convert('RGB')
-                    image_features = get_image_features(image)
-                    similarity = compare_images(uploaded_image_features, image_features)
-                    similarities.append((image_key, similarity))
+                    compare_img = Image.open(image_file).convert('RGB')
+                    compare_img_features = get_image_features(compare_img)
+                    sim_val = cosine_similarity(uploaded_image_features, compare_img_features)
+                    if sim_val >= SIMILARITY_THRESHOLD:
+                        similarities.append((image_key, sim_val))
             except UnidentifiedImageError:
-                print(f"Cannot identify image file: {image_key}")
-            except Exception as e:
-                print(f"Error processing image {image_key}: {e}")
-
-    similarities.sort(key=lambda x: x[1])
-    similar_images = []
-
-    with zipfile.ZipFile(ZIP_PATH, 'r') as archive:
-        for image_key, _ in similarities[:5]:
+                pass
+            except Exception:
+                pass
+        similarities.sort(key=lambda x: x[1], reverse=True)
+        similar_images = []
+        for image_key, sim_val in similarities[:TOP_K]:
             saved_image_name = extract_and_save_image(archive, image_key)
-            similar_images.append(saved_image_name)
+            similar_images.append((saved_image_name, sim_val))
+    return similar_images
 
-    return {
-        'filename': file.filename,
-        'similar_images': similar_images
-    }
+class SimilarImageApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Поиск похожих изображений")
+        self.root.geometry("900x600")
+
+        style = ttk.Style()
+        style.theme_use("clam")
+        style.configure(".", font=("Helvetica", 10))
+        style.configure("TFrame", background="#2b2b2b")
+        style.configure("TLabel", background="#2b2b2b", foreground="#ffffff", font=("Helvetica", 11))
+        style.configure("TButton", background="#ff595e", foreground="#ffffff", font=("Helvetica", 12, "bold"))
+        style.map("TButton", background=[("active", "#ff7b84")])
+
+        self.main_frame = ttk.Frame(self.root)
+        self.main_frame.pack(fill=tk.BOTH, expand=True)
+
+        self.title_label = ttk.Label(self.main_frame, text="Поиск похожих изображений", font=("Helvetica", 16, "bold"))
+        self.title_label.pack(pady=20)
+
+        self.button_frame = ttk.Frame(self.main_frame)
+        self.button_frame.pack(pady=10)
+
+        self.upload_button = ttk.Button(self.button_frame, text="Загрузить изображение", command=self.on_upload_button)
+        self.upload_button.pack()
+
+        self.result_label = ttk.Label(self.main_frame, text="Результаты появятся ниже", anchor="center")
+        self.result_label.pack(pady=10)
+
+        self.preview_frame = ttk.Frame(self.main_frame)
+        self.preview_frame.pack(pady=10)
+
+    def on_upload_button(self):
+        file_path = filedialog.askopenfilename(
+            title="Выберите изображение",
+            filetypes=[("Images", "*.jpg *.jpeg *.png *.bmp *.gif")]
+        )
+        if not file_path:
+            return
+        try:
+            uploaded_image = Image.open(file_path)
+        except UnidentifiedImageError:
+            messagebox.showerror("Ошибка", "Не удалось открыть файл как изображение")
+            return
+        except Exception as e:
+            messagebox.showerror("Ошибка", str(e))
+            return
+
+        self.result_label.config(text="Идёт поиск похожих изображений, подождите...")
+        self.root.update_idletasks()
+
+        similar_images = find_similar_images(uploaded_image)
+        if similar_images:
+            result_text = "Похожие изображения (схожесть ≥ 80%):\n"
+            for img_name, sim_val in similar_images:
+                result_text += f"- {img_name} (схожесть: {sim_val:.2f})\n"
+            self.result_label.config(text=result_text)
+        else:
+            self.result_label.config(text="Подходящих изображений не найдено.")
+
+        for widget in self.preview_frame.winfo_children():
+            widget.destroy()
+
+        for img_name, sim_val in similar_images:
+            full_path = os.path.join(UPLOAD_FOLDER, img_name)
+            if os.path.exists(full_path):
+                img_pil = Image.open(full_path).resize((120, 120), Image.Resampling.LANCZOS)
+                img_tk = ImageTk.PhotoImage(img_pil)
+                preview_label = ttk.Label(self.preview_frame, image=img_tk)
+                preview_label.image = img_tk
+                preview_label.pack(side=tk.LEFT, padx=5)
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    root = tk.Tk()
+    app = SimilarImageApp(root)
+    root.mainloop()
