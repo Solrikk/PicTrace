@@ -18,14 +18,14 @@
 _**PicTrace**_ is a highly efficient desktop application for image matching that leverages computer vision using _**OpenCV**_, deep learning with _**TensorFlow**_ and the _**ResNet50 model**_, and asynchronous processing with _**aiohttp**_. Built with a user-friendly graphical interface using _**Tkinter**_, PicTrace allows users to upload images directly from their local machine, quickly scanning a vast database to find similar images. The application ensures smooth and fast visual search, enhancing the user experience without the need for a web server.
 
 -----------------
-## Getting Started with PicTrace: 🚀
+## Getting Started with PicTrace:
 _PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
 | **Operating System** | **Commands for Setup and Launch** |
 |----------------------|----------------------------------|
-| **Linux**            | ```bash sudo git clone https://github.com/Solrikk/PicTrace.git cd PicTrace sudo pip install poetry sudo poetry install sudo poetry run python3 main.py ``` |
-| **macOS**            | ```bash sudo git clone https://github.com/Solrikk/PicTrace.git cd PicTrace sudo pip install poetry sudo poetry install sudo poetry run python3 main.py ``` |
-| **Windows**          | Open Command Prompt as Administrator and run: ```bash git clone https://github.com/Solrikk/PicTrace.git cd PicTrace pip install poetry poetry install poetry run python main.py ``` |
+| 🐧**Linux**            | ```bash sudo git clone https://github.com/Solrikk/PicTrace.git cd PicTrace sudo pip install poetry sudo poetry install sudo poetry run python3 main.py ``` |
+| 🍎**macOS**            | ```bash sudo git clone https://github.com/Solrikk/PicTrace.git cd PicTrace sudo pip install poetry sudo poetry install sudo poetry run python3 main.py ``` |
+| 🪟**Windows**          | Open Command Prompt as Administrator and run: ```bash git clone https://github.com/Solrikk/PicTrace.git cd PicTrace pip install poetry poetry install poetry run python main.py ``` |
 
 ![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/shell-PicTrrace.gif)
 
@@ -58,7 +58,7 @@ Explore my online demo and witness the capabilities of my image matching platfor
 10. [Final Selection of Similar Images](#final-selection-of-similar-images)
 
 ## Features: ⚡
-- **_Supports Multiple Technologies_** 💼
+- **_Supports Multiple Technologies_** 
 
     _**Python**_ with these powerful libraries:
   - **`Tkinter:`** Provides a user-friendly graphical interface for the application, allowing users to interact with PicTrace seamlessly. [Details](https://docs.python.org/3/library/tkinter.html)
@@ -68,7 +68,7 @@ Explore my online demo and witness the capabilities of my image matching platfor
   - **`scikit-image:`** Particularly, the `structural_similarity` (SSIM) function from this library is employed to compare the similarity of images, enhancing your application's accuracy in image matching. [Details](https://scikit-image.org/docs/stable/auto_examples/transform/plot_ssim.html)
   - **`hashlib:`** Utilized for generating unique hashes for each image, ensuring every image can be uniquely identified and efficiently managed. [More Info](https://docs.python.org/3/library/hashlib.html)
 
-- **_Supports Multiple Indexes_** 🗂️
+- **_Supports Multiple Indexes_** 🗂
 
   - **`Image Hashing:`** Generating unique hashes for images to ensure unique identification and efficient management.
   - **`Feature Extraction with ResNet50:`** Utilizes the ResNet50 model for extracting robust feature representations from images.
@@ -76,7 +76,7 @@ Explore my online demo and witness the capabilities of my image matching platfor
 
 -----------------
 
-## Results: 👨‍💻
+## Results: 
 _For complex images with many details and possible presence of noise or distortions, even similarity at the level of **20%** and above can indicate the presence of significant common features. In such cases, a low percentage of similarity may be expected due to the complexity of the task and the limitations of the algorithm._
 |Image 1 vs Image 2|Similar|Image|
 |:-:|:-:|:-:|
@@ -84,7 +84,7 @@ _For complex images with many details and possible presence of noise or distorti
 |<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_2.png" alt="" width="500"/>|**25,44%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/ryan-yao.jpg" alt="" width="300"/>|
 |<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_3.png" alt="" width="500"/>|**44,16%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/taro-ohtani.jpg" alt="" width="300"/>|
 
-## Examples: 📋
+## Examples: 
 (**_code with comments_**)
 
 ```Python 
@@ -119,7 +119,7 @@ async def find_similar_images(file_path):
 
 -----------------
 
-## _OpenCV (Open Source Computer Vision Library) 🌐:_
+## _OpenCV (Open Source Computer Vision Library):_
 
 <img src="https://github.com/Solrikk/PicTrace/blob/main/assets/OpenCV%20-%20result/parrot.png" width="95%" /> 
 
@@ -131,17 +131,17 @@ Key features of **OpenCV** include:
 3. **Object detection 🔍**: Includes algorithms for detecting edges, corners, and other key points, which helps in identifying and tracking specific objects in a frame.
 4. **Object recognition 👁️**: Offers tools for recognizing faces, gestures, and other objects in images and videos, which is key for many computer vision applications.
 
-## Neural Network Model (ResNet50) 🧠:
+## Neural Network Model (ResNet50):
 
 ![image](https://github.com/Solrikk/PicTrace/assets/70236693/d47bd022-8a05-48fc-b6c8-147ec99520ce)
 
 
 The **ResNet50** (Residual Network) model is one of the most popular and powerful deep learning architectures for image classification and feature extraction tasks. Your neural network model **ResNet50** provides the following advantages:
 
-1. **Deep residual networks 🏗️**: Uses residual networks to ease the training of deep neural networks, allowing for the construction of very deep architectures without the risk of vanishing gradients.
-2. **Pre-trained weights 🎓**: The model comes with pre-trained weights on the ImageNet dataset, which can significantly speed up training and improve accuracy in image classification tasks.
-3. **Feature extraction 🔑**: The model can be used to extract features from images, which is useful for tasks related to cognitive data analysis and machine learning.
-4. **Flexibility 🚀**: The model can be used for both classification and the task of extracting and comparing image features, which is suitable for your application.
+1. **Deep residual networks**: Uses residual networks to ease the training of deep neural networks, allowing for the construction of very deep architectures without the risk of vanishing gradients.
+2. **Pre-trained weights**: The model comes with pre-trained weights on the ImageNet dataset, which can significantly speed up training and improve accuracy in image classification tasks.
+3. **Feature extraction**: The model can be used to extract features from images, which is useful for tasks related to cognitive data analysis and machine learning.
+4. **Flexibility**: The model can be used for both classification and the task of extracting and comparing image features, which is suitable for your application.
 
 Together, **OpenCV** and **ResNet50** can be used to create powerful computer vision applications that can analyze visual data and perform complex tasks, such as automatic object recognition and image classification.
 
