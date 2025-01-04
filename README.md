@@ -17,10 +17,7 @@
 
 _**PicTrace**_ is a highly efficient desktop application for image matching that leverages computer vision using _**OpenCV**_, deep learning with _**TensorFlow**_ and the _**ResNet50 model**_, and asynchronous processing with _**aiohttp**_. Built with a user-friendly graphical interface using _**Tkinter**_, PicTrace allows users to upload images directly from their local machine, quickly scanning a vast database to find similar images. The application ensures smooth and fast visual search, enhancing the user experience without the need for a web server.
 
------------------
 ## Getting Started with PicTrace:
-_PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
-
 | **Operating System** | **Commands for Setup and Launch** |
 |----------------------|----------------------------------|
 | 🐧**Linux**            | ```bash sudo git clone https://github.com/Solrikk/PicTrace.git cd PicTrace sudo pip install poetry sudo poetry install sudo poetry run python3 main.py ``` |
