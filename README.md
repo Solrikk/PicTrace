@@ -21,13 +21,6 @@ _**PicTrace**_ is a highly efficient desktop application for image matching that
 ## Getting Started with PicTrace: 🚀
 _PicTrace is a powerful image tracing and comparison tool designed to streamline your development process. Follow these steps to set up your environment and launch the application successfully._
 
-### Prerequisites
-To work with PicTrace, ensure you have the following components installed:
-
-- **Python 3.8 or higher:** PicTrace is built with Python. You can download the latest version of Python from [the official website](https://www.python.org/downloads/).
-- **pip:** The package installer for Python, which comes pre-installed with Python 3.4 and higher. We'll use pip to install the necessary dependencies.
-- **Git:** Required to clone the PicTrace repository. If Git is not already installed on your system, follow the installation instructions on [Git's official site](https://git-scm.com/downloads).
-
 | **Operating System** | **Commands for Setup and Launch** |
 |----------------------|----------------------------------|
 | **Linux**            | ```bash sudo git clone https://github.com/Solrikk/PicTrace.git cd PicTrace sudo pip install poetry sudo poetry install sudo poetry run python3 main.py ``` |
