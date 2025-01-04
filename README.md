@@ -28,32 +28,6 @@ _**PicTrace**_ is a highly efficient desktop application for image matching that
 
 -----------------
 
-# Online Demos:
-
-Curious to see how _PicTrace_ works in real-time? 
-
-Explore my online demo and witness the capabilities of my image matching platform.
-
-[Online Demo](https://PicTrace.replit.app) - **Give it a try and see for yourself!**
-
-![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/Pictrace.gif)
-
-## Table of Contents:
-1. [Features ⚡](#features-⚡)
-2. [Getting Started with PicTrace 🚀](#getting-started-with-pictrace-🚀)
-   - [Prerequisites](#prerequisites)
-   - [Steps to Set Up PicTrace](#steps-to-set-up-pictrace)
-   - [Launching the application](#launching-the-application)
-3. [Results: 👨‍💻](#results-👨‍💻)
-4. [Examples: 📋](#examples-📋)
-   - [Code with Comments](#code-with-comments)
-5. [How SSIM Works in PicTrace](#how-ssim-works-in-pictrace)
-6. [How ORB Works in PicTrace](#how-orb-works-in-pictrace)
-7. [Combining SSIM and ORB](#combining-ssim-and-orb)
-8. [OpenCV (Open Source Computer Vision Library) 🌐](#opencv-open-source-computer-vision-library-🌐)
-9. [Neural Network Model (ResNet50) 🧠](#neural-network-model-resnet50-🧠)
-10. [Final Selection of Similar Images](#final-selection-of-similar-images)
-
 ## Features: ⚡
 - **_Supports Multiple Technologies_** 
 
@@ -72,6 +46,14 @@ Explore my online demo and witness the capabilities of my image matching platfor
   - **`Cosine Similarity:`** Measuring similarity between images using cosine similarity on feature vectors extracted from the images.
 
 -----------------
+
+# Demos:
+
+Curious to see how _PicTrace_ works in real-time? 
+
+**Give it a try and see for yourself!**
+
+![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/Pictrace.gif)
 
 ## Results: 
 _For complex images with many details and possible presence of noise or distortions, even similarity at the level of **20%** and above can indicate the presence of significant common features. In such cases, a low percentage of similarity may be expected due to the complexity of the task and the limitations of the algorithm._
