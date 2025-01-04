@@ -15,7 +15,7 @@
 
 # PicTrace 🔍
 
-_**PicTrace**_ is a highly efficient image matching platform that leverages computer vision using _**OpenCV**_, deep learning with _**TensorFlow**_ and the _**ResNet50 model**_, asynchronous processing with _**aiohttp**_, and the _**FastAPI**_ web framework for rapid and accurate image search. PicTrace allows users to upload images directly or provide URLs, quickly scanning a vast database to find similar images. Asynchronous processing ensures smooth and fast visual search, enhancing the user experience.
+_**PicTrace**_ is a highly efficient desktop application for image matching that leverages computer vision using _**OpenCV**_, deep learning with _**TensorFlow**_ and the _**ResNet50 model**_, and asynchronous processing with _**aiohttp**_. Built with a user-friendly graphical interface using _**Tkinter**_, PicTrace allows users to upload images directly from their local machine, quickly scanning a vast database to find similar images. The application ensures smooth and fast visual search, enhancing the user experience without the need for a web server.
 
 -----------------
 ## Getting Started with PicTrace: 🚀
@@ -68,7 +68,7 @@ Explore my online demo and witness the capabilities of my image matching platfor
 - **_Supports Multiple Technologies_** 💼
 
     _**Python**_ with these powerful libraries:
-  - **`FastAPI:`** Ideal for web application creation and handling HTTP requests, FastAPI is known for its high performance and support for asynchronous operations. [Details](https://fastapi.tiangolo.com/)
+  - **`Tkinter:`** Provides a user-friendly graphical interface for the application, allowing users to interact with PicTrace seamlessly. [Details](https://docs.python.org/3/library/tkinter.html)
   - **`aiohttp:`** Perfect for handling asynchronous HTTP requests, such as downloading images by URL, making your app faster and more efficient. [Details](https://docs.aiohttp.org/en/stable/index.html)
   - **`OpenCV (cv2):`** A robust computer vision library used for advanced image processing, including loading, resizing, and comparing images, making it a critical component for your image-related tasks. [Details](https://docs.opencv.org/)
   - **`numpy:`** A versatile library for working with multi-dimensional arrays, often used alongside OpenCV for efficient image processing. [More Info](https://numpy.org/doc/)
