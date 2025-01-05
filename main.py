@@ -1,5 +1,4 @@
 import os
-os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 import zipfile
 import webbrowser
 import numpy as np
@@ -9,23 +8,17 @@ from PIL import Image, ImageTk, UnidentifiedImageError
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter import ttk
-import zipfile
-import webbrowser
-import numpy as np
-import tensorflow as tf
-from tensorflow.keras.models import load_model
-from PIL import Image, ImageTk, UnidentifiedImageError
-import tkinter as tk
-from tkinter import filedialog, messagebox
-from tkinter import ttk
+import pickle
 
 ZIP_PATH = 'photos.zip'
 MODEL_PATH = 'resnet50_local.h5'
+FEATURES_PATH = 'image_features.pkl'
 TOP_K = 5
 SIMILARITY_THRESHOLD = 0.6
-model = load_model(MODEL_PATH)
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+model = load_model(MODEL_PATH)
 
 def preprocess_image(image: Image.Image):
     image = image.resize((224, 224))
@@ -39,19 +32,55 @@ def preprocess_image(image: Image.Image):
 def get_image_features(image: Image.Image):
     preprocessed_image = preprocess_image(image)
     features = model.predict(preprocessed_image)
-    return features
+    return features.flatten()
 
 def cosine_similarity(features1, features2):
-    f1 = features1.flatten()
-    f2 = features2.flatten()
-    num = np.dot(f1, f2)
-    den = np.linalg.norm(f1) * np.linalg.norm(f2)
+    num = np.dot(features1, features2)
+    den = np.linalg.norm(features1) * np.linalg.norm(features2)
     return num / (den + 1e-9)
 
-def get_images_from_zip():
+def extract_features_from_zip():
+    image_features = {}
     with zipfile.ZipFile(ZIP_PATH, 'r') as archive:
         image_keys = [name for name in archive.namelist() if name.lower().endswith(('.jpg', '.jpeg', '.png'))]
-    return image_keys
+        for image_key in image_keys:
+            try:
+                with archive.open(image_key) as image_file:
+                    image = Image.open(image_file).convert('RGB')
+                    features = get_image_features(image)
+                    image_features[image_key] = features
+            except UnidentifiedImageError:
+                print(f"Cannot open image: {image_key}")
+            except Exception as e:
+                print(f"Error processing {image_key}: {e}")
+    with open(FEATURES_PATH, 'wb') as f:
+        pickle.dump(image_features, f)
+    print(f"Features extracted and saved to {FEATURES_PATH}")
+
+def load_precomputed_features():
+    if not os.path.exists(FEATURES_PATH):
+        extract_features_from_zip()
+    with open(FEATURES_PATH, 'rb') as f:
+        image_features = pickle.load(f)
+    return image_features
+
+image_features = load_precomputed_features()
+
+def find_similar_images(uploaded_image: Image.Image):
+    uploaded_image_features = get_image_features(uploaded_image)
+    similarities = []
+    for image_key, features in image_features.items():
+        sim_val = cosine_similarity(uploaded_image_features, features)
+        if sim_val >= SIMILARITY_THRESHOLD:
+            similarities.append((image_key, sim_val))
+    similarities.sort(key=lambda x: x[1], reverse=True)
+    similar_images = []
+    if similarities:
+        with zipfile.ZipFile(ZIP_PATH, 'r') as archive:
+            for image_key, sim_val in similarities[:TOP_K]:
+                saved_image_name = extract_and_save_image(archive, image_key)
+                similar_images.append((saved_image_name, sim_val))
+    return similar_images
 
 def extract_and_save_image(archive, image_key):
     with archive.open(image_key) as image_file:
@@ -60,30 +89,6 @@ def extract_and_save_image(archive, image_key):
         image_path = os.path.join(UPLOAD_FOLDER, safe_image_name)
         image.save(image_path)
         return safe_image_name
-
-def find_similar_images(uploaded_image: Image.Image):
-    uploaded_image_features = get_image_features(uploaded_image)
-    image_keys = get_images_from_zip()
-    similarities = []
-    with zipfile.ZipFile(ZIP_PATH, 'r') as archive:
-        for image_key in image_keys:
-            try:
-                with archive.open(image_key) as image_file:
-                    compare_img = Image.open(image_file).convert('RGB')
-                    compare_img_features = get_image_features(compare_img)
-                    sim_val = cosine_similarity(uploaded_image_features, compare_img_features)
-                    if sim_val >= SIMILARITY_THRESHOLD:
-                        similarities.append((image_key, sim_val))
-            except UnidentifiedImageError:
-                pass
-            except Exception:
-                pass
-        similarities.sort(key=lambda x: x[1], reverse=True)
-        similar_images = []
-        for image_key, sim_val in similarities[:TOP_K]:
-            saved_image_name = extract_and_save_image(archive, image_key)
-            similar_images.append((saved_image_name, sim_val))
-    return similar_images
 
 class PicTraceApp:
     def __init__(self, root):
@@ -202,7 +207,7 @@ class PicTraceApp:
         if not file_path:
             return
         try:
-            uploaded_image = Image.open(file_path)
+            uploaded_image = Image.open(file_path).convert('RGB')
         except UnidentifiedImageError:
             messagebox.showerror("Error", "File is not a valid image")
             return
