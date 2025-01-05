@@ -115,8 +115,8 @@ class PicTraceApp:
         self.background_label = tk.Label(self.root, image=self.bg_photo)
         self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
-        self.main_frame = ttk.Frame(self.root, style="TFrame")
-        self.main_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+        self.nav_frame = ttk.Frame(self.root, style="Nav.TFrame")
+        self.nav_frame.place(x=0, y=0, relwidth=1, height=50)
 
         style = ttk.Style()
         style.theme_use("clam")
@@ -124,9 +124,19 @@ class PicTraceApp:
         style.configure("TFrame", background="#3c3f41")
         style.configure("TLabel", background="#3c3f41", foreground="#ffffff", font=("Helvetica", 11))
         style.configure("TButton", background="#5294e2", foreground="#ffffff", font=("Helvetica", 12, "bold"))
-        style.map("TButton", background=[("active", "#6aa5ec")])
-        style.configure("MyLabelframe.TLabelframe", background="#3c3f41", borderwidth=2)
-        style.configure("MyLabelframe.TLabelframe.Label", background="#3c3f41", foreground="#ffffff", font=("Helvetica", 12, "bold"))
+        style.map("TButton",
+                  background=[("active", "#6aa5ec")],
+                  foreground=[("active", "#ffffff")])
+        style.configure("Nav.TFrame", background="#2e2e2e")
+        style.configure("Nav.TButton", background="#2e2e2e", foreground="#ffffff", font=("Helvetica", 11, "bold"))
+        style.map("Nav.TButton",
+                  background=[("active", "#4a4a4a")],
+                  foreground=[("active", "#ffffff")])
+
+        self.create_navigation()
+
+        self.main_frame = ttk.Frame(self.root, style="TFrame")
+        self.main_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
         self.title_label = ttk.Label(self.main_frame, text="PicTrace - Find Similar Images", font=("Helvetica", 18, "bold"))
         self.title_label.pack(pady=20)
@@ -155,6 +165,33 @@ class PicTraceApp:
         self.footer_email_label = ttk.Label(self.footer_frame, text="reveni324@gmail.com", anchor="center", font=("Helvetica", 8, "underline"), foreground="#aaaaaa", cursor="hand2")
         self.footer_email_label.pack(side=tk.LEFT, padx=10)
         self.footer_email_label.bind("<Button-1>", self.on_email_click)
+
+    def create_navigation(self):
+        nav_buttons = [
+            ("Home", self.show_home),
+            ("Internet Search", self.internet_search),
+            ("Folder Search", self.folder_search),
+            ("About Us", self.about_us)
+        ]
+
+        for (text, command) in nav_buttons:
+            btn = ttk.Button(self.nav_frame, text=text, command=command, style="Nav.TButton")
+            btn.pack(side=tk.LEFT, padx=10, pady=10)
+
+    def show_home(self):
+        self.main_frame.lift()
+        self.result_label.config(text="Results will appear here")
+        for widget in self.preview_frame.winfo_children():
+            widget.destroy()
+
+    def internet_search(self):
+        messagebox.showinfo("Internet Search", "Internet Search functionality is not implemented yet.")
+
+    def folder_search(self):
+        messagebox.showinfo("Folder Search", "Folder Search functionality is not implemented yet.")
+
+    def about_us(self):
+        messagebox.showinfo("About Us", "PicTrace v1.0\nDeveloped by Svyatoslav Köning aka Solrikk\nContact: revi324@gmail.com")
 
     def on_email_click(self, event):
         webbrowser.open("mailto:reveni324@gmail.com")
