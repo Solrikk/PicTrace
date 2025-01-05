@@ -15,7 +15,7 @@
 
 # PicTrace 🔍
 
-_**PicTrace**_ is a highly efficient desktop application for image matching that leverages computer vision using _**OpenCV**_, deep learning with _**TensorFlow**_ and the _**ResNet50 model**_, and asynchronous processing with _**aiohttp**_. Built with a user-friendly graphical interface using _**Tkinter**_, PicTrace allows users to upload images directly from their local machine, quickly scanning a vast database to find similar images. The application ensures smooth and fast visual search, enhancing the user experience without the need for a web server.
+**PicTrace** is an advanced Python-based application equipped with a graphical user interface (GUI) that enables users to identify visually similar images from a comprehensive photo archive. By harnessing the capabilities of deep learning and sophisticated image processing methodologies, **PicTrace** delivers rapid and precise search functionalities, making it perfect for tasks such as cataloging, organizing, and analyzing large sets of visual data.
 
 ## Getting Started with PicTrace:
 | **Operating System** | **Commands for Setup and Launch** |
