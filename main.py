@@ -95,79 +95,52 @@ class PicTraceApp:
         self.root = root
         self.root.title("PicTrace")
         self.root.geometry("1000x700")
+        self.root.resizable(False, False)
+
+        background_path = r'C:\Users\Solrikk\Documents\GitHub\PicTrace\assets\photo\ui-ux\background\image_back_.jpg'
+        if not os.path.exists(background_path):
+            messagebox.showerror("Error", f"Background image not found at: {background_path}")
+            self.root.destroy()
+            return
+
+        try:
+            bg_image = Image.open(background_path)
+            bg_image = bg_image.resize((1000, 700), Image.Resampling.LANCZOS)
+            self.bg_photo = ImageTk.PhotoImage(bg_image)
+        except Exception as e:
+            messagebox.showerror("Error", f"Failed to load background image: {e}")
+            self.root.destroy()
+            return
+
+        self.background_label = tk.Label(self.root, image=self.bg_photo)
+        self.background_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+        self.main_frame = ttk.Frame(self.root, style="TFrame")
+        self.main_frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
         style = ttk.Style()
         style.theme_use("clam")
+        style.configure(".", font=("Helvetica", 10), background="#3c3f41")
+        style.configure("TFrame", background="#3c3f41")
+        style.configure("TLabel", background="#3c3f41", foreground="#ffffff", font=("Helvetica", 11))
+        style.configure("TButton", background="#5294e2", foreground="#ffffff", font=("Helvetica", 12, "bold"))
+        style.map("TButton", background=[("active", "#6aa5ec")])
+        style.configure("MyLabelframe.TLabelframe", background="#3c3f41", borderwidth=2)
+        style.configure("MyLabelframe.TLabelframe.Label", background="#3c3f41", foreground="#ffffff", font=("Helvetica", 12, "bold"))
 
-        style.configure(
-            ".",
-            font=("Helvetica", 10),
-            background="#3c3f41"
-        )
-        style.configure(
-            "TFrame",
-            background="#3c3f41"
-        )
-        style.configure(
-            "TLabel",
-            background="#3c3f41",
-            foreground="#ffffff",
-            font=("Helvetica", 11)
-        )
-        style.configure(
-            "TButton",
-            background="#5294e2",
-            foreground="#ffffff",
-            font=("Helvetica", 12, "bold")
-        )
-        style.map(
-            "TButton",
-            background=[("active", "#6aa5ec")]
-        )
-        style.configure(
-            "MyLabelframe.TLabelframe",
-            background="#3c3f41",
-            borderwidth=2
-        )
-        style.configure(
-            "MyLabelframe.TLabelframe.Label",
-            background="#3c3f41",
-            foreground="#ffffff",
-            font=("Helvetica", 12, "bold")
-        )
-
-        self.main_frame = ttk.Frame(self.root)
-        self.main_frame.pack(fill=tk.BOTH, expand=True)
-
-        self.title_label = ttk.Label(
-            self.main_frame,
-            text="PicTrace - Find Similar Images",
-            font=("Helvetica", 18, "bold")
-        )
+        self.title_label = ttk.Label(self.main_frame, text="PicTrace - Find Similar Images", font=("Helvetica", 18, "bold"))
         self.title_label.pack(pady=20)
 
         self.button_frame = ttk.Frame(self.main_frame)
         self.button_frame.pack(pady=10)
 
-        self.upload_button = ttk.Button(
-            self.button_frame,
-            text="Select Image",
-            command=self.on_upload_button
-        )
+        self.upload_button = ttk.Button(self.button_frame, text="Select Image", command=self.on_upload_button)
         self.upload_button.pack()
 
-        self.result_label = ttk.Label(
-            self.main_frame,
-            text="Results will appear here",
-            anchor="center"
-        )
+        self.result_label = ttk.Label(self.main_frame, text="Results will appear here", anchor="center")
         self.result_label.pack(pady=10)
 
-        self.preview_labelframe = ttk.Labelframe(
-            self.main_frame,
-            text="Similar Images (Threshold: 60%)",
-            style="MyLabelframe.TLabelframe"
-        )
+        self.preview_labelframe = ttk.Labelframe(self.main_frame, text="Similar Images (Threshold: 60%)", style="MyLabelframe.TLabelframe")
         self.preview_labelframe.pack(pady=10, fill=tk.BOTH, expand=True)
 
         self.preview_frame = ttk.Frame(self.preview_labelframe)
@@ -176,23 +149,10 @@ class PicTraceApp:
         self.footer_frame = ttk.Frame(self.main_frame)
         self.footer_frame.pack(side=tk.BOTTOM, pady=5)
 
-        self.footer_label = ttk.Label(
-            self.footer_frame,
-            text="Created by Svyatoslav Köning aka Solrikk",
-            anchor="center",
-            font=("Helvetica", 8),
-            foreground="#aaaaaa"
-        )
+        self.footer_label = ttk.Label(self.footer_frame, text="Created by Svyatoslav Köning aka Solrikk", anchor="center", font=("Helvetica", 8), foreground="#aaaaaa")
         self.footer_label.pack(side=tk.LEFT)
 
-        self.footer_email_label = ttk.Label(
-            self.footer_frame,
-            text="reveni324@gmail.com",
-            anchor="center",
-            font=("Helvetica", 8, "underline"),
-            foreground="#aaaaaa",
-            cursor="hand2"
-        )
+        self.footer_email_label = ttk.Label(self.footer_frame, text="reveni324@gmail.com", anchor="center", font=("Helvetica", 8, "underline"), foreground="#aaaaaa", cursor="hand2")
         self.footer_email_label.pack(side=tk.LEFT, padx=10)
         self.footer_email_label.bind("<Button-1>", self.on_email_click)
 
@@ -200,10 +160,7 @@ class PicTraceApp:
         webbrowser.open("mailto:reveni324@gmail.com")
 
     def on_upload_button(self):
-        file_path = filedialog.askopenfilename(
-            title="Select an image",
-            filetypes=[("Images", "*.jpg *.jpeg *.png *.bmp *.gif")]
-        )
+        file_path = filedialog.askopenfilename(title="Select an image", filetypes=[("Images", "*.jpg *.jpeg *.png *.bmp *.gif")])
         if not file_path:
             return
         try:
@@ -215,9 +172,7 @@ class PicTraceApp:
             messagebox.showerror("Error", str(e))
             return
 
-        self.result_label.config(
-            text="Searching for similar images (threshold 60%)..."
-        )
+        self.result_label.config(text="Searching for similar images (threshold 60%)...")
         self.root.update_idletasks()
 
         similar_images = find_similar_images(uploaded_image)
@@ -227,9 +182,7 @@ class PicTraceApp:
                 result_text += f"- {img_name} (similarity: {sim_val:.2f})\n"
             self.result_label.config(text=result_text)
         else:
-            self.result_label.config(
-                text="No matching images found."
-            )
+            self.result_label.config(text="No matching images found.")
 
         for widget in self.preview_frame.winfo_children():
             widget.destroy()
@@ -237,9 +190,7 @@ class PicTraceApp:
         for img_name, sim_val in similar_images:
             full_path = os.path.join(UPLOAD_FOLDER, img_name)
             if os.path.exists(full_path):
-                img_pil = Image.open(full_path).resize(
-                    (150, 150), Image.Resampling.LANCZOS
-                )
+                img_pil = Image.open(full_path).resize((150, 150), Image.Resampling.LANCZOS)
                 img_tk = ImageTk.PhotoImage(img_pil)
                 preview_label = ttk.Label(self.preview_frame, image=img_tk)
                 preview_label.image = img_tk
