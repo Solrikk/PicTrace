@@ -1,6 +1,7 @@
+import sys
 import os
-import zipfile
 import webbrowser
+import zipfile
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model
@@ -9,6 +10,13 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 from tkinter import ttk
 import pickle
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 ZIP_PATH = 'photos.zip'
 MODEL_PATH = 'resnet50_local.h5'
@@ -97,7 +105,7 @@ class PicTraceApp:
         self.root.geometry("1000x700")
         self.root.resizable(False, False)
 
-        background_path = r'C:\Users\Solrikk\Documents\GitHub\PicTrace\assets\photo\ui-ux\background\image_back_.jpg'
+        background_path = resource_path('assets/photo/ui-ux/background/image_back_.jpg')
         if not os.path.exists(background_path):
             messagebox.showerror("Error", f"Background image not found at: {background_path}")
             self.root.destroy()
