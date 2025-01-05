@@ -14,7 +14,7 @@ ZIP_PATH = 'photos.zip'
 MODEL_PATH = 'resnet50_local.h5'
 FEATURES_PATH = 'image_features.pkl'
 TOP_K = 5
-SIMILARITY_THRESHOLD = 0.6
+SIMILARITY_THRESHOLD = 0.45
 UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
