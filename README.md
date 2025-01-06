@@ -15,7 +15,7 @@
 
 # PicTrace 🔍
 
-**PicTrace** is an advanced Python-based application equipped with a graphical user interface (GUI) that enables users to identify visually similar images from a comprehensive photo archive. By harnessing the capabilities of deep learning and sophisticated image processing methodologies, **PicTrace** delivers rapid and precise search functionalities, making it perfect for tasks such as cataloging, organizing, and analyzing large sets of visual data.
+**PicTrace** is an advanced **Python-based** application equipped with a **graphical user interface (GUI)** and a **web version built on FastAPI** that enables users to identify **visually similar images** from a comprehensive **photo archive**. By harnessing the capabilities of **deep learning** and **sophisticated image processing methodologies**, **PicTrace** delivers **rapid and precise search functionalities**, making it perfect for tasks such as **cataloging**, **organizing**, and **analyzing large sets of visual data**.
 
 ## Getting Started with PicTrace:
 | **Operating System** | **Commands for Setup and Launch** |
