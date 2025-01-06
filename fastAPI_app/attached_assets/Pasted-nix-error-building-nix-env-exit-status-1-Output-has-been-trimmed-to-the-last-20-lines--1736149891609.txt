@@ -1,0 +1,45 @@
+nix error: building nix env: exit status 1
+Output has been trimmed to the last 20 lines
+
+       … while evaluating attribute 'REPLIT_LD_LIBRARY_PATH' of derivation 'nix-shell'
+
+         at «string»:309:9:
+
+          308|       {
+          309|         REPLIT_LD_LIBRARY_PATH = (pkgs.lib.optionalString (env ? REPLIT_LD_LIBRARY_PATH) (env.REPLIT_LD_LIBRARY_PATH + ":")) +
+             |         ^
+          310|         pkgs.lib.makeLibraryPath deps;
+
+       error: attribute 'opencv' missing
+
+       at /home/runner/PICTrace/replit.nix:24:5:
+
+           23|     pkgs.python3Packages.aiohttp
+           24|     pkgs.python3Packages.opencv
+             |     ^
+           25|     pkgs.python3Packages.tensorflow
+       Did you mean one of opencv3, opencv4, openai or openmm?
+
+INFO:     Will watch for changes in these directories: ['/home/runner/PICTrace']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [3469] using StatReload
+2025-01-06 07:50:59.983281: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2025-01-06 07:50:59.986418: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2025-01-06 07:50:59.995159: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:477] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1736149860.009122    3475 cuda_dnn.cc:8310] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1736149860.013027    3475 cuda_blas.cc:1418] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+2025-01-06 07:51:00.028966: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2025-01-06 07:51:02.292488: E external/local_xla/xla/stream_executor/cuda/cuda_driver.cc:152] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: UNKNOWN ERROR (303)
+INFO:     Started server process [3475]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     172.31.196.107:47808 - "GET / HTTP/1.1" 200 OK
+INFO:     172.31.196.107:47808 - "GET /static/styles.css HTTP/1.1" 304 Not Modified
+INFO:     172.31.196.107:47808 - "GET /static/scripts.js HTTP/1.1" 304 Not Modified
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [3475]
+INFO:     Stopping reloader process [3469]
