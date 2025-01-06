@@ -2,20 +2,23 @@
 name = "PicTrace"
 version = "1.0.12a"
 description = "🔎 PicTrace is a highly efficient image matching platform that leverages computer vision using OpenCV, deep learning with TensorFlow and the ResNet50 model, asynchronous processing with aiohttp, and the FastAPI web framework for rapid and accurate image search."
-authors = ["Sviatoslav König <reveni324@gmail.com>"]
+authors = [
+    { name = "Sviatoslav König", email = "reveni324@gmail.com" }
+]
 license = { text = "Apache" }
 readme = "README.md"
+dependencies = [
+    "fastapi>=0.106.0",
+    "uvicorn>=0.24.0",
+    "aiohttp>=3.8.5",
+    "opencv-python>=4.10.0",
+    "tensorflow>=2.16.1",
+    "scipy>=1.11.3",
+    "scikit-learn>=1.3.0",
+    "jinja2>=3.0.0",
+    "pillow>=9.0.0"
+]
 
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
-
-[project.dependencies]
-fastapi = "^0.106.0"
-uvicorn = "^0.24.0"
-aiohttp = "^3.8.5"
-opencv-python = "^4.10.0"
-tensorflow = "^2.16.1"
-scipy = "^1.11.3"
-scikit-learn = "^1.3.0"
-boto3 = "^1.28.9"
