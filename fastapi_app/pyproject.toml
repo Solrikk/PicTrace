@@ -2,7 +2,9 @@
 name = "PicTrace"
 version = "1.0.12a"
 description = "🔎 PicTrace is a highly efficient image matching platform that leverages computer vision using OpenCV, deep learning with TensorFlow and the ResNet50 model, asynchronous processing with aiohttp, and the FastAPI web framework for rapid and accurate image search."
-authors = ["Sviatoslav König <reveni324@gmail.com>"]
+authors = [
+    { name = "Sviatoslav König", email = "reveni324@gmail.com" }
+]
 license = { text = "Apache" }
 readme = "README.md"
 dependencies = [
