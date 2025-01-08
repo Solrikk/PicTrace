@@ -17,6 +17,16 @@
 
 **PicTrace** is an advanced **Python-based** application equipped with a **graphical user interface (GUI)** and a **web version built on FastAPI** that enables users to identify **visually similar images** from a comprehensive **photo archive**. By harnessing the capabilities of **deep learning** and **sophisticated image processing methodologies**, **PicTrace** delivers **rapid and precise search functionalities**, making it perfect for tasks such as **cataloging**, **organizing**, and **analyzing large sets of visual data**.
 
+# Demos:
+
+Curious to see how _PicTrace_ works in real-time? 
+
+**Give it a try and see for yourself!**
+
+https://pictrace.replit.app/
+
+![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/Pictrace.gif)
+
 ## Getting Started with PicTrace:
 | **Operating System** | **Commands for Setup and Launch** |
 |----------------------|----------------------------------|
@@ -42,16 +52,6 @@
     - **zipfile**: Handles ZIP archives containing images, simplifying image collection management. [Details](https://docs.python.org/3/library/zipfile.html)
 
 -----------------
-
-# Demos:
-
-Curious to see how _PicTrace_ works in real-time? 
-
-**Give it a try and see for yourself!**
-
-https://pictrace.replit.app/
-
-![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/Pictrace.gif)
 
 ## Results: 
 _For complex images with many details and possible presence of noise or distortions, even similarity at the level of **20%** and above can indicate the presence of significant common features. In such cases, a low percentage of similarity may be expected due to the complexity of the task and the limitations of the algorithm._
