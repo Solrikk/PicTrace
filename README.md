@@ -28,22 +28,18 @@
 
 -----------------
 
-## Features: ⚡
-- **_Supports Multiple Technologies_** 
+## Features ⚡
 
-    _**Python**_ with these powerful libraries:
-  - **`Tkinter:`** Provides a user-friendly graphical interface for the application, allowing users to interact with PicTrace seamlessly. [Details](https://docs.python.org/3/library/tkinter.html)
-  - **`aiohttp:`** Perfect for handling asynchronous HTTP requests, such as downloading images by URL, making your app faster and more efficient. [Details](https://docs.aiohttp.org/en/stable/index.html)
-  - **`OpenCV (cv2):`** A robust computer vision library used for advanced image processing, including loading, resizing, and comparing images, making it a critical component for your image-related tasks. [Details](https://docs.opencv.org/)
-  - **`numpy:`** A versatile library for working with multi-dimensional arrays, often used alongside OpenCV for efficient image processing. [More Info](https://numpy.org/doc/)
-  - **`scikit-image:`** Particularly, the `structural_similarity` (SSIM) function from this library is employed to compare the similarity of images, enhancing your application's accuracy in image matching. [Details](https://scikit-image.org/docs/stable/auto_examples/transform/plot_ssim.html)
-  - **`hashlib:`** Utilized for generating unique hashes for each image, ensuring every image can be uniquely identified and efficiently managed. [More Info](https://docs.python.org/3/library/hashlib.html)
-
-- **_Supports Multiple Indexes_** 🗂
-
-  - **`Image Hashing:`** Generating unique hashes for images to ensure unique identification and efficient management.
-  - **`Feature Extraction with ResNet50:`** Utilizes the ResNet50 model for extracting robust feature representations from images.
-  - **`Cosine Similarity:`** Measuring similarity between images using cosine similarity on feature vectors extracted from the images.
+- **_Supports Multiple Technologies_**
+    - **Tkinter**: Provides a user-friendly graphical interface for the application, allowing users to interact with PicTrace seamlessly. [Details](https://docs.python.org/3/library/tkinter.html)
+    - **TensorFlow and Keras**: Utilized for loading the ResNet50 model and extracting features from images, ensuring high accuracy and efficiency in image processing. [Details](https://www.tensorflow.org/api_docs/python/tf/keras)
+    - **numpy**: A versatile library for working with multi-dimensional arrays, facilitating efficient computations and data handling. [Details](https://numpy.org/doc/)
+    - **Pillow (PIL)**: A library for image processing, used for loading, resizing, and saving images. [Details](https://pillow.readthedocs.io/en/stable/)
+    - **pickle**: A module for serializing and deserializing Python objects, used for saving and loading precomputed image features. [Details](https://docs.python.org/3/library/pickle.html)
+    - **hashlib**: Utilized for generating unique hashes for each image, ensuring every image can be uniquely identified and efficiently managed. [Details](https://docs.python.org/3/library/hashlib.html)
+    - **scikit-image**: Specifically, the `structural_similarity (SSIM)` function from this library is employed to compare the similarity of images, enhancing your application's accuracy in image matching. [Details](https://scikit-image.org/docs/stable/api/skimage.metrics.html#skimage.metrics.structural_similarity)
+    - **OpenCV (cv2)**: A robust computer vision library used for advanced image processing, including loading, resizing, and comparing images, making it a critical component for your image-related tasks. [Details](https://docs.opencv.org/master/)
+    - **zipfile**: Handles ZIP archives containing images, simplifying image collection management. [Details](https://docs.python.org/3/library/zipfile.html)
 
 -----------------
 
