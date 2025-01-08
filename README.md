@@ -53,6 +53,8 @@ Curious to see how _PicTrace_ works in real-time?
 
 **Give it a try and see for yourself!**
 
+https://pictrace.replit.app/
+
 ![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/Pictrace.gif)
 
 ## Results: 
