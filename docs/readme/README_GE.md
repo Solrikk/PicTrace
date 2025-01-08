@@ -2,12 +2,12 @@
 
 <div align="center">
   <h3>
-    <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md">English</a> |
-    <a href="https://github.com/Solrikk/PicTrace/blob/main/README_RU.md">Russian</a> |
-    <a href="https://github.com/Solrikk/PicTrace/blob/main/README_GE.md">⭐Deutsch⭐</a> |
-    <a href="https://github.com/Solrikk/PicTrace/blob/main/README_JP.md">Japanese</a> |
-    <a href="README_KR.md">Korean</a> |
-    <a href="README_CN.md">Chinese</a>
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md">Englisch</a> |
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/docs/readme/README_RU.md">Russisch</a> |
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/docs/readme/README_GE.md">✦ Deutsch ✦</a> |
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/docs/readme/README_JP.md">Japanisch</a> |
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/docs/readme/README_KR.md">Koreanisch</a> |
+    <a href="https://github.com/Solrikk/PicTrace/blob/main/docs/readme/README_CN.md">Chinesisch</a>
   </h3>
 </div>
 
@@ -15,107 +15,53 @@
 
 # PicTrace 🔍
 
-_**PicTrace**_ ist eine hocheffiziente Bildabgleichsplattform, die Computer Vision mit _**OpenCV**_, Deep Learning mit _**TensorFlow**_ und dem _**ResNet50-Modell**_, asynchrone Verarbeitung mit _**aiohttp**_ sowie das _**FastAPI**_-Webframework für schnelle und genaue Bildersuche nutzt. PicTrace ermöglicht es Benutzern, Bilder direkt hochzuladen oder URLs bereitzustellen und durchforstet schnell eine umfangreiche Datenbank, um ähnliche Bilder zu finden. Asynchrone Verarbeitung sorgt für eine reibungslose und schnelle visuelle Suche und verbessert das Benutzererlebnis.
+✨ **PicTrace** ist eine fortschrittliche Anwendung in **Python**, ausgestattet mit einer **grafischen Benutzeroberfläche (GUI)** und einer **Webversion auf FastAPI**, die es Benutzern ermöglicht, **visuell ähnliche Bilder** aus einem umfangreichen **Fotoarchiv** zu identifizieren. Durch die Nutzung von **Deep-Learning-Fähigkeiten** und **komplexen Bildverarbeitungsmethoden** bietet **PicTrace** **schnelle und präzise Suchfunktionen**, die es ideal für Aufgaben wie **Katalogisierung**, **Organisation** und **Analyse großer visueller Datensätze** machen.
 
-# Online-Demos:
+# Demos:
 
-Neugierig zu sehen, wie _PicTrace_ in Echtzeit funktioniert? 
+Möchten Sie sehen, wie _PicTrace_ in Echtzeit funktioniert? 
 
-Erkunden Sie mein Online-Demo und erleben Sie die Fähigkeiten meiner Bildabgleichsplattform.
+**Probieren Sie es aus und überzeugen Sie sich selbst!**
 
-[Online Demo](https://PicTrace.replit.app) - **Probieren Sie es aus und überzeugen Sie sich selbst!**
+https://pictrace.replit.app/
 
-![PicTrace Demo](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/Pictrace.gif)
+![Demo PicTrace](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/Pictrace.gif)
 
-## Inhaltsverzeichnis:
-1. [Funktionen ⚡](#funktionen-⚡)
-2. [Erste Schritte mit PicTrace 🚀](#erste-schritte-mit-pictrace-🚀)
-   - [Voraussetzungen](#voraussetzungen)
-   - [Schritte zur Einrichtung von PicTrace](#schritte-zur-einrichtung-von-pictrace)
-   - [Starten der Anwendung](#starten-der-anwendung)
-3. [Ergebnisse: 👨‍💻](#ergebnisse-👨‍💻)
-4. [Beispiele: 📋](#beispiele-📋)
-   - [Code mit Kommentaren](#code-mit-kommentaren)
-5. [Wie SSIM in PicTrace funktioniert](#wie-ssim-in-pictrace-funktioniert)
-6. [Wie ORB in PicTrace funktioniert](#wie-orb-in-pictrace-funktioniert)
-7. [Kombinieren von SSIM und ORB](#kombinieren-von-ssim-und-orb)
-8. [OpenCV (Open Source Computer Vision Library) 🌐](#opencv-open-source-computer-vision-library-🌐)
-9. [Neuronales Netzwerkmodell (ResNet50) 🧠](#neuronales-netzwerkmodell-resnet50-🧠)
-10. [Endauswahl ähnlicher Bilder](#endauswahl-ähnlicher-bilder)
+## Einstieg in PicTrace:
+| **Betriebssystem** | **Installations- und Startbefehle** |
+|--------------------|-----------------------------------|
+| 🐧**Linux**        | ```bash sudo git clone https://github.com/Solrikk/PicTrace.git cd PicTrace sudo pip install poetry sudo poetry install sudo poetry run python3 main.py ``` |
+| 🍎**macOS**        | ```bash sudo git clone https://github.com/Solrikk/PicTrace.git cd PicTrace sudo pip install poetry sudo poetry install sudo poetry run python3 main.py ``` |
+| 🪟**Windows**      | Öffnen Sie die Eingabeaufforderung als Administrator und führen Sie aus: ```bash git clone https://github.com/Solrikk/PicTrace.git cd PicTrace pip install poetry poetry install poetry run python main.py ``` |
 
-## Funktionen: ⚡
-- **_Unterstützt mehrere Technologien_** 💼
-
-    _**Python**_ mit diesen leistungsstarken Bibliotheken:
-  - **`FastAPI:`** Ideal für die Erstellung von Webanwendungen und die Handhabung von HTTP-Anfragen, bekannt für hohe Leistung und Unterstützung asynchroner Operationen. [Details](https://fastapi.tiangolo.com/)
-  - **`aiohttp:`** Perfekt für die Handhabung asynchroner HTTP-Anfragen, wie das Herunterladen von Bildern über URLs, wodurch Ihre App schneller und effizienter wird. [Details](https://docs.aiohttp.org/en/stable/index.html)
-  - **`OpenCV (cv2):`** Eine robuste Computer-Vision-Bibliothek für fortgeschrittene Bildverarbeitung, einschließlich Laden, Größenänderung und Vergleich von Bildern, ein kritischer Bestandteil für Ihre bildbezogenen Aufgaben. [Details](https://docs.opencv.org/)
-  - **`numpy:`** Eine vielseitige Bibliothek zur Arbeit mit mehrdimensionalen Arrays, oft in Verbindung mit OpenCV für effiziente Bildverarbeitung verwendet. [Mehr Info](https://numpy.org/doc/)
-  - **`scikit-image:`** Insbesondere die `structural_similarity` (SSIM) Funktion aus dieser Bibliothek wird verwendet, um die Ähnlichkeit von Bildern zu vergleichen und die Genauigkeit Ihrer Anwendung beim Bildabgleich zu erhöhen. [Details](https://scikit-image.org/docs/stable/auto_examples/transform/plot_ssim.html)
-  - **`hashlib:`** Wird verwendet, um eindeutige Hashes für jedes Bild zu generieren, wodurch jedes Bild eindeutig identifiziert und effizient verwaltet werden kann. [Mehr Info](https://docs.python.org/3/library/hashlib.html)
-
-- **_Unterstützt mehrere Indizes_** 🗂️
-
-  - **`Bild-Hashing:`** Erstellen von eindeutigen Hashes für Bilder zur Sicherstellung der eindeutigen Identifikation und effizienten Verwaltung.
-  - **`Merkmalextraktion mit ResNet50:`** Nutzt das ResNet50-Modell zur Extraktion robuster Merkmalsdarstellungen aus Bildern.
-  - **`Kosinus-Ähnlichkeit:`** Messen der Ähnlichkeit zwischen Bildern mittels Kosinus-Ähnlichkeit auf den aus den Bildern extrahierten Merkmalsvektoren.
+![Demo PicTrace](https://github.com/Solrikk/PicTrace/blob/main/assets/gif/shell-PicTrrace.gif)
 
 -----------------
 
-## Erste Schritte mit PicTrace: 🚀
-_PicTrace ist ein leistungsstarkes Werkzeug zur Bildverfolgung und -vergleichung, das entwickelt wurde, um Ihren Entwicklungsprozess zu optimieren. Befolgen Sie diese Schritte, um Ihre Umgebung einzurichten und die Anwendung erfolgreich zu starten._
+## Funktionen ⚡
 
-### Voraussetzungen
-Um mit PicTrace zu arbeiten, stellen Sie sicher, dass folgende Komponenten installiert sind:
-
-- **Python 3.8 oder höher:** PicTrace ist in Python geschrieben. Sie können die neueste Version von Python von der [offiziellen Website](https://www.python.org/downloads/) herunterladen.
-- **pip:** Der Paket-Installer für Python, der ab Python 3.4 und höher vorinstalliert ist. Wir verwenden pip, um die notwendigen Abhängigkeiten zu installieren.
-- **Git:** Erforderlich zum Klonen des PicTrace-Repositories. Falls Git noch nicht auf Ihrem System installiert ist, folgen Sie den Installationsanweisungen auf der [offiziellen Git-Website](https://git-scm.com/downloads).
-
-### Schritte zur Einrichtung von PicTrace:
-1. **Repository klonen**
-
-_Zuerst erhalten Sie eine Kopie des PicTrace-Quellcodes auf Ihrem lokalen Computer. Verwenden Sie die folgenden Befehle, um das Repository von GitHub zu klonen:_
-
-```git clone https://github.com/solrikk/PicTrace.git```
-
-2. **_Set up a virtual environment:_** ✔️
-
-_A virtual environment is crucial for isolating the project dependencies from your global Python setup, preventing version conflicts among different projects. To create and activate a virtual environment, execute the following commands:._
-
-To create and activate a virtual environment, follow these commands:
-
-```bash
-python -m venv venv
-# Windows
-venv\Scripts\activate
-# Linux и MacOS
-source venv/bin/activate
-```
-
-3. **_Install dependencies:_** ✔️
- - _This command reads the `requirements.txt` file and installs all listed packages, ensuring that PicTrace has all the necessary components to run smoothly._
-```bash
-pip install -r requirements.txt
-```
-### _Launching the application:_
-1. **_Start the server:_**
-```bash
-python app.py
-```
-`After starting the server, the application will be available at http://localhost:5000 .`
+- **_Unterstützung mehrerer Technologien_**
+    - **Tkinter**: Bietet eine benutzerfreundliche Oberfläche für die Anwendung, um den Benutzern eine bequeme Interaktion mit PicTrace zu ermöglichen. [Details](https://docs.python.org/3/library/tkinter.html)
+    - **TensorFlow und Keras**: Wird verwendet, um das ResNet50-Modell zu laden und Merkmale aus Bildern zu extrahieren, was eine hohe Genauigkeit und Effizienz in der Bildverarbeitung gewährleistet. [Details](https://www.tensorflow.org/api_docs/python/tf/keras)
+    - **numpy**: Eine vielseitige Bibliothek zur Arbeit mit mehrdimensionalen Arrays, die effektive Berechnungen und Datenverarbeitung erleichtert. [Details](https://numpy.org/doc/)
+    - **Pillow (PIL)**: Eine Bibliothek zur Bildbearbeitung, die zum Laden, Skalieren und Speichern von Bildern verwendet wird. [Details](https://pillow.readthedocs.io/en/stable/)
+    - **pickle**: Ein Modul zur Serialisierung und Deserialisierung von Python-Objekten, das zum Speichern und Laden von zuvor berechneten Bildmerkmalen verwendet wird. [Details](https://docs.python.org/3/library/pickle.html)
+    - **hashlib**: Wird verwendet, um eindeutige Hashwerte für jedes Bild zu generieren, wodurch eine effiziente Verwaltung jedes Bildes ermöglicht wird. [Details](https://docs.python.org/3/library/hashlib.html)
+    - **scikit-image**: Speziell die Funktion `structural_similarity (SSIM)` aus dieser Bibliothek wird verwendet, um die Ähnlichkeit von Bildern zu vergleichen und die Genauigkeit Ihrer Anwendung beim Abgleichen von Bildern zu erhöhen. [Details](https://scikit-image.org/docs/stable/api/skimage.metrics.html#skimage.metrics.structural_similarity)
+    - **OpenCV (cv2)**: Eine zuverlässige Bibliothek für Computer Vision, die für die komplexe Bildverarbeitung verwendet wird, einschließlich Laden, Skalieren und Vergleichen von Bildern. [Details](https://docs.opencv.org/master/)
+    - **zipfile**: Bearbeitet ZIP-Archive, die Bilder enthalten, und erleichtert die Verwaltung von Bildsammlungen. [Details](https://docs.python.org/3/library/zipfile.html)
 
 -----------------
 
-## Ergebnisse: 👨‍💻
-_Für komplexe Bilder mit vielen Details und möglicher Anwesenheit von Rauschen oder Verzerrungen kann selbst eine Ähnlichkeit auf dem Niveau von **20%** und darüber auf das Vorhandensein signifikanter gemeinsamer Merkmale hinweisen. In solchen Fällen kann aufgrund der Komplexität der Aufgabe und der Einschränkungen des Algorithmus ein niedriger Prozentsatz der Ähnlichkeit erwartet werden._
+## Ergebnisse: 
+_Für komplexe Bilder mit vielen Details und möglichem Rauschen oder Verzerrungen kann sogar eine Ähnlichkeit von **20%** und höher auf signifikante gemeinsame Merkmale hinweisen. In solchen Fällen kann eine niedrige Ähnlichkeit aufgrund der Komplexität der Aufgabe und der Einschränkungen des Algorithmus erwartet werden._
 |Bild 1 vs Bild 2|Ähnlichkeit|Bild|
 |:-:|:-:|:-:|
 |<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_3-1.png" alt="" width="500"/>|**27,12%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/palegleam.jpg" alt="" width="300"/>|
 |<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_2.png" alt="" width="500"/>|**25,44%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/ryan-yao.jpg" alt="" width="300"/>|
 |<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/result_3.png" alt="" width="500"/>|**44,16%**|<img src="https://github.com/Solrikk/PicTrace/blob/main/assets/result/images/taro-ohtani.jpg" alt="" width="300"/>|
 
-## Beispiele: 📋
+## Beispiele: 
 (**_Code mit Kommentaren_**)
 
 ```Python 
