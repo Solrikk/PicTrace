@@ -1,6 +1,17 @@
 ![Logo](https://github.com/Solrikk/PicTrace/blob/main/assets/OpenCV%20-%20result/bee.jpg)
 
 <div align="center">
+
+[![Visitors](https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2FSolrikk%2FPicTrace&label=Views&countColor=%232ccce4)](https://visitorbadge.io/status?path=https%3A%2F%2Fgithub.com%2FSolrikk%2FPicTrace)
+[![GitHub stars](https://img.shields.io/github/stars/Solrikk/PicTrace?style=flat&logo=github&color=yellow)](https://github.com/Solrikk/PicTrace/stargazers)
+[![Profile Views](https://komarev.com/ghpvc/?username=Solrikk&color=brightgreen&style=flat&label=Profile+Views)](https://github.com/Solrikk)
+[![GitHub license](https://img.shields.io/github/license/Solrikk/PicTrace?color=blue&style=flat)](https://github.com/Solrikk/PicTrace/blob/main/LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.7%2B-blue?style=flat&logo=python)](https://www.python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-modern-green?style=flat&logo=fastapi)](https://fastapi.tiangolo.com)
+
+</div>
+
+<div align="center">
   <h3>
     <a href="https://github.com/Solrikk/PicTrace/blob/main/README.md">✦ English ✦</a> |
     <a href="https://github.com/Solrikk/PicTrace/blob/main/docs/readme/README_RU.md">Russian</a> |
