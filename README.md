@@ -26,7 +26,7 @@
 
 # PicTrace 🔍
 
-✨ **PicTrace** is an advanced **Python-based** application equipped with a **graphical user interface (GUI)** and a **web version built on FastAPI** that enables users to identify **visually similar images** from a comprehensive **photo archive**. By harnessing the capabilities of **deep learning** and **sophisticated image processing methodologies**, **PicTrace** delivers **rapid and precise search functionalities**, making it perfect for tasks such as **cataloging**, **organizing**, and **analyzing large sets of visual data**.
+✨ **PicTrace** is an advanced **Python-based** web application that allows users to find **visually similar images** from a comprehensive photo archive. Leveraging the power of **deep learning** and modern **image processing techniques**, PicTrace delivers fast and accurate search functionality that is ideal for tasks such as cataloging, organizing, and analyzing large sets of visual data.
 
 # Demos:
 
@@ -76,33 +76,46 @@ _For complex images with many details and possible presence of noise or distorti
 (**_code with comments_**)
 
 ```Python 
-async def find_similar_images(file_path):
-    # Load the data from the database, which contains information about images.
-    db_data = load_db()
-    # Read the target image from the given file path.
-    target_image = cv2.imread(file_path)
-    # Extract features from the target image using a pre-trained model.
-    target_features = extract_features(target_image)
-    # Create an aiohttp asynchronous session for handling HTTP requests.
-    async with aiohttp.ClientSession() as session:
-        # Create asynchronous tasks for the compare_images function for each image in the database.
-        tasks = [
-            compare_images(session, entry, target_features) for entry in db_data
-            if "url" in entry  # Only perform comparisons for entries that contain an image URL.
-        ]
-        # Wait for all tasks to complete and gather the results.
-        results = await asyncio.gather(*tasks)
-    # Filter the results, keeping only those with a similarity score greater than 0.
-    valid_results = filter(lambda x: x[0] > 0, results)   
-    # Sort the filtered results by similarity score in descending order and take the top 5.
-    sorted_results = sorted(valid_results, key=lambda x: x[0], reverse=True)[:5]
-    # Create a list to store the URLs of the similar images.
+# ---------------------------
+# Examples: Code with Comments
+# ---------------------------
+def find_similar_images(uploaded_image: Image.Image):
+    
+    # ---------------------------
+    # Extract features from the uploaded image using the pre-trained ResNet50 model.
+    # ---------------------------
+    uploaded_features = get_image_features(uploaded_image)
+    
+    # ---------------------------
+    # Compare with precomputed features:
+    # Iterate over each image in the archive and compute cosine similarity.
+    # ---------------------------
+    similarities = []
+    for image_key, features in image_features.items():
+        sim_val = cosine_similarity(uploaded_features, features)
+        if sim_val >= SIMILARITY_THRESHOLD:
+            similarities.append((image_key, sim_val))
+    
+    # ---------------------------
+    # Sort the list of similar images by similarity score in descending order.
+    # ---------------------------
+    similarities.sort(key=lambda x: x[1], reverse=True)
+    
+    # ---------------------------
+    # Extract and save the top K similar images from the ZIP archive.
+    # ---------------------------
     similar_images = []
-    for result in sorted_results:
-        if result[1]:
-            similar_images.append(result[1])
-    # Return the list of URLs of the similar images.
+    if similarities:
+        with zipfile.ZipFile(ZIP_PATH, 'r') as archive:
+            for image_key, sim_val in similarities[:TOP_K]:
+                saved_image_name = extract_and_save_image(archive, image_key)
+                similar_images.append((saved_image_name, sim_val))
+    
+    # ---------------------------
+    # Return the list of similar images along with their similarity scores.
+    # ---------------------------
     return similar_images
+
 ```
 
 -----------------
