@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PicTrace</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="search-panel">
+      <h1>Similar Image Search</h1>
+      <p>Upload a photo to find similar images</p>
+      <form id="upload-form">
+        <div class="upload-box">
+          <input type="file" id="file-input" name="file" accept="image/*" required>
+          <label for="file-input">Choose file</label>
+        </div>
+        <button type="submit">Find similar</button>
+        <div id="loading" style="display: none;">Loading...</div>
+      </form>
+    </div>
+    <div id="results" class="results-panel"></div>
+    <div class="gallery-panel">
+      <h3>Database Images</h3>
+      <div id="gallery" class="photo-grid"></div>
+    </div>
+  </div>
+  <script src="/static/scripts.js"></script>
+  <script>
+    fetch('/gallery')
+      .then(response => response.json())
+      .then(data => {
+        const gallery = document.getElementById('gallery');
+        data.photos.forEach(photo => {
+          const img = document.createElement('img');
+          img.src = `/uploads/${encodeURIComponent(photo)}`;
+          img.alt = "Gallery Image";
+          gallery.appendChild(img);
+        });
+      });
+  </script>
+</body>
+</html>
