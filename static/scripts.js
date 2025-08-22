@@ -41,12 +41,22 @@ document.addEventListener('DOMContentLoaded', function() {
     if (data.similar_images.length === 0) {
       grid.innerHTML = '<p>No similar images found.</p>';
     } else {
-      data.similar_images.forEach(function(image_url) {
+      data.similar_images.forEach(function(imageInfo) {
+        const imgContainer = document.createElement('div');
+        imgContainer.classList.add('similar-image-container');
+        
         const imgElement = document.createElement('img');
-        imgElement.src = `/uploads/${encodeURIComponent(image_url)}`;
+        imgElement.src = `/uploads/${encodeURIComponent(imageInfo.filename)}`;
         imgElement.alt = "Similar Image";
         imgElement.classList.add('similar-image');
-        grid.appendChild(imgElement);
+        
+        const scoreElement = document.createElement('div');
+        scoreElement.classList.add('similarity-score');
+        scoreElement.textContent = `Score: ${imageInfo.similarity_score.toFixed(2)}`;
+        
+        imgContainer.appendChild(imgElement);
+        imgContainer.appendChild(scoreElement);
+        grid.appendChild(imgContainer);
       });
     }
   }
