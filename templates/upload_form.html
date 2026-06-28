@@ -8,38 +8,65 @@
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-  <div class="container">
-    <div class="search-panel">
-      <h1>Similar Image Search</h1>
-      <p>Upload a photo to find similar images</p>
-      <form id="upload-form">
-        <div class="upload-box">
-          <input type="file" id="file-input" name="file" accept="image/*" required>
-          <label for="file-input">Choose file</label>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">PT</span>
+        <div>
+          <strong>PicTrace</strong>
+          <span>Visual search</span>
         </div>
-        <button type="submit">Find similar</button>
-        <div id="loading" style="display: none;">Loading...</div>
-      </form>
-    </div>
-    <div id="results" class="results-panel"></div>
-    <div class="gallery-panel">
-      <h3>Database Images</h3>
+      </div>
+      <div class="status-row">
+        <span id="library-count" class="status-pill">Loading library</span>
+        <span id="cache-count" class="status-pill">Cache pending</span>
+      </div>
+    </header>
+
+    <section class="workspace">
+      <section class="search-panel" aria-labelledby="search-title">
+        <div class="panel-heading">
+          <p class="eyebrow">Reference</p>
+          <h1 id="search-title">Find similar images</h1>
+        </div>
+
+        <form id="upload-form">
+          <div class="upload-box">
+            <input type="file" id="file-input" name="file" accept="image/*" required>
+            <label for="file-input" class="upload-label">
+              <span class="upload-mark">+</span>
+              <span>
+                <strong id="file-name">Choose image</strong>
+                <small id="file-meta">JPG, PNG, WebP</small>
+              </span>
+            </label>
+            <img id="file-preview" class="file-preview" alt="Selected preview" hidden>
+          </div>
+          <button id="submit-button" type="submit">Find matches</button>
+          <div id="loading" class="status-message" hidden>Searching...</div>
+        </form>
+      </section>
+
+      <section id="results" class="results-panel" aria-live="polite">
+        <div class="empty-state">
+          <p class="eyebrow">Results</p>
+          <h2>No search yet</h2>
+          <p>Select a reference image to see nearest matches.</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="gallery-panel" aria-labelledby="gallery-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Library</p>
+          <h2 id="gallery-title">Database images</h2>
+        </div>
+        <span id="gallery-status" class="section-meta">Loading</span>
+      </div>
       <div id="gallery" class="photo-grid"></div>
-    </div>
-  </div>
+    </section>
+  </main>
   <script src="/static/scripts.js"></script>
-  <script>
-    fetch('/gallery')
-      .then(response => response.json())
-      .then(data => {
-        const gallery = document.getElementById('gallery');
-        data.photos.forEach(photo => {
-          const img = document.createElement('img');
-          img.src = `/uploads/${encodeURIComponent(photo)}`;
-          img.alt = "Gallery Image";
-          gallery.appendChild(img);
-        });
-      });
-  </script>
 </body>
 </html>
